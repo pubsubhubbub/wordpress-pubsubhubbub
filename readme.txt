@@ -10,11 +10,11 @@ A better way to tell the world when your blog is updated.
 
 == Description ==
 
-This [PubSubHubbub](http://code.google.com/p/pubsubhubbub/ "PubSubHubbub") plugin is a simple way to let people know in real-time when your blog is updated.  PubSubHubbub is quickly gaining adoption and is already being used by Google Reader, Google Alerts, FriendFeed and more. 
+This [PubSubHubbub](http://code.google.com/p/pubsubhubbub/ "PubSubHubbub") plugin is a simple way to let people know in real-time when your blog is updated.  PubSubHubbub is quickly gaining adoption and is already being used by Google Reader, Google Alerts, FriendFeed and more.
 
 This plugin:
- 
-* Now supports multiple hubs!   
+
+* Now supports multiple hubs!
 * Supports all of the feed formats used by WordPress, not just ATOM and RSS2
 * Announces which hubs you are using by adding `<link rel="hub" ...>` declarations to your template header and ATOM feed
 * Adds `<atom:link rel="hub" ...>` to your RSS feeds along with the necessary XMLNS declaration for RSS 0.92/1.0
@@ -32,15 +32,13 @@ Please contact me if you operate a hub that you would like to be included as a d
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. Select custom hubs under your PubSubHubbub Settings (optional)
 
-Note: PHP 5.0 or better is required.
-
 == Frequently Asked Questions ==
 
 = Where can I learn more about the PubSubHubbub protocol? =
 
 You can visit [PubSubHubbb on Google Code](http://code.google.com/p/pubsubhubbub/ "PubSubHubbb on Google Code")
 
-= Where can I learn more about the author of this plugin? =
+= Where can I learn more about the authors of this plugin? =
 
 You can learn more about [Josh Fraser](http://www.joshfraser.com "Josh Fraser") at [Online Aspect](http://www.onlineaspect.com "Online Aspect")
 and [Matthias Pfefferle](http://pfefferle.org "Matthias Pfefferle") at [Notizblog](http://notizblog.org/ "Notizblog")
