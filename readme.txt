@@ -3,8 +3,8 @@ Contributors: joshfraz, pfefferle
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=5426516
 Tags: pubsubhubbub
 Requires at least: 2.5
-Tested up to: 3.0.4
-Stable tag: 1.5
+Tested up to: 3.3
+Stable tag: 1.6
 
 A better way to tell the world when your blog is updated.
 
@@ -48,6 +48,10 @@ and [Matthias Pfefferle](http://pfefferle.org "Matthias Pfefferle") at [Notizblo
 1. The PubSubHubbub Settings page allows you to define which hubs you want to use
 
 == Changelog ==
+
+= 1.6 =
+* Added comment-feed support 
+* Added simple subscriber functions
 
 = 1.5 =
 * Added filter to modify $feed_urls

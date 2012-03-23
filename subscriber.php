@@ -12,16 +12,12 @@
  * @author Matthias Pfefferle
  */
 class PshbSubscriber {
-  // put your google key here
-  // required if you want to use the google feed API to lookup RSS feeds
-  protected $google_key = "";
-
   protected $hub_url;
   protected $topic_url;
   protected $callback_url;
   protected $credentials;
   // accepted values are "async" and "sync"
-  protected $verify = "async";
+  protected $verify = "sync";
   protected $verify_token;
   protected $lease_seconds;
 
@@ -36,21 +32,6 @@ class PshbSubscriber {
     $this->hub_url = $hub_url;
     $this->callback_url = $callback_url;
     $this->credentials = $credentials;
-  }
-
-  // $use_regexp lets you choose whether to use google AJAX feed api (faster, but cached) or a regexp to read from site
-  public function find_feed($url, $http_function = false) {
-    // using google feed API
-    $url = "http://ajax.googleapis.com/ajax/services/feed/lookup?key={$this->google_key}&v=1.0&q=".urlencode($url);
-    // fetch the content
-    if ($http_function)
-      $response = $http_function($url);
-    else
-      $response = $this->http($url);
-
-    $result = json_decode($response, true);
-    $rss_url = $result['responseData']['url'];
-    return $rss_url;
   }
 
   public function subscribe($topic_url, $http_function = false) {
@@ -114,7 +95,7 @@ class PshbSubscriber {
 
     $response = curl_exec($ch);
     $info = curl_getinfo($ch);
-
+    
     // all good -- anything in the 200 range
     if (substr($info['http_code'],0,1) == "2") {
       return $response;
@@ -125,6 +106,7 @@ class PshbSubscriber {
 
   //
   public function find_hub($topic_url) {
+    $self = $topic_url;
     $xml = $this->http($topic_url);
     if (!$xml)
       throw new Exception('Please enter a valid URL');
@@ -161,6 +143,10 @@ class PshbSubscriber {
       throw new Exception('This feed doesn\'t reference a hub url');
 
     $this->topic_url = $self;
+  }
+  
+  public function get_topic_url() {
+    return $this->topic_url;
   }
 }
 ?>
