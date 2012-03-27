@@ -137,7 +137,7 @@ function pshb_end_rss_link_tag() {
 
 // add a link to our settings page in the WP menu
 function pshb_add_plugin_menu() {
-  add_options_page('PubSubHubbub Settings', 'PubSubHubbub', 8, __FILE__, 'pshb_add_settings_page');
+  add_options_page('PubSubHubbub Settings', 'PubSubHubbub', 'administrator', __FILE__, 'pshb_add_settings_page');
 }
 
 // get the endpoints from the wordpress options table
@@ -238,8 +238,9 @@ function pshb_parse_request() {
   $query_vars = $wp->query_vars;
 
   // handle (un)subscribe requests
-  if (in_array($query_vars['hub_mode'], array("subscribe", "unsubscribe")) &&
-      isset($query_vars['hub_challenge'])) {
+  if (array_key_exists('hub_mode', $query_vars)
+      && in_array($query_vars['hub_mode'], array("subscribe", "unsubscribe"))
+      && isset($query_vars['hub_challenge'])) {
     $list = get_option('pubsub_'.$query_vars['hub_mode']);
     if (is_array($list) && in_array($query_vars['hub_topic'], $list)) {
       // remove urls from option lists when unsubscribing
@@ -251,7 +252,9 @@ function pshb_parse_request() {
       exit;
     }
   // handle pushes
-  } elseif ($query_vars['pubsubhubbub'] == "endpoint" && $request_body = @file_get_contents('php://input')) {
+  } elseif (array_key_exists('pubsubhubbub', $query_vars)
+            && $query_vars['pubsubhubbub'] == "endpoint"
+            && $request_body = @file_get_contents('php://input')) {
     do_action('pshb_push', $request_body);
     exit;
   }
