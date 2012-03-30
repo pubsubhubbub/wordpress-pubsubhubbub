@@ -52,6 +52,7 @@ and [Matthias Pfefferle](http://pfefferle.org "Matthias Pfefferle") at [Notizblo
 = 1.6 =
 * Added comment-feed support 
 * Added simple subscriber functions
+* Added link header
 
 = 1.5 =
 * Added filter to modify $feed_urls
