@@ -35,18 +35,18 @@ function pshb_subscribe($url) {
   try {
     $s = new PshbSubscriber(site_url("/?pubsubhubbub=endpoint"));
     $s->find_hub($url);
-        
+
     $subscriptions = get_option('pubsub_subscribe');
     $subscriptions[] = $s->get_topic_url();
     update_option('pubsub_subscribe', array_unique($subscriptions));
-    
+
     if ($s->subscribe($s->get_topic_url()) !== false) {
       return true;
     }
   } catch (Exception $e) {
     return $e->getMessage();
   }
-  
+
   return false;
 }
 
@@ -56,18 +56,18 @@ function pshb_unsubscribe($url) {
   try {
     $s = new PshbSubscriber(site_url("/?pubsubhubbub=endpoint"));
     $s->find_hub($url);
-        
+
     $to_unsubscribe = get_option('pubsub_unsubscribe');
     $to_unsubscribe[] = $s->get_topic_url();
     update_option('pubsub_unsubscribe', array_unique($to_unsubscribe));
-    
+
     if ($s->unsubscribe($s->get_topic_url()) !== false) {
       return true;
     }
   } catch (Exception $e) {
     return $e->getMessage();
   }
-  
+
   return false;
 }
 
@@ -215,11 +215,11 @@ function pshb_add_settings_page() { ?>
 
 // add a settings link next to deactive / edit
 function pshb_add_settings_link( $links, $file ) {
- 	if( $file == 'pubsubhubbub/pubsubhubbub.php' && function_exists( "admin_url" ) ) {
-		$settings_link = '<a href="' . admin_url( 'options-general.php?page=pubsubhubbub/pubsubhubbub' ) . '">' . __('Settings') . '</a>';
-		array_unshift( $links, $settings_link ); // before other links
-	}
-	return $links;
+  if( $file == 'pubsubhubbub/pubsubhubbub.php' && function_exists( "admin_url" ) ) {
+    $settings_link = '<a href="' . admin_url( 'options-general.php?page=pubsubhubbub/pubsubhubbub' ) . '">' . __('Settings') . '</a>';
+    array_unshift( $links, $settings_link ); // before other links
+  }
+  return $links;
 }
 
 // adds some query vars
@@ -265,11 +265,24 @@ function pshb_remove_from_option($url, $option) {
   if (!in_array($option, array("subscribe", "unsubscribe"))) {
     return false;
   }
-  
+
   $list = get_option('pubsub_'.$option);
   $key = array_search($url, $list);
   unset($list[$key]);
   update_option('pubsub_'.$option, $list);
+}
+
+// adds link headers as defined in the curren v0.4 draft
+// https://github.com/pubsubhubbub/PubSubHubbub/issues/2
+function pshb_template_redirect() {
+  if ((is_comment_feed() && !is_singular())
+      || (is_feed() && !is_comment_feed() && !is_archive())) {
+    $hub_urls = pshb_get_pubsub_endpoints();
+    foreach ($hub_urls as $hub_url) {
+      header('Link: <'.$hub_url.'>; rel=hub');
+    }
+    header('Link: <'.( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'].'>; rel=self');
+  }
 }
 
 // attach the handler that gets called every time you publish a post
@@ -302,6 +315,7 @@ add_action('rss2_head', 'pshb_add_rss_link_tag');
 add_action('commentsrss2_head', 'pshb_add_rss_link_tag');
 // to our main HTML header -- not sure if we want to include this long-term or not.
 add_action('wp_head', 'pshb_add_atom_link_tag');
+add_action('template_redirect', 'pshb_template_redirect');
 
 add_filter('plugin_action_links', 'pshb_add_settings_link', 10, 2);
 add_filter('query_vars', 'pshb_query_var');
