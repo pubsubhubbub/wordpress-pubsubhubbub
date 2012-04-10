@@ -279,9 +279,9 @@ function pshb_template_redirect() {
       || (is_feed() && !is_comment_feed() && !is_archive())) {
     $hub_urls = pshb_get_pubsub_endpoints();
     foreach ($hub_urls as $hub_url) {
-      header('Link: <'.$hub_url.'>; rel=hub');
+      header('Link: <'.$hub_url.'>; rel=hub', false);
     }
-    header('Link: <'.( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'].'>; rel=self');
+    header('Link: <'.( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'].'>; rel=self', false);
   }
 }
 
