@@ -86,6 +86,7 @@ function pshb_publish_post($post_id) {
 
   return $post_id;
 }
+add_action('publish_post', 'pshb_publish_post');
 
 // function that is called whenever a new comment is published
 function pshb_publish_comment($comment_id) {
@@ -100,13 +101,18 @@ function pshb_publish_comment($comment_id) {
 
   return $comment_id;
 }
+add_action('comment_post', 'pshb_publish_comment');
 
+// to our atom feed
 function pshb_add_atom_link_tag() {
   $hub_urls = pshb_get_pubsub_endpoints();
   foreach ($hub_urls as $hub_url) {
     echo '<link rel="hub" href="'.$hub_url.'" />';
   }
 }
+add_action('atom_head', 'pshb_add_atom_link_tag');
+add_action('comments_atom_head', 'pshb_add_atom_link_tag');
+//add_action('wp_head', 'pshb_add_atom_link_tag');
 
 function pshb_add_rss_link_tag() {
   $hub_urls = pshb_get_pubsub_endpoints();
@@ -114,16 +120,23 @@ function pshb_add_rss_link_tag() {
     echo '<atom:link rel="hub" href="'.$hub_url.'"/>';
   }
 }
+add_action('rss_head', 'pshb_add_rss_link_tag');
+add_action('rdf_header', 'pshb_add_rss_link_tag');
+add_action('rss2_head', 'pshb_add_rss_link_tag');
+add_action('commentsrss2_head', 'pshb_add_rss_link_tag');
 
 function pshb_add_rdf_ns_link() {
   echo 'xmlns:atom="http://www.w3.org/2005/Atom"';
 }
+add_action('rdf_ns', 'pshb_add_rdf_ns_link');
+
 
 // hack to add the atom definition to the RSS feed
 // start capturing the feed output.  this is run at priority 9 (before output)
 function pshb_start_rss_link_tag() {
   ob_start();
 }
+add_action('do_feed_rss', 'pshb_start_rss_link_tag', 9); // run before output
 
 // this is run at priority 11 (after output)
 // add in the xmlns atom definition link
@@ -134,11 +147,13 @@ function pshb_end_rss_link_tag() {
   // change <rss version="X.XX"> to <rss version="X.XX" xmlns:atom="http://www.w3.org/2005/Atom">
   echo preg_replace($pattern, $replacement, $feed);
 }
+add_action('do_feed_rss', 'pshb_end_rss_link_tag', 11); // run after output
 
 // add a link to our settings page in the WP menu
 function pshb_add_plugin_menu() {
   add_options_page('PubSubHubbub Settings', 'PubSubHubbub', 'administrator', __FILE__, 'pshb_add_settings_page');
 }
+add_action('admin_menu', 'pshb_add_plugin_menu');
 
 // get the endpoints from the wordpress options table
 // valid parameters are "publish" or "subscribe"
@@ -221,6 +236,7 @@ function pshb_add_settings_link( $links, $file ) {
   }
   return $links;
 }
+add_filter('plugin_action_links', 'pshb_add_settings_link', 10, 2);
 
 // adds some query vars
 function pshb_query_var($vars) {
@@ -231,6 +247,7 @@ function pshb_query_var($vars) {
   $vars[] = 'pubsubhubbub';
   return $vars;
 }
+add_filter('query_vars', 'pshb_query_var');
 
 // parses the request
 function pshb_parse_request() {
@@ -259,6 +276,7 @@ function pshb_parse_request() {
     exit;
   }
 }
+add_action('parse_request', 'pshb_parse_request');
 
 // remove something from the option list
 function pshb_remove_from_option($url, $option) {
@@ -284,42 +302,13 @@ function pshb_template_redirect() {
     header('Link: <'.( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'].'>; rel=self', false);
   }
 }
-
-// attach the handler that gets called every time you publish a post
-add_action('publish_post', 'pshb_publish_post');
-// attach the handler that gets called every time you get a comment
-add_action('comment_post', 'pshb_publish_comment');
-// add the link to our settings page in the WP menu structure
-add_action('admin_menu', 'pshb_add_plugin_menu');
+add_action('template_redirect', 'pshb_template_redirect');
 
 // keep WPMU happy
-add_action('admin_init', 'pshb_register_my_settings');
 function pshb_register_my_settings() {
   register_setting('my_settings_group','pubsub_endpoints');
 }
-
-// add the link tag that points to the hub in the header of our template...
-
-// to our atom feed
-add_action('atom_head', 'pshb_add_atom_link_tag');
-add_action('comments_atom_head', 'pshb_add_atom_link_tag');
-// to our RSS 0.92 feed (requires a bit of a hack to include the ATOM namespace definition)
-add_action('do_feed_rss', 'pshb_start_rss_link_tag', 9); // run before output
-add_action('do_feed_rss', 'pshb_end_rss_link_tag', 11); // run after output
-add_action('rss_head', 'pshb_add_rss_link_tag');
-// to our RDF / RSS 1 feed
-add_action('rdf_ns', 'pshb_add_rdf_ns_link');
-add_action('rdf_header', 'pshb_add_rss_link_tag');
-// to our RSS 2 feed
-add_action('rss2_head', 'pshb_add_rss_link_tag');
-add_action('commentsrss2_head', 'pshb_add_rss_link_tag');
-// to our main HTML header -- not sure if we want to include this long-term or not.
-add_action('wp_head', 'pshb_add_atom_link_tag');
-add_action('template_redirect', 'pshb_template_redirect');
-
-add_filter('plugin_action_links', 'pshb_add_settings_link', 10, 2);
-add_filter('query_vars', 'pshb_query_var');
-add_action('parse_request', 'pshb_parse_request');
+add_action('admin_init', 'pshb_register_my_settings');
 
 /**
  * beeing backwards compatible
