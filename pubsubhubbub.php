@@ -9,8 +9,8 @@ Author Email: josh@eventvue.com
 Author URI: http://wordpress.org/extend/plugins/pubsubhubbub/
 */
 
-include("publisher.php");
-include("subscriber.php");
+include("pubsubhubbub-php/publisher.php");
+include("pubsubhubbub-php/subscriber.php");
 
 // the ability for other plugins to hook into the PuSH code based on a
 // fix by Stephen Paul Weber (http://singpolyma.net)

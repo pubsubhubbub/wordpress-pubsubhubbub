@@ -1,6 +1,3 @@
-[submodule "libs"]
-	path = libs
-	url = git://github.com/pfefferle/pubsubhubbub-php
 [submodule "pubsubhubbub-php"]
 	path = pubsubhubbub-php
 	url = git://github.com/pfefferle/pubsubhubbub-php
