@@ -1,10 +1,9 @@
 === Plugin Name ===
 Contributors: joshfraz, pfefferle
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=5426516
 Tags: pubsubhubbub
 Requires at least: 2.5
 Tested up to: 3.3
-Stable tag: 1.6
+Stable tag: 1.6.1
 
 A better way to tell the world when your blog is updated.
 
