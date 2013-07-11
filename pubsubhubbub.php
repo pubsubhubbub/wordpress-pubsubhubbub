@@ -77,7 +77,6 @@ function pshb_add_rdf_ns_link() {
 }
 add_action('rdf_ns', 'pshb_add_rdf_ns_link');
 
-
 // hack to add the atom definition to the RSS feed
 // start capturing the feed output.  this is run at priority 9 (before output)
 function pshb_start_rss_link_tag() {
