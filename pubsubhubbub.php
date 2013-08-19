@@ -9,7 +9,7 @@ Author Email: joshfraz@gmail.com
 Author URI: http://wordpress.org/extend/plugins/pubsubhubbub/
 */
 
-include("pubsubhubbub-php/publisher.php");
+include("publisher.php");
 
 // the ability for other plugins to hook into the PuSH code based on a
 // fix by Stephen Paul Weber (http://singpolyma.net)
@@ -97,7 +97,7 @@ add_action('do_feed_rss', 'pshb_end_rss_link_tag', 11); // run after output
 
 // add a link to our settings page in the WP menu
 function pshb_add_plugin_menu() {
-  add_options_page('PubSubHubbub Settings', 'PubSubHubbub', 'administrator', __FILE__, 'pshb_add_settings_page');
+  add_options_page('PubSubHubbub Settings', 'PubSubHubbub', 'administrator', 'pubsubhubbub', 'pshb_add_settings_page');
 }
 add_action('admin_menu', 'pshb_add_plugin_menu');
 
