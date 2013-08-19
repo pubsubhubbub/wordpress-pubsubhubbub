@@ -1,3 +1,0 @@
-[submodule "pubsubhubbub-php"]
-	path = pubsubhubbub-php
-	url = git://github.com/pfefferle/pubsubhubbub-php
