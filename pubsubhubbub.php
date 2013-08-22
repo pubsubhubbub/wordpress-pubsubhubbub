@@ -3,7 +3,7 @@
 Plugin Name: PubSubHubbub
 Plugin URI: http://code.google.com/p/pubsubhubbub/
 Description: A better way to tell the world when your blog is updated.
-Version: 1.6.3
+Version: 1.6.4
 Author: Josh Fraser, Matthias Pfefferle
 Author Email: joshfraz@gmail.com
 Author URI: http://wordpress.org/extend/plugins/pubsubhubbub/

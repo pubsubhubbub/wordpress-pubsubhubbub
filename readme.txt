@@ -17,6 +17,7 @@ This plugin:
 * Supports multi-user installations (Wordpress MU)
 * Supports multiple hubs
 * Supports all of the feed formats used by WordPress, not just ATOM and RSS2
+* Supports latest spec ([Version 0.4](https://pubsubhubbub.googlecode.com/git/pubsubhubbub-core-0.4.html))
 * Announces which hubs you are using by adding `<link rel="hub" ...>` declarations to your template header and ATOM feed
 * Adds `<atom:link rel="hub" ...>` to your RSS feeds along with the necessary XMLNS declaration for RSS 0.92/1.0
 
@@ -49,6 +50,11 @@ and [Matthias Pfefferle](http://pfefferle.org "Matthias Pfefferle") at [Notizblo
 1. The PubSubHubbub Settings page allows you to define which hubs you want to use
 
 == Changelog ==
+
+= 1.6.4 =
+* removed pubsubhubbub client
+* improvements for a better PuSH v0.4 support
+* fixed small bugs
 
 = 1.6.3 =
 * Update hub URL for SuperFeedr (now pubsubhubbub.superfeedr.com)
