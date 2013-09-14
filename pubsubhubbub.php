@@ -199,7 +199,7 @@ function pshb_add_settings_page() { ?>
 // add a settings link next to deactive / edit
 function pshb_add_settings_link( $links, $file ) {
   if( $file == 'pubsubhubbub/pubsubhubbub.php' && function_exists( "admin_url" ) ) {
-    $settings_link = '<a href="' . admin_url( 'options-general.php?page=pubsubhubbub/pubsubhubbub' ) . '">' . __('Settings') . '</a>';
+    $settings_link = '<a href="' . admin_url( 'options-general.php?page=pubsubhubbub' ) . '">' . __('Settings') . '</a>';
     array_unshift( $links, $settings_link ); // before other links
   }
   return $links;
