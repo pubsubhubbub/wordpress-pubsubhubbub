@@ -2,8 +2,8 @@
 Contributors: joshfraz, pfefferle
 Tags: pubsubhubbub
 Requires at least: 2.5
-Tested up to: 3.5.1
-Stable tag: 1.6.3
+Tested up to: 3.6.1
+Stable tag: 1.6.5
 
 A better way to tell the world when your blog is updated.
 
@@ -50,6 +50,9 @@ and [Matthias Pfefferle](http://pfefferle.org "Matthias Pfefferle") at [Notizblo
 1. The PubSubHubbub Settings page allows you to define which hubs you want to use
 
 == Changelog ==
+
+= 1.6.5 =
+* hotfix
 
 = 1.6.4 =
 * removed pubsubhubbub client
