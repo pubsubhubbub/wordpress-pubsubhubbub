@@ -73,7 +73,7 @@ add_action('rss2_head', 'pshb_add_rss_link_tag');
 add_action('commentsrss2_head', 'pshb_add_rss_link_tag');
 
 function pshb_add_rdf_ns_link() {
-  echo 'xmlns:atom="http://www.w3.org/2005/Atom"';
+  echo 'xmlns:atom="http://www.w3.org/2005/Atom"'."\n";
 }
 add_action('rdf_ns', 'pshb_add_rdf_ns_link');
 
