@@ -2,7 +2,7 @@
 Contributors: joshfraz, pfefferle
 Tags: pubsubhubbub
 Requires at least: 2.5
-Tested up to: 3.6.1
+Tested up to: 3.7.1
 Stable tag: 1.6.5
 
 A better way to tell the world when your blog is updated.
