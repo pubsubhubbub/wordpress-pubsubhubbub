@@ -3,7 +3,7 @@
 Plugin Name: PubSubHubbub
 Plugin URI: http://code.google.com/p/pubsubhubbub/
 Description: A better way to tell the world when your blog is updated.
-Version: 1.6.5
+Version: 1.6.6-dev
 Author: Josh Fraser, Matthias Pfefferle
 Author Email: joshfraz@gmail.com
 Author URI: http://wordpress.org/extend/plugins/pubsubhubbub/
@@ -73,7 +73,7 @@ add_action('rss2_head', 'pshb_add_rss_link_tag');
 add_action('commentsrss2_head', 'pshb_add_rss_link_tag');
 
 function pshb_add_rdf_ns_link() {
-  echo 'xmlns:atom="http://www.w3.org/2005/Atom"'."\n";
+  echo ' xmlns:atom="http://www.w3.org/2005/Atom" '."\n";
 }
 add_action('rdf_ns', 'pshb_add_rdf_ns_link');
 
