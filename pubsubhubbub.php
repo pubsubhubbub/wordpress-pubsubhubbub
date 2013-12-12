@@ -208,12 +208,10 @@ function pshb_add_settings_page() { ?>
   ?>
 
   <table class="form-table">
-
-  <tr valign="top">
-  <th scope="row"><?php _e("Hubs (one per line)", "pubsubhubbub"); ?></th>
-  <td><textarea name="pubsub_endpoints" style='width:600px;height:100px'><?php echo $pubsub_endpoints; ?></textarea></td>
-  </tr>
-
+    <tr valign="top">
+      <th scope="row"><?php _e("Hubs (one per line)", "pubsubhubbub"); ?></th>
+      <td><textarea name="pubsub_endpoints" rows="10" cols="50" class="large-text"><?php echo $pubsub_endpoints; ?></textarea></td>
+    </tr>
   </table>
 
   <?php submit_button(); ?>
@@ -224,9 +222,9 @@ function pshb_add_settings_page() { ?>
 
   <p><?php _e("Visit these links to learn more about PubSubHubbub and the author of this plugin:", "pubsubhubbub"); ?></p>
   <ul>
-    <li>Subscribe to <a href='http://www.onlineaspect.com'>Online Aspect</a> or <a href='http://notizblog.org/'>notizBlog</a></li>
+    <li>Subscribe to <a href='http://www.onlineaspect.com'>Online Aspect</a> or <a href='http://notizblog.org/'>notizBlog</a> (german)</li>
     <li>Follow <a href='http://twitter.com/joshfraser'>Josh Fraser</a> or <a href='http://twitter.com/pfefferle'>Matthias Pfefferle</a> on twitter</li>
-    <li><a href='http://code.google.com/p/pubsubhubbub/'>Learn more about the PubSubHubbub protocol</a></li>
+    <li><a href='http://code.google.com/p/pubsubhubbub/'><?php _e("Learn more about the PubSubHubbub protocol", "pubsubhubbub"); ?></a></li>
   </ul>
 </div>
 
