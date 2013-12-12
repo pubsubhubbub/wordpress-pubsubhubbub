@@ -11,8 +11,11 @@ Author URI: http://wordpress.org/extend/plugins/pubsubhubbub/
 
 include("publisher.php");
 
-// the ability for other plugins to hook into the PuSH code based on a
-// fix by Stephen Paul Weber (http://singpolyma.net)
+/**
+ * the ability for other plugins to hook into the PuSH code
+ *
+ * @param array $feed_urls a list of feed urls you want to publish
+ */
 function pshb_publish_to_hub($feed_urls)  {
   // remove dups (ie. they all point to feedburner)
   $feed_urls = array_unique($feed_urls);
@@ -28,29 +31,43 @@ function pshb_publish_to_hub($feed_urls)  {
   }
 }
 
-// function that is called whenever a new post is published
+/**
+ * function that is called whenever a new post is published
+ *
+ * @param int $post_id the post-id
+ * @return int the post-id
+ */
 function pshb_publish_post($post_id) {
-  // customize default feeds
-  $feed_urls   = pshb_get_feed_urls();
+  // get default feeds
+  $feed_urls = pshb_get_feed_urls();
 
+  // publish them
   pshb_publish_to_hub($feed_urls);
 
   return $post_id;
 }
 add_action('publish_post', 'pshb_publish_post');
 
-// function that is called whenever a new comment is published
+/**
+ * function that is called whenever a new comment is published
+ *
+ * @param int $comment_id the comment-id
+ * @return int the comment-id
+ */
 function pshb_publish_comment($comment_id) {
-  // customize default feeds
+  // get default comment-feeds
   $feed_urls   = pshb_get_comment_feed_urls();
 
+  // publish them
   pshb_publish_to_hub($feed_urls);
 
   return $comment_id;
 }
 add_action('comment_post', 'pshb_publish_comment');
 
-// to our atom feed
+/**
+ * add hub-<link> to the atom feed
+ */
 function pshb_add_atom_link_tag() {
   $hub_urls = pshb_get_pubsub_endpoints();
   foreach ($hub_urls as $hub_url) {
@@ -59,8 +76,10 @@ function pshb_add_atom_link_tag() {
 }
 add_action('atom_head', 'pshb_add_atom_link_tag');
 add_action('comments_atom_head', 'pshb_add_atom_link_tag');
-//add_action('wp_head', 'pshb_add_atom_link_tag');
 
+/**
+ * add hub-<link> to the rss/rdf feed
+ */
 function pshb_add_rss_link_tag() {
   $hub_urls = pshb_get_pubsub_endpoints();
   foreach ($hub_urls as $hub_url) {
@@ -72,20 +91,27 @@ add_action('rdf_header', 'pshb_add_rss_link_tag');
 add_action('rss2_head', 'pshb_add_rss_link_tag');
 add_action('commentsrss2_head', 'pshb_add_rss_link_tag');
 
+/**
+ * add atom namespace to rdf-feed
+ */
 function pshb_add_rdf_ns_link() {
   echo ' xmlns:atom="http://www.w3.org/2005/Atom" '."\n";
 }
 add_action('rdf_ns', 'pshb_add_rdf_ns_link');
 
-// hack to add the atom definition to the RSS feed
-// start capturing the feed output.  this is run at priority 9 (before output)
+/**
+ * hack to add the atom definition to the RSS feed
+ * start capturing the feed output. this is run at priority 9 (before output)
+ */
 function pshb_start_rss_link_tag() {
   ob_start();
 }
 add_action('do_feed_rss', 'pshb_start_rss_link_tag', 9); // run before output
 
-// this is run at priority 11 (after output)
-// add in the xmlns atom definition link
+/**
+ * this is run at priority 11 (after output)
+ * add in the xmlns atom definition link
+ */
 function pshb_end_rss_link_tag() {
   $feed = ob_get_clean();
   $pattern = '/<rss version="(.+)">/i';
@@ -95,14 +121,20 @@ function pshb_end_rss_link_tag() {
 }
 add_action('do_feed_rss', 'pshb_end_rss_link_tag', 11); // run after output
 
-// add a link to our settings page in the WP menu
+/**
+ * add a link to our settings page in the WP menu
+ */
 function pshb_add_plugin_menu() {
   add_options_page('PubSubHubbub Settings', 'PubSubHubbub', 'administrator', 'pubsubhubbub', 'pshb_add_settings_page');
 }
 add_action('admin_menu', 'pshb_add_plugin_menu');
 
-// get the endpoints from the wordpress options table
-// valid parameters are "publish" or "subscribe"
+/**
+ * get the endpoints from the wordpress options table
+ * valid parameters are "publish" or "subscribe"
+ *
+ *  @uses apply_filters() Calls 'pshb_hub_urls' filter
+ */
 function pshb_get_pubsub_endpoints() {
   $endpoints = get_option('pubsub_endpoints');
   $hub_urls = explode("\n",$endpoints);
@@ -122,10 +154,14 @@ function pshb_get_pubsub_endpoints() {
     }
   }
 
-  return $hub_urls;
+  return apply_filters('pshb_hub_urls', $hub_urls);
 }
 
-// helper function to get feed urls
+/**
+ * helper function to get feed urls
+ *
+ * @uses apply_filters() Calls 'pshb_feed_urls' filter
+ */
 function pshb_get_feed_urls() {
   // we want to notify the hub for every feed
   $feed_urls = array();
@@ -137,7 +173,11 @@ function pshb_get_feed_urls() {
   return apply_filters('pshb_feed_urls', $feed_urls);
 }
 
-// helper function to get comment-feed urls
+/**
+ * helper function to get comment-feed urls
+ *
+ * @uses apply_filters() Calls 'pshb_comment_feed_urls' filter
+ */
 function pshb_get_comment_feed_urls() {
   // we want to notify the hub for every feed
   $feed_urls = array();
@@ -147,16 +187,19 @@ function pshb_get_comment_feed_urls() {
   return apply_filters('pshb_comment_feed_urls', $feed_urls);
 }
 
-// write the content for our settings page that allows you to define your endpoints
+/**
+ * write the content for our settings page that allows you to
+ * define your endpoints
+ */
 function pshb_add_settings_page() { ?>
   <div class="wrap">
-  <h2>Define custom hubs</h2>
+  <h2><?php _e("Define custom hubs", "pubsubhubbub"); ?></h2>
 
   <form method="post" action="options.php">
   <?php //wp_nonce_field('update-options'); ?>
   <!-- starting -->
-  <?php settings_fields('my_settings_group'); ?>
-  <?php do_settings_sections('my_settings_section'); ?>
+  <?php settings_fields('pubsubhubbub_options'); ?>
+  <?php do_settings_sections('pubsubhubbub_options'); ?>
   <!-- ending -->
 
   <?php
@@ -167,36 +210,31 @@ function pshb_add_settings_page() { ?>
   <table class="form-table">
 
   <tr valign="top">
-  <th scope="row">Hubs (one per line)</th>
+  <th scope="row"><?php _e("Hubs (one per line)", "pubsubhubbub"); ?></th>
   <td><textarea name="pubsub_endpoints" style='width:600px;height:100px'><?php echo $pubsub_endpoints; ?></textarea></td>
   </tr>
 
   </table>
 
-  <input type="hidden" name="action" value="update" />
-  <input type="hidden" name="page_options" value="pubsub_endpoints" />
-
-  <p class="submit">
-  <input type="submit" class="button-primary" value="<?php _e('Save Changes') ?>" />
-  </p>
+  <?php submit_button(); ?>
 
   </form>
 
-  <br /><br />
-  <div style='background-color:#FFFEEB;border:1px solid #CCCCCC;padding:12px'>
-    <strong>Thanks for using PubSubHubbub!</strong><br />
-    Visit these links to learn more about PubSubHubbub and the author of this plugin:<br />
-    <ul>
-      <li><a href='http://www.onlineaspect.com'>Subscribe to Online Aspect</a></li>
-      <li><a href='http://www.twitter.com/joshfraser'>Follow Josh Fraser on twitter</a></li>
-      <li><a href='http://code.google.com/p/pubsubhubbub/'>Learn more about the PubSubHubbub protocol</a></li>
-    </ul>
-  </div>
+  <p><strong><?php _e("Thanks for using PubSubHubbub!", "pubsubhubbub"); ?></strong></p>
+
+  <p><?php _e("Visit these links to learn more about PubSubHubbub and the author of this plugin:", "pubsubhubbub"); ?></p>
+  <ul>
+    <li>Subscribe to <a href='http://www.onlineaspect.com'>Online Aspect</a> or <a href='http://notizblog.org/'>notizBlog</a></li>
+    <li>Follow <a href='http://twitter.com/joshfraser'>Josh Fraser</a> or <a href='http://twitter.com/pfefferle'>Matthias Pfefferle</a> on twitter</li>
+    <li><a href='http://code.google.com/p/pubsubhubbub/'>Learn more about the PubSubHubbub protocol</a></li>
+  </ul>
 </div>
 
 <?php }
 
-// add a settings link next to deactive / edit
+/**
+ * add a settings link next to deactive / edit
+ */
 function pshb_add_settings_link( $links, $file ) {
   if( $file == 'pubsubhubbub/pubsubhubbub.php' && function_exists( "admin_url" ) ) {
     $settings_link = '<a href="' . admin_url( 'options-general.php?page=pubsubhubbub' ) . '">' . __('Settings') . '</a>';
@@ -206,7 +244,12 @@ function pshb_add_settings_link( $links, $file ) {
 }
 add_filter('plugin_action_links', 'pshb_add_settings_link', 10, 2);
 
-// adds some query vars
+/**
+ * adds some query vars
+ *
+ * @param array $vars a list of query-vars
+ * @return array the list with the added PuSH params
+ */
 function pshb_query_var($vars) {
   $vars[] = 'hub_mode';
   $vars[] = 'hub_challenge';
@@ -217,35 +260,47 @@ function pshb_query_var($vars) {
 }
 add_filter('query_vars', 'pshb_query_var');
 
-// adds link headers as defined in the curren v0.4 draft
-// https://github.com/pubsubhubbub/PubSubHubbub/issues/2
+/**
+ * adds link headers as defined in the curren v0.4 draft
+ *
+ * @link https://github.com/pubsubhubbub/PubSubHubbub/issues/2
+ */
 function pshb_template_redirect() {
   global $wp;
 
+  // get all feeds
   $feed_urls = pshb_get_feed_urls();
   $comment_feed_urls = pshb_get_comment_feed_urls();
-  
+
+  // get current url
   $urls = array_unique(array_merge($feed_urls, $comment_feed_urls));
   $current_url = ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-  
+
+  // check if current url is one of the feed urls
   if (in_array($current_url, $urls)) {
     $hub_urls = pshb_get_pubsub_endpoints();
+    // add all "hub" headers
     foreach ($hub_urls as $hub_url) {
       header('Link: <'.$hub_url.'>; rel="hub"', false);
     }
+    // add the "self" header
     header('Link: <'.$current_url.'>; rel="self"', false);
   }
 }
 add_action('template_redirect', 'pshb_template_redirect');
 
-// keep WPMU happy
-function pshb_register_my_settings() {
-  register_setting('my_settings_group','pubsub_endpoints');
+/**
+ * keep WPMU happy
+ */
+function pshb_register_settings() {
+  register_setting('pubsubhubbub_options','pubsub_endpoints');
 }
-add_action('admin_init', 'pshb_register_my_settings');
+add_action('admin_init', 'pshb_register_settings');
 
 /**
  * beeing backwards compatible
+ * based on a fix by Stephen Paul Weber (http://singpolyma.net)
+ *
  * @deprecated
  */
 function publish_to_hub($deprecated = null, $feed_urls)  {
