@@ -1,4 +1,4 @@
-# Plugin Name #
+# PubSubHubbub #
 **Contributors:** joshfraz, pfefferle  
 **Tags:** pubsubhubbub, webhooks, pubsub  
 **Requires at least:** 2.5  
@@ -9,7 +9,7 @@ A better way to tell the world when your blog is updated.
 
 ## Description ##
 
-This [PubSubHubbub](http://code.google.com/p/pubsubhubbub/ "PubSubHubbub") plugin is a simple way to let people know in real-time when your blog is updated.  PubSubHubbub is widely adopted and is used by Google Reader, Google Alerts and many other services.
+This [PubSubHubbub](https://github.com/pubsubhubbub/ "PubSubHubbub") plugin is a simple way to let people know in real-time when your blog is updated.  PubSubHubbub is widely adopted and is used by Google Reader, Google Alerts and many other services.
 
 This plugin:
 
@@ -38,7 +38,7 @@ Please contact me if you operate a hub that you would like to be included as a d
 
 ### Where can I learn more about the PubSubHubbub protocol? ###
 
-You can visit [PubSubHubbb on Google Code](http://code.google.com/p/pubsubhubbub/ "PubSubHubbb on Google Code")
+You can visit [PubSubHubbub on Github](https://github.com/pubsubhubbub/ "PubSubHubbub on Github")
 
 ### Where can I learn more about the authors of this plugin? ###
 
@@ -48,7 +48,7 @@ and [Matthias Pfefferle](http://pfefferle.org "Matthias Pfefferle") at [Notizblo
 ## Screenshots ##
 
 ### 1. The PubSubHubbub Settings page allows you to define which hubs you want to use ###
-![The PubSubHubbub Settings page allows you to define which hubs you want to use](http://s.wordpress.org/extend/plugins/plugin-name/screenshot-1.png)
+![The PubSubHubbub Settings page allows you to define which hubs you want to use](http://s.wordpress.org/extend/plugins/pubsubhubbub/screenshot-1.png)
 
 
 ## Changelog ##

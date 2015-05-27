@@ -1,4 +1,4 @@
-=== Plugin Name ===
+=== PubSubHubbub ===
 Contributors: joshfraz, pfefferle
 Tags: pubsubhubbub, webhooks, pubsub
 Requires at least: 2.5
