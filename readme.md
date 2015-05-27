@@ -1,15 +1,15 @@
-=== Plugin Name ===
-Contributors: joshfraz, pfefferle
-Tags: pubsubhubbub, webhooks, pubsub
-Requires at least: 2.5
-Tested up to: 3.7.1
-Stable tag: 1.6.5
+# Plugin Name #
+**Contributors:** joshfraz, pfefferle  
+**Tags:** pubsubhubbub, webhooks, pubsub  
+**Requires at least:** 2.5  
+**Tested up to:** 3.7.1  
+**Stable tag:** 1.6.5  
 
 A better way to tell the world when your blog is updated.
 
-== Description ==
+## Description ##
 
-This [PubSubHubbub](https://github.com/pubsubhubbub/ "PubSubHubbub") plugin is a simple way to let people know in real-time when your blog is updated.  PubSubHubbub is widely adopted and is used by Google Reader, Google Alerts and many other services.
+This [PubSubHubbub](http://code.google.com/p/pubsubhubbub/ "PubSubHubbub") plugin is a simple way to let people know in real-time when your blog is updated.  PubSubHubbub is widely adopted and is used by Google Reader, Google Alerts and many other services.
 
 This plugin:
 
@@ -28,69 +28,71 @@ By default this plugin will ping the following hubs:
 
 Please contact me if you operate a hub that you would like to be included as a default option.
 
-== Installation ==
+## Installation ##
 
 1. Upload the `pubsubhubbub` directory to your `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. Select custom hubs under your PubSubHubbub Settings (optional)
 
-== Frequently Asked Questions ==
+## Frequently Asked Questions ##
 
-= Where can I learn more about the PubSubHubbub protocol? =
+### Where can I learn more about the PubSubHubbub protocol? ###
 
-You can visit [PubSubHubbub on Github](https://github.com/pubsubhubbub/ "PubSubHubbub on Github")
+You can visit [PubSubHubbb on Google Code](http://code.google.com/p/pubsubhubbub/ "PubSubHubbb on Google Code")
 
-= Where can I learn more about the authors of this plugin? =
+### Where can I learn more about the authors of this plugin? ###
 
 You can learn more about [Josh Fraser](http://www.joshfraser.com "Josh Fraser") at [Online Aspect](http://www.onlineaspect.com "Online Aspect")
 and [Matthias Pfefferle](http://pfefferle.org "Matthias Pfefferle") at [Notizblog](http://notizblog.org/ "Notizblog")
 
-== Screenshots ==
+## Screenshots ##
 
-1. The PubSubHubbub Settings page allows you to define which hubs you want to use
+### 1. The PubSubHubbub Settings page allows you to define which hubs you want to use ###
+![The PubSubHubbub Settings page allows you to define which hubs you want to use](http://s.wordpress.org/extend/plugins/plugin-name/screenshot-1.png)
 
-== Changelog ==
 
-= 1.6.5 =
+## Changelog ##
+
+### 1.6.5 ###
 * hotfix
 
-= 1.6.4 =
+### 1.6.4 ###
 * removed pubsubhubbub client
 * improvements for a better PuSH v0.4 support
 * fixed small bugs
 
-= 1.6.3 =
+### 1.6.3 ###
 * Update hub URL for SuperFeedr (now pubsubhubbub.superfeedr.com)
 * Update credits and documentation
 
-= 1.6.1 =
+### 1.6.1 ###
 * Bug fixes
 
-= 1.6 =
+### 1.6 ###
 * Added comment-feed support
 * Added simple subscriber functions
 * Added link header
 
-= 1.5 =
+### 1.5 ###
 * Added filter to modify $feed_urls
 * Re-Added Stephen Paul Webers changes
 
-= 1.4 =
+### 1.4 ###
 * Added name spacing to avoid conflicts with other plugins & added patch from pfefferle
 
-= 1.3 =
+### 1.3 ###
 * Added multi-user support and now tested up to 2.9.1
 
-= 1.2 =
+### 1.2 ###
 * Added support for multiple hubs
 
-= 1.1 =
+### 1.1 ###
 * Added RSS support
 
-= 1.0 =
+### 1.0 ###
 * First attempt
 
-== Upgrade Notice ==
+## Upgrade Notice ##
 
-= 1.4 =
+### 1.4 ###
 Upgrade eliminates conflicts with other Wordpress plugins
