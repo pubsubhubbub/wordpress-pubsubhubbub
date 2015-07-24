@@ -95,7 +95,7 @@ add_action( 'commentsrss2_head', 'pshb_add_rss_link_tag' );
  * add atom namespace to rdf-feed
  */
 function pshb_add_rdf_ns_link() {
-	echo ' xmlns:atom="http://www.w3.org/2005/Atom" '."\n";
+	echo ' xmlns:atom="http://www.w3.org/2005/Atom" ' . PHP_EOL;
 }
 add_action( 'rdf_ns', 'pshb_add_rdf_ns_link' );
 
