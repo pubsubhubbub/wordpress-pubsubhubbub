@@ -51,6 +51,11 @@ and [Matthias Pfefferle](http://pfefferle.org "Matthias Pfefferle") at [Notizblo
 
 == Changelog ==
 
+= 1.7.0 =
+* fixed "plugin name"
+* nicer docs
+* WordPress coding standard
+
 = 1.6.5 =
 * hotfix
 
