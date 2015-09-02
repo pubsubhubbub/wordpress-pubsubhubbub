@@ -3,7 +3,7 @@
 **Tags:** pubsubhubbub, webhooks, pubsub  
 **Requires at least:** 2.5  
 **Tested up to:** 3.7.1  
-**Stable tag:** 1.6.5  
+**Stable tag:** 1.7.0  
 
 A better way to tell the world when your blog is updated.
 
