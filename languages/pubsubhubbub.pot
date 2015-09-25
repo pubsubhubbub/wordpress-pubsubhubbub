@@ -1,0 +1,68 @@
+# Copyright (C) 2015 Josh Fraser, Matthias Pfefferle
+# This file is distributed under the same license as the PubSubHubbub package.
+msgid ""
+msgstr ""
+"Project-Id-Version: PubSubHubbub 1.7.1\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/pubsubhubbub\n"
+"POT-Creation-Date: 2015-09-25 10:16:56+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2015-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"X-Generator: grunt-wp-i18n 0.5.3\n"
+
+#: pubsubhubbub.php:198
+msgid "Define custom hubs"
+msgstr ""
+
+#: pubsubhubbub.php:214
+msgid "Hubs (one per line)"
+msgstr ""
+
+#: pubsubhubbub.php:223
+msgid "Thanks for using PubSubHubbub!"
+msgstr ""
+
+#: pubsubhubbub.php:225
+msgid ""
+"Visit these links to learn more about PubSubHubbub and the author of this "
+"plugin:"
+msgstr ""
+
+#: pubsubhubbub.php:227
+msgid "Subscribe to %s or %s (german)"
+msgstr ""
+
+#: pubsubhubbub.php:228
+msgid "Follow %s or %s on twitter"
+msgstr ""
+
+#: pubsubhubbub.php:229
+msgid "Learn more about the PubSubHubbub protocol"
+msgstr ""
+
+#: pubsubhubbub.php:240
+msgid "Settings"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "PubSubHubbub"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://github.com/pubsubhubbub/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "A better way to tell the world when your blog is updated."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Josh Fraser, Matthias Pfefferle"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://wordpress.org/plugins/pubsubhubbub/"
+msgstr ""

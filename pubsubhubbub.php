@@ -1,12 +1,13 @@
 <?php
 /*
 Plugin Name: PubSubHubbub
-Plugin URI: http://code.google.com/p/pubsubhubbub/
+Plugin URI: https://github.com/pubsubhubbub/
 Description: A better way to tell the world when your blog is updated.
-Version: 1.7.0
+Version: 1.7.1
 Author: Josh Fraser, Matthias Pfefferle
 Author Email: joshfraz@gmail.com
-Author URI: http://wordpress.org/extend/plugins/pubsubhubbub/
+Author URI: http://wordpress.org/plugins/pubsubhubbub/
+Domain Path: /languages
 */
 
 include( 'publisher.php' );
@@ -223,9 +224,9 @@ function pshb_add_settings_page() {
 
 	<p><?php _e( 'Visit these links to learn more about PubSubHubbub and the author of this plugin:', 'pubsubhubbub' ); ?></p>
 	<ul>
-		<li>Subscribe to <a href='http://www.onlineaspect.com'>Online Aspect</a> or <a href='http://notizblog.org/'>notizBlog</a> (german)</li>
-		<li>Follow <a href='http://twitter.com/joshfraser'>Josh Fraser</a> or <a href='http://twitter.com/pfefferle'>Matthias Pfefferle</a> on twitter</li>
-		<li><a href='http://code.google.com/p/pubsubhubbub/'><?php _e( 'Learn more about the PubSubHubbub protocol', 'pubsubhubbub' ); ?></a></li>
+		<li><?php printf( __( 'Subscribe to %s or %s (german)' ), '<a href="http://www.onlineaspect.com">Online Aspect</a>', '<a href="http://notizblog.org/">notizBlog</a>' ) ?></li>
+		<li><?php printf( __( 'Follow %s or %s on twitter' ), '<a href="http://twitter.com/joshfraser">Josh Fraser</a>', '<a href="http://twitter.com/pfefferle">Matthias Pfefferle</a>' ) ?></li>
+		<li><a href="http://code.google.com/p/pubsubhubbub/"><?php _e( 'Learn more about the PubSubHubbub protocol', 'pubsubhubbub' ); ?></a></li>
 	</ul>
 </div>
 
@@ -265,8 +266,6 @@ add_filter( 'query_vars', 'pshb_query_var' );
  * @link https://github.com/pubsubhubbub/PubSubHubbub/issues/2
  */
 function pshb_template_redirect() {
-	global $wp;
-
 	// get all feeds
 	$feed_urls = pshb_get_feed_urls();
 	$comment_feed_urls = pshb_get_comment_feed_urls();
@@ -295,6 +294,12 @@ function pshb_register_settings() {
 	register_setting( 'pubsubhubbub_options','pubsub_endpoints' );
 }
 add_action( 'admin_init', 'pshb_register_settings' );
+
+// Load the plugin textdomain.
+function pshb_load_textdomain() {
+	load_plugin_textdomain( 'pubsubhubbub', false, basename( dirname( plugin_dir_path( __FILE__ ) ) ) . '/languages' );
+}
+add_action( 'init', 'pshb_load_textdomain' );
 
 /**
  * beeing backwards compatible

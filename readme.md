@@ -2,8 +2,8 @@
 **Contributors:** joshfraz, pfefferle  
 **Tags:** pubsubhubbub, webhooks, pubsub  
 **Requires at least:** 2.5  
-**Tested up to:** 3.7.1  
-**Stable tag:** 1.7.0  
+**Tested up to:** 4.3.1  
+**Stable tag:** 1.7.1  
 
 A better way to tell the world when your blog is updated.
 
@@ -52,6 +52,10 @@ and [Matthias Pfefferle](http://pfefferle.org "Matthias Pfefferle") at [Notizblo
 
 
 ## Changelog ##
+
+### 1.7.1 ###
+* fixed some links
+* finished language support
 
 ### 1.7.0 ###
 * fixed "plugin name"
