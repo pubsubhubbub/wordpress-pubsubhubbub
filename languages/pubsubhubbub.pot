@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the PubSubHubbub package.
 msgid ""
 msgstr ""
-"Project-Id-Version: PubSubHubbub 1.7.1\n"
+"Project-Id-Version: PubSubHubbub 1.7.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/pubsubhubbub\n"
-"POT-Creation-Date: 2015-09-25 10:16:56+00:00\n"
+"POT-Creation-Date: 2015-11-03 10:40:52+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -64,5 +64,5 @@ msgid "Josh Fraser, Matthias Pfefferle"
 msgstr ""
 
 #. Author URI of the plugin/theme
-msgid "http://wordpress.org/plugins/pubsubhubbub/"
+msgid "https://wordpress.org/plugins/pubsubhubbub/"
 msgstr ""

@@ -6,6 +6,9 @@ module.exports = function(grunt) {
 					'readme.md': 'readme.txt'
 				},
 			},
+			options: {
+				screenshot_url: 'https://s.w.org/plugins/{plugin}/{screenshot}.png'
+			},
 		},
 		makepot: {
 			target: {
