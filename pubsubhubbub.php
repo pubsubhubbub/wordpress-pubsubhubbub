@@ -3,10 +3,10 @@
 Plugin Name: PubSubHubbub
 Plugin URI: https://github.com/pubsubhubbub/
 Description: A better way to tell the world when your blog is updated.
-Version: 1.7.1
+Version: 1.7.2
 Author: Josh Fraser, Matthias Pfefferle
 Author Email: joshfraz@gmail.com
-Author URI: http://wordpress.org/plugins/pubsubhubbub/
+Author URI: https://wordpress.org/plugins/pubsubhubbub/
 Domain Path: /languages
 */
 
@@ -142,8 +142,8 @@ function pshb_get_pubsub_endpoints() {
 
 	// if no values have been set, revert to the defaults (pubsubhubbub on app engine & superfeedr)
 	if ( ! $endpoints ) {
-		$hub_urls[] = 'http://pubsubhubbub.appspot.com';
-		$hub_urls[] = 'http://pubsubhubbub.superfeedr.com';
+		$hub_urls[] = 'https://pubsubhubbub.appspot.com';
+		$hub_urls[] = 'https://pubsubhubbub.superfeedr.com';
 	}
 
 	// clean out any blank values
@@ -261,7 +261,7 @@ function pshb_query_var($vars) {
 add_filter( 'query_vars', 'pshb_query_var' );
 
 /**
- * adds link headers as defined in the curren v0.4 draft
+ * adds link headers as defined in the current v0.4 draft
  *
  * @link https://github.com/pubsubhubbub/PubSubHubbub/issues/2
  */
