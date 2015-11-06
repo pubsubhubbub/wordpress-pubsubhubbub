@@ -1,14 +1,14 @@
 <?php
-/*
-Plugin Name: PubSubHubbub
-Plugin URI: https://github.com/pubsubhubbub/
-Description: A better way to tell the world when your blog is updated.
-Version: 1.7.2
-Author: Josh Fraser, Matthias Pfefferle
-Author Email: joshfraz@gmail.com
-Author URI: https://wordpress.org/plugins/pubsubhubbub/
-Domain Path: /languages
-*/
+/**
+ * Plugin Name: PubSubHubbub
+ * Plugin URI: https://github.com/pubsubhubbub/
+ * Description: A better way to tell the world when your blog is updated.
+ * Version: 1.7.2
+ * Author: Josh Fraser, Matthias Pfefferle
+ * Author Email: joshfraz@gmail.com
+ * Author URI: https://wordpress.org/plugins/pubsubhubbub/
+ * Domain Path: /languages
+ */
 
 include( 'publisher.php' );
 

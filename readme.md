@@ -53,6 +53,8 @@ and [Matthias Pfefferle](http://pfefferle.org "Matthias Pfefferle") at [Notizblo
 
 ## Changelog ##
 
+Project maintined on github at [pubsubhubbub/wordpress-pubsubhubbub](https://github.com/pubsubhubbub/wordpress-pubsubhubbub).
+
 ### 1.7.2 ###
 * updated screenshot
 * updated default PubSubHubbub hub URLs to HTTPS from HTTP
