@@ -6,17 +6,17 @@
 // Released under Apache License 2.0
 
 /**
- * a pubsubhubbub publisher
+ * A pubsubhubbub publisher
  *
  * @author Josh Fraser
  * @author Matthias Pfefferle
  */
-class PshbPublisher {
+class PubSubHubbub_Publisher {
 	protected $hub_url;
 	protected $last_response;
 
 	// create a new Publisher
-	public function __construct($hub_url) {
+	public function __construct( $hub_url ) {
 
 		if ( ! isset( $hub_url ) ) {
 			throw new Exception( 'Please specify a hub url' );

@@ -1,11 +1,10 @@
 {
-  "name": "wordpress-pubsubhubbub",
-  "version": "1.0.0",
+  "name": "wordpress-pubsub",
   "description": "A better way to tell the world when your blog is updated.",
   "main": "pubsubhubbub.php",
   "repository": {
     "type": "git",
-    "url": "https://github.com/pubsubhubbub/wordpress-pubsubhubbub.git"
+    "url": "https://github.com/pfefferle/wordpress-pubsub.git"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
