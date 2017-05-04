@@ -5,7 +5,6 @@
  * Description: A better way to tell the world when your blog is updated.
  * Version: 2.0.0
  * Author: Matthias Pfefferle
- * Author Email: pfefferle@gmail.com
  * Author URI: https://notiz.blog/
  * License: MIT
  * License URI: http://opensource.org/licenses/MIT
@@ -13,6 +12,7 @@
  * Domain Path: /languages
  */
 
+add_action( 'init', array( 'PubSubHubbub_Plugin', 'load_textdomain' ) );
 add_action( 'plugins_loaded', array( 'PubSubHubbub_Plugin', 'init' ) );
 
 class PubSubHubbub_Plugin {
@@ -21,7 +21,6 @@ class PubSubHubbub_Plugin {
 	 * Initialize plugin
 	 */
 	public static function init() {
-		require_once( dirname( __FILE__ ) . '/includes/pubsubhubbub-publisher.php' );
 		require_once( dirname( __FILE__ ) . '/includes/functions.php' );
 
 		add_action( 'publish_post', array( 'PubSubHubbub_Plugin', 'publish_post' ) );
@@ -30,15 +29,11 @@ class PubSubHubbub_Plugin {
 		add_action( 'atom_head', array( 'PubSubHubbub_Plugin', 'add_atom_link_tag' ) );
 		add_action( 'comments_atom_head', array( 'PubSubHubbub_Plugin', 'add_atom_link_tag' ) );
 
-		add_action( 'rss_head', array( 'PubSubHubbub_Plugin', 'add_rss_link_tag' ) );
 		add_action( 'rdf_header', array( 'PubSubHubbub_Plugin', 'add_rss_link_tag' ) );
 		add_action( 'rss2_head', array( 'PubSubHubbub_Plugin', 'add_rss_link_tag' ) );
 		add_action( 'commentsrss2_head', array( 'PubSubHubbub_Plugin', 'add_rss_link_tag' ) );
 
 		add_action( 'rdf_ns', array( 'PubSubHubbub_Plugin', 'add_rdf_ns_link' ) );
-
-		add_action( 'do_feed_rss', array( 'PubSubHubbub_Plugin', 'start_rss_link_tag' ), 9 ); // run before output
-		add_action( 'do_feed_rss', array( 'PubSubHubbub_Plugin', 'end_rss_link_tag' ), 11 ); // run after output
 
 		add_action( 'admin_menu', array( 'PubSubHubbub_Plugin', 'add_plugin_menu' ) );
 		add_action( 'admin_init', array( 'PubSubHubbub_Plugin', 'register_settings' ) );
@@ -46,8 +41,6 @@ class PubSubHubbub_Plugin {
 		add_filter( 'plugin_action_links', array( 'PubSubHubbub_Plugin', 'add_settings_link' ), 10, 2 );
 
 		add_action( 'template_redirect', array( 'PubSubHubbub_Plugin', 'template_redirect' ) );
-
-		add_action( 'init', array( 'PubSubHubbub_Plugin', 'load_textdomain' ) );
 
 		require_once( dirname( __FILE__ ) . '/includes/deprecated.php' );
 	}
@@ -63,9 +56,7 @@ class PubSubHubbub_Plugin {
 		$feed_urls = pubsubhubbub_get_feed_urls( $post_id );
 
 		// publish them
-		publish_to_hub( $feed_urls );
-
-		return $post_id;
+		pubsubhubbub_publish_to_hub( $feed_urls );
 	}
 
 	/**
@@ -78,9 +69,7 @@ class PubSubHubbub_Plugin {
 		$feed_urls = pubsubhubbub_get_comment_feed_urls( $comment_id );
 
 		// publish them
-		publish_to_hub( $feed_urls );
-
-		return $comment_id;
+		pubsubhubbub_publish_to_hub( $feed_urls );
 	}
 
 	/**
@@ -113,30 +102,19 @@ class PubSubHubbub_Plugin {
 	}
 
 	/**
-	 * Hack to add the atom definition to the RSS feed
-	 * start capturing the feed output. this is run at priority 9 (before output)
-	 */
-	public static function start_rss_link_tag() {
-		ob_start();
-	}
-
-	/**
-	 * This is run at priority 11 (after output)
-	 * add in the xmlns atom definition link
-	 */
-	public static function end_rss_link_tag() {
-		$feed = ob_get_clean();
-		$pattern = '/<rss version="(.+)">/i';
-		$replacement = '<rss version="$1" xmlns:atom="http://www.w3.org/2005/Atom">';
-		// change <rss version="X.XX"> to <rss version="X.XX" xmlns:atom="http://www.w3.org/2005/Atom">
-		echo preg_replace( $pattern, $replacement, $feed );
-	}
-
-	/**
 	 * Add a link to our settings page in the WP menu
 	 */
 	public static function add_plugin_menu() {
-		add_options_page( 'WebSub/PubSubHubbub_Plugin Settings', 'PubSubHubbub_Plugin', 'administrator', 'pubsubhubbub', array( 'PubSubHubbub_Plugin', 'add_settings_page' ) );
+		add_options_page(
+			'WebSub/PubSubHubbub Settings',
+			'WebSub/PubSubHubbub',
+			'administrator',
+			'pubsubhubbub',
+			array(
+				'PubSubHubbub_Plugin',
+				'add_settings_page',
+			)
+		);
 	}
 
 	/**
@@ -159,32 +137,21 @@ class PubSubHubbub_Plugin {
 	}
 
 	/**
-	 * Adds some query vars
-	 *
-	 * @param array $vars a list of query-vars
-	 * @return array the list with the added PuSH params
-	 */
-	public static function query_var( $vars ) {
-		$vars[] = 'hub_mode';
-		$vars[] = 'hub_challenge';
-		$vars[] = 'hub_topic';
-		$vars[] = 'hub_url';
-
-		return $vars;
-	}
-
-	/**
 	 * Adds link headers as defined in the current v0.4 draft
 	 */
 	public static function template_redirect() {
-		global $wp;
+		$id = null;
 
-		// get all feeds
-		$feed_urls = pubsubhubbub_get_feed_urls();
+		if ( is_singular() ) {
+			$id = get_the_ID();
+		}
+
+		$feed_urls = pubsubhubbub_get_feed_urls( $id );
 		$comment_feed_urls = pubsubhubbub_get_comment_feed_urls();
 
 		// get current url
 		$urls = array_unique( array_merge( $feed_urls, $comment_feed_urls ) );
+
 		$current_url = home_url( add_query_arg( null, null ) );
 
 		// check if current url is one of the feed urls
@@ -200,7 +167,7 @@ class PubSubHubbub_Plugin {
 	}
 
 	/**
-	 *
+	 * Register PubSubHubbub settings
 	 */
 	public static function register_settings() {
 		register_setting( 'pubsubhubbub_options', 'pubsubhubbub_endpoints' );
