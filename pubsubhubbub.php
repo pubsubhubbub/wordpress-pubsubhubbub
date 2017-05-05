@@ -33,7 +33,7 @@ class PubSubHubbub_Plugin {
 		add_action( 'rss2_head', array( 'PubSubHubbub_Plugin', 'add_rss_link_tag' ) );
 		add_action( 'commentsrss2_head', array( 'PubSubHubbub_Plugin', 'add_rss_link_tag' ) );
 
-		add_action( 'rdf_ns', array( 'PubSubHubbub_Plugin', 'add_rdf_ns_link' ) );
+		add_action( 'rdf_ns', array( 'PubSubHubbub_Plugin', 'add_rss_ns_link' ) );
 
 		add_action( 'admin_menu', array( 'PubSubHubbub_Plugin', 'add_plugin_menu' ) );
 		add_action( 'admin_init', array( 'PubSubHubbub_Plugin', 'register_settings' ) );
@@ -107,7 +107,7 @@ class PubSubHubbub_Plugin {
 	/**
 	 * Add atom namespace to rdf-feed
 	 */
-	public static function add_rdf_ns_link() {
+	public static function add_rss_ns_link() {
 		echo ' xmlns:atom="http://www.w3.org/2005/Atom" ' . PHP_EOL;
 	}
 
