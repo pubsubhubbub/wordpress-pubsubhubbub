@@ -1,6 +1,6 @@
 <?php
 /**
- * the ability for other plugins to hook into the PuSH code
+ * The ability for other plugins to hook into the PuSH code
  *
  * @param array $feed_urls a list of feed urls you want to publish
  */
@@ -23,6 +23,13 @@ function pubsubhubbub_publish_to_hub( $feed_urls ) {
 	}
 }
 
+/**
+ * Get a list of feeds that support PubSubHubbub or WebSub
+ *
+ * @param int $post_id the post id (optional)
+ *
+ * @return filtered list
+ */
 function pubsubhubbub_get_feed_urls( $post_id = null ) {
 	// we want to notify the hub for every feed
 	$feed_urls = array();
@@ -33,6 +40,13 @@ function pubsubhubbub_get_feed_urls( $post_id = null ) {
 	return apply_filters( 'pubsubhubbub_feed_urls', $feed_urls, $post_id );
 }
 
+/**
+ * Get a list of comment feeds that support PubSubHubbub or WebSub
+ *
+ * @param int $comment_id the comment id (optional)
+ *
+ * @return filtered list
+ */
 function pubsubhubbub_get_comment_feed_urls( $comment_id = null ) {
 	// get default comment-feeds
 	$feed_urls = array();
@@ -68,4 +82,32 @@ function pubsubhubbub_get_hubs() {
 	}
 
 	return apply_filters( 'pubsubhubbub_hub_urls', $hub_urls );
+}
+
+/**
+ * Check if link supports PubSubHubbub or WebSub
+ *
+ * @return boolean
+ */
+function pubsubhubbub_show_discovery() {
+	$id = null;
+
+	if ( is_singular() ) {
+		$id = get_the_ID();
+	}
+
+	$feed_urls = pubsubhubbub_get_feed_urls( $id );
+	$comment_feed_urls = pubsubhubbub_get_comment_feed_urls();
+
+	// get current url
+	$urls = array_unique( array_merge( $feed_urls, $comment_feed_urls ) );
+
+	$current_url = home_url( add_query_arg( null, null ) );
+
+	// check if current url is one of the feed urls
+	if ( in_array( $current_url, $urls ) ) {
+		return true;
+	}
+
+	return false;
 }

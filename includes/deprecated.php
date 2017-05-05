@@ -19,3 +19,17 @@ function publish_to_hub( $deprecated = null, $feed_urls ) {
 function pshb_publish_to_hub( $feed_urls ) {
 	pubsubhubbub_publish_to_hub( $feed_urls );
 }
+
+/**
+ * Map old filter to new filter
+ *
+ * @param array $feed_urls the list of feed urls
+ *
+ * @return array filtered list
+ *
+ * @deprecated
+ */
+function pshb_feed_urls( $feed_urls ) {
+	return apply_filters( 'pshb_feed_urls', $feed_urls );
+}
+add_filter( 'pubsubhubbub_feed_urls', 'pshb_feed_urls' );

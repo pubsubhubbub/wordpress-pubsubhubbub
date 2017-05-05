@@ -76,6 +76,11 @@ class PubSubHubbub_Plugin {
 	 * Add hub-<link> to the atom feed
 	 */
 	public static function add_atom_link_tag() {
+		// check if current url is one of the feed urls
+		if ( ! pubsubhubbub_show_discovery() ) {
+			return;
+		}
+
 		$hub_urls = pubsubhubbub_get_hubs();
 
 		foreach ( $hub_urls as $hub_url ) {
@@ -87,6 +92,11 @@ class PubSubHubbub_Plugin {
 	 * Add hub-<link> to the rss/rdf feed
 	 */
 	public static function add_rss_link_tag() {
+		// check if current url is one of the feed urls
+		if ( ! pubsubhubbub_show_discovery() ) {
+			return;
+		}
+
 		$hub_urls = pubsubhubbub_get_hubs();
 
 		foreach ( $hub_urls as $hub_url ) {
@@ -140,30 +150,21 @@ class PubSubHubbub_Plugin {
 	 * Adds link headers as defined in the current v0.4 draft
 	 */
 	public static function template_redirect() {
-		$id = null;
-
-		if ( is_singular() ) {
-			$id = get_the_ID();
+		// check if current url is one of the feed urls
+		if ( ! pubsubhubbub_show_discovery() ) {
+			return;
 		}
 
-		$feed_urls = pubsubhubbub_get_feed_urls( $id );
-		$comment_feed_urls = pubsubhubbub_get_comment_feed_urls();
-
-		// get current url
-		$urls = array_unique( array_merge( $feed_urls, $comment_feed_urls ) );
+		$hub_urls = pubsubhubbub_get_hubs();
+		// add all "hub" headers
+		foreach ( $hub_urls as $hub_url ) {
+			header( sprintf( 'Link: <%s>; rel="hub"', $hub_url ), false );
+		}
 
 		$current_url = home_url( add_query_arg( null, null ) );
 
-		// check if current url is one of the feed urls
-		if ( in_array( $current_url, $urls ) ) {
-			$hub_urls = pubsubhubbub_get_hubs();
-			// add all "hub" headers
-			foreach ( $hub_urls as $hub_url ) {
-				header( sprintf( 'Link: <%s>; rel="hub"', $hub_url ), false );
-			}
-			// add the "self" header
-			header( sprintf( 'Link: <%s>; rel="self"', $current_url ), false );
-		}
+		// add the "self" header
+		header( sprintf( 'Link: <%s>; rel="self"', $current_url ), false );
 	}
 
 	/**
