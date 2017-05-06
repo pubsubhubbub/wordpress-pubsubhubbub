@@ -36,7 +36,7 @@ function pubsubhubbub_get_hubs() {
 	$hub_urls = explode( PHP_EOL, $endpoints );
 
 	// if no values have been set, revert to the defaults (websub on app engine & superfeedr)
-	if ( ! $endpoints || ! is_array( $endpoints ) ) {
+	if ( ! $endpoints || ! $hub_urls || ! is_array( $hub_urls ) ) {
 		$hub_urls[] = 'https://pubsubhubbub.appspot.com';
 		$hub_urls[] = 'https://pubsubhubbub.superfeedr.com';
 	}
