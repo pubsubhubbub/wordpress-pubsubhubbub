@@ -51,10 +51,11 @@ You can visit [PubsSubHubbub on Github](https://github.com/pubsubhubbub "PubsSub
 
 == Changelog ==
 
-Project maintined on github at [websub/wordpress-websub](https://github.com/pfefferle/wordpress-websub).
+Project maintained on github at [pubsubhubbub/wordpress-pubsubhubbub](https://github.com/pubsubhubbub/wordpress-pubsubhubbub).
 
 = 2.0.0 =
-* Complete rewrite to also support WebSub
+* Complete rewrite
+* Support WebSub
 
 = 1.0.0 =
 * First attempt

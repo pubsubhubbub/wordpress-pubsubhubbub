@@ -10,6 +10,8 @@ function pubsubhubbub_publish_to_hub( $feed_urls ) {
 	// remove dups (ie. they all point to feedburner)
 	$feed_urls = array_unique( $feed_urls );
 
+	pubsubhubbub_update_pinged_urls( $feed_urls );
+
 	// get the list of hubs
 	$hub_urls = pubsubhubbub_get_hubs();
 
@@ -24,39 +26,6 @@ function pubsubhubbub_publish_to_hub( $feed_urls ) {
 }
 
 /**
- * Get a list of feeds that support PubSubHubbub or WebSub
- *
- * @param int $post_id the post id (optional)
- *
- * @return filtered list
- */
-function pubsubhubbub_get_feed_urls( $post_id = null ) {
-	// we want to notify the hub for every feed
-	$feed_urls = array();
-	$feed_urls[] = get_bloginfo( 'atom_url' );
-	$feed_urls[] = get_bloginfo( 'rdf_url' );
-	$feed_urls[] = get_bloginfo( 'rss2_url' );
-
-	return apply_filters( 'pubsubhubbub_feed_urls', $feed_urls, $post_id );
-}
-
-/**
- * Get a list of comment feeds that support PubSubHubbub or WebSub
- *
- * @param int $comment_id the comment id (optional)
- *
- * @return filtered list
- */
-function pubsubhubbub_get_comment_feed_urls( $comment_id = null ) {
-	// get default comment-feeds
-	$feed_urls = array();
-	$feed_urls[] = get_bloginfo( 'comments_atom_url' );
-	$feed_urls[] = get_bloginfo( 'comments_rss2_url' );
-
-	return apply_filters( 'pubsubhubbub_comment_feed_urls', $feed_urls, $comment_id );
-}
-
-/**
  * get the endpoints from the wordpress options table
  * valid parameters are "publish" or "subscribe"
  *
@@ -67,7 +36,7 @@ function pubsubhubbub_get_hubs() {
 	$hub_urls = explode( PHP_EOL, $endpoints );
 
 	// if no values have been set, revert to the defaults (websub on app engine & superfeedr)
-	if ( ! $endpoints ) {
+	if ( ! $endpoints || ! is_array( $endpoints ) ) {
 		$hub_urls[] = 'https://pubsubhubbub.appspot.com';
 		$hub_urls[] = 'https://pubsubhubbub.superfeedr.com';
 	}
@@ -85,22 +54,52 @@ function pubsubhubbub_get_hubs() {
 }
 
 /**
+ * Add new pinged urls
+ *
+ * @param array $urls list of urls
+ */
+function pubsubhubbub_update_pinged_urls( $urls ) {
+	if ( ! is_url( $urls ) ) {
+		return;
+	}
+
+	$pinged_urls = pubsubhubbub_get_pinged_urls();
+	$pinged_urls = array_merge( $pinged_urls, $urls );
+
+	update_option( 'pubsubhubbub_pinged_urls', array_unique( $pinged_urls ) );
+}
+
+/**
+ * Return already pinged urls
+ *
+ * @return array list of urls
+ */
+function pubsubhubbub_get_pinged_urls() {
+	$default_feeds = array(
+		get_bloginfo( 'atom_url' ),
+		get_bloginfo( 'rdf_url' ),
+		get_bloginfo( 'rss2_url' ),
+		get_bloginfo( 'comments_atom_url' ),
+		get_bloginfo( 'comments_rss2_url' ),
+	);
+
+	$feeds = get_option( 'pubsubhubbub_pinged_urls', $default_feeds );
+
+	if ( is_array( $feeds ) ) {
+		return $feeds;
+	}
+
+	return $default_feeds;
+}
+
+/**
  * Check if link supports PubSubHubbub or WebSub
  *
  * @return boolean
  */
 function pubsubhubbub_show_discovery() {
-	$id = null;
-
-	if ( is_singular() ) {
-		$id = get_the_ID();
-	}
-
-	$feed_urls = pubsubhubbub_get_feed_urls( $id );
-	$comment_feed_urls = pubsubhubbub_get_comment_feed_urls();
-
 	// get current url
-	$urls = array_unique( array_merge( $feed_urls, $comment_feed_urls ) );
+	$urls = pubsubhubbub_get_pinged_urls();
 
 	$current_url = home_url( add_query_arg( null, null ) );
 

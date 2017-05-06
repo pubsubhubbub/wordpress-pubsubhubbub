@@ -1,7 +1,7 @@
 # WebSub/PubSubHubbub #
 **Contributors:** pfefferle, joshfraz  
 **Donate link:** http://14101978.de  
-**Tags:** webhooks, websub, puhsubhubbub, pubsub, ping  
+**Tags:** webhooks, websub, puhsubhubbub, pubsub, ping, push, indieweb, openweb, ostatus  
 **Requires at least:** 4.5  
 **Tested up to:** 4.7.4  
 **Stable tag:** 2.0.0  
@@ -53,10 +53,11 @@ You can visit [PubsSubHubbub on Github](https://github.com/pubsubhubbub "PubsSub
 
 ## Changelog ##
 
-Project maintined on github at [websub/wordpress-websub](https://github.com/pfefferle/wordpress-websub).
+Project maintained on github at [pubsubhubbub/wordpress-pubsubhubbub](https://github.com/pubsubhubbub/wordpress-pubsubhubbub).
 
 ### 2.0.0 ###
-* Complete rewrite to also support WebSub
+* Complete rewrite
+* Support WebSub
 
 ### 1.0.0 ###
 * First attempt

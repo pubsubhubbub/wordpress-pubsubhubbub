@@ -53,7 +53,12 @@ class PubSubHubbub_Plugin {
 	 */
 	public static function publish_post( $post_id ) {
 		// we want to notify the hub for every feed
-		$feed_urls = pubsubhubbub_get_feed_urls( $post_id );
+		$feed_urls = array();
+		$feed_urls[] = get_bloginfo( 'atom_url' );
+		$feed_urls[] = get_bloginfo( 'rdf_url' );
+		$feed_urls[] = get_bloginfo( 'rss2_url' );
+
+		$feed_urls = apply_filters( 'pubsubhubbub_feed_urls', $feed_urls, $post_id );
 
 		// publish them
 		pubsubhubbub_publish_to_hub( $feed_urls );
@@ -66,7 +71,12 @@ class PubSubHubbub_Plugin {
 	 * @return int the comment-id
 	 */
 	public static function publish_comment( $comment_id ) {
-		$feed_urls = pubsubhubbub_get_comment_feed_urls( $comment_id );
+		// get default comment-feeds
+		$feed_urls = array();
+		$feed_urls[] = get_bloginfo( 'comments_atom_url' );
+		$feed_urls[] = get_bloginfo( 'comments_rss2_url' );
+
+		$feed_urls = apply_filters( 'pubsubhubbub_comment_feed_urls', $feed_urls, $comment_id );
 
 		// publish them
 		pubsubhubbub_publish_to_hub( $feed_urls );
