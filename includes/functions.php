@@ -59,7 +59,7 @@ function pubsubhubbub_get_hubs() {
  * @param array $urls list of urls
  */
 function pubsubhubbub_update_pinged_urls( $urls ) {
-	if ( ! is_url( $urls ) ) {
+	if ( ! is_array( $urls ) ) {
 		return;
 	}
 
