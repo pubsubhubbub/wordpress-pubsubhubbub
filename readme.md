@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/pubsubhubbub/wordpress-pubsubhubbub.svg?branch=master)](https://travis-ci.org/pubsubhubbub/wordpress-pubsubhubbub) [![Issue Count](https://codeclimate.com/github/pubsubhubbub/wordpress-pubsubhubbub/badges/issue_count.svg)](https://codeclimate.com/github/pubsubhubbub/wordpress-pubsubhubbub) 
+
 # WebSub/PubSubHubbub #
 **Contributors:** pfefferle, joshfraz  
 **Donate link:** http://14101978.de  
@@ -18,7 +20,9 @@ This plugin:
 * Supports multi-user installations (Wordpress MU)
 * Supports multiple hubs
 * Supports all of the feed formats used by WordPress, not just ATOM and RSS2
-* Supports latest spec ([Version 0.4](https://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.4.html))
+* Supports latest specs
+	* PubSubHubbub [Version 0.4](https://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.4.html)
+	* WebSub [Dev Version](https://www.w3.org/TR/websub/)
 * Announces which hubs you are using by adding `<link rel="hub" ...>` declarations to your template header and ATOM feed
 * Adds `<atom:link rel="hub" ...>` to your RSS feeds along with the necessary XMLNS declaration for RSS 0.92/1.0
 
