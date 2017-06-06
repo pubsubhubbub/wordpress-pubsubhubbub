@@ -7,7 +7,7 @@ module.exports = function(grunt) {
 				},
 			},
 			options: {
-				screenshot_url: 'https://s.w.org/plugins/{plugin}/{screenshot}.png'
+				screenshot_url: 'https://ps.w.org/pubsubhubbub/trunk/{screenshot}.png'
 			},
 		},
 		makepot: {
