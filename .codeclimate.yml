@@ -1,0 +1,7 @@
+engines:
+  phpcodesniffer:
+    enabled: true
+    config:
+      ignore_warnings: true
+      file_extensions: "php"
+      standard: "phpcs.xml"
