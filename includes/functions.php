@@ -10,7 +10,7 @@ function pubsubhubbub_publish_to_hub( $feed_urls ) {
 	// remove dups (ie. they all point to feedburner)
 	$feed_urls = array_unique( $feed_urls );
 
-	pubsubhubbub_update_pinged_urls( $feed_urls );
+	pubsubhubbub_update_topic_urls( $feed_urls );
 
 	// get the list of hubs
 	$hub_urls = pubsubhubbub_get_hubs();
@@ -54,27 +54,27 @@ function pubsubhubbub_get_hubs() {
 }
 
 /**
- * Add new pinged urls
+ * Add new topic urls
  *
  * @param array $urls list of urls
  */
-function pubsubhubbub_update_pinged_urls( $urls ) {
+function pubsubhubbub_update_topic_urls( $urls ) {
 	if ( ! is_array( $urls ) ) {
 		return;
 	}
 
-	$pinged_urls = pubsubhubbub_get_pinged_urls();
-	$pinged_urls = array_merge( $pinged_urls, $urls );
+	$topic_urls = pubsubhubbub_get_topic_urls();
+	$topic_urls = array_merge( $topic_urls, $urls );
 
-	update_option( 'pubsubhubbub_pinged_urls', array_unique( $pinged_urls ) );
+	update_option( 'pubsubhubbub_topic_urls', array_unique( $topic_urls ) );
 }
 
 /**
- * Return already pinged urls
+ * Return topic urls
  *
  * @return array list of urls
  */
-function pubsubhubbub_get_pinged_urls() {
+function pubsubhubbub_get_topic_urls() {
 	$default_feeds = array(
 		get_bloginfo( 'atom_url' ),
 		get_bloginfo( 'rdf_url' ),
@@ -83,7 +83,7 @@ function pubsubhubbub_get_pinged_urls() {
 		get_bloginfo( 'comments_rss2_url' ),
 	);
 
-	$feeds = get_option( 'pubsubhubbub_pinged_urls', $default_feeds );
+	$feeds = get_option( 'pubsubhubbub_topic_urls', $default_feeds );
 
 	if ( is_array( $feeds ) ) {
 		return $feeds;
@@ -98,15 +98,31 @@ function pubsubhubbub_get_pinged_urls() {
  * @return boolean
  */
 function pubsubhubbub_show_discovery() {
+	return (boolean) pubsubhubbub_get_self_link();
+}
+
+/**
+ * Get the correct self URL
+ *
+ * @return boolean
+ */
+function pubsubhubbub_get_self_link() {
 	// get current url
-	$urls = pubsubhubbub_get_pinged_urls();
+	$urls = pubsubhubbub_get_topic_urls();
 
 	$current_url = home_url( add_query_arg( null, null ) );
+	$current_url = untrailingslashit( $current_url );
+	$current_url = preg_replace( '/^https?:\/\//i', '', $current_url );
 
-	// check if current url is one of the feed urls
-	if ( in_array( $current_url, $urls ) ) {
-		return true;
+	$matches = preg_grep( '/^https?:\/\/' . preg_quote( $current_url, '/' ) . '\/?$/i', $urls );
+
+	if ( empty( $matches ) ) {
+		return false;
 	}
 
-	return false;
+	if ( count( $matches ) >= 2 ) {
+		return home_url( add_query_arg( null, null ) );
+	}
+
+	return $matches[0];
 }

@@ -162,7 +162,7 @@ class PubSubHubbub_Plugin {
 	public static function template_redirect() {
 		// check if current url is one of the feed urls
 		if ( ! pubsubhubbub_show_discovery() ) {
-			return;
+			return false;
 		}
 
 		$hub_urls = pubsubhubbub_get_hubs();
@@ -171,10 +171,8 @@ class PubSubHubbub_Plugin {
 			header( sprintf( 'Link: <%s>; rel="hub"', $hub_url ), false );
 		}
 
-		$current_url = home_url( add_query_arg( null, null ) );
-
 		// add the "self" header
-		header( sprintf( 'Link: <%s>; rel="self"', $current_url ), false );
+		header( sprintf( 'Link: <%s>; rel="self"', pubsubhubbub_get_self_link() ), false );
 	}
 
 	/**
