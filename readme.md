@@ -48,7 +48,7 @@ You can visit [PubsSubHubbub on Github](https://github.com/pubsubhubbub "PubsSub
 ## Screenshots ##
 
 ### 1. The WebSub Settings page allows you to define which hubs you want to use ###
-![The WebSub Settings page allows you to define which hubs you want to use](https://s.w.org/plugins/websub/pubsubhubbub/screenshot-1.png)
+![The WebSub Settings page allows you to define which hubs you want to use](https://ps.w.org/pubsubhubbub/trunk/screenshot-1.png)
 
 
 ## Changelog ##
