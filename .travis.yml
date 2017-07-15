@@ -5,21 +5,26 @@ notifications:
     on_success: never
     on_failure: change
 
-branches:
-  only:
-    - master
-
 php:
   - 5.6
   - 7
 
+after_success: curl -L https://raw.githubusercontent.com/miya0001/travis2wpplugin/master/deploy.sh | bash
+
 env:
-  - WP_VERSION=latest WP_MULTISITE=0
+  matrix:
+    - WP_VERSION=latest WP_MULTISITE=0
+    - WP_VERSION=nightly WP_MULTISITE=0
+
+  global:
+    - SVN_REPO: https://plugins.svn.wordpress.org/pubsubhubbub/
+    - GH_REF: https://github.com/pubsubhubbub/wordpress-pubsubhubbub.git
+    - secure: "crtBeoTCLzhG7nFt8VBNOx6DGLWn4aAPKVb0YeVFM4DLolEfDi5PoIGg8Vc/a2EXXxRxDl6SzprI2u5wYUwdfb23+4CypWSDMRUl5pJF6kgZf/z/SUCcbGQtV+CmxscA8C9DIRgA4SrLjujXWMSWtHYyGJZsfD6GWNzoeyUHOYA="
 
 matrix:
   include:
     - php: 5.6
-      env: WP_VERSION=latest WP_MULTISITE=1
+      env: WP_VERSION=latest WP_MULTISITE=1 WP_PULUGIN_DEPLOY=1
 
 before_script:
   - export PATH="$HOME/.composer/vendor/bin:$PATH"

@@ -43,7 +43,7 @@ function pubsubhubbub_get_hubs() {
 
 	// clean out any blank values
 	foreach ( $hub_urls as $key => $value ) {
-		if ( is_null( $value ) || '' == $value ) {
+		if ( empty( $value ) ) {
 			unset( $hub_urls[ $key ] );
 		} else {
 			$hub_urls[ $key ] = trim( $hub_urls[ $key ] );
