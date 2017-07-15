@@ -5,8 +5,8 @@
 **Donate link:** http://14101978.de  
 **Tags:** webhooks, websub, puhsubhubbub, pubsub, ping, push, indieweb, openweb, ostatus  
 **Requires at least:** 4.5  
-**Tested up to:** 4.7.4  
-**Stable tag:** 2.0.1  
+**Tested up to:** 4.8  
+**Stable tag:** 2.1.0  
 
 A better way to tell the world when your blog is updated.
 
