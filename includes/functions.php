@@ -37,8 +37,10 @@ function pubsubhubbub_get_hubs() {
 
 	// if no values have been set, revert to the defaults (websub on app engine & superfeedr)
 	if ( ! $endpoints || ! $hub_urls || ! is_array( $hub_urls ) ) {
-		$hub_urls[] = 'https://pubsubhubbub.appspot.com';
-		$hub_urls[] = 'https://pubsubhubbub.superfeedr.com';
+		$hub_urls = array(
+			'https://pubsubhubbub.appspot.com',
+			'https://pubsubhubbub.superfeedr.com',
+		);
 	}
 
 	// clean out any blank values
@@ -124,5 +126,5 @@ function pubsubhubbub_get_self_link() {
 		return home_url( add_query_arg( null, null ) );
 	}
 
-	return $matches[0];
+	return current( $matches );
 }

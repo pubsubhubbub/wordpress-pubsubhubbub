@@ -4,7 +4,7 @@ Donate link: http://14101978.de
 Tags: webhooks, websub, puhsubhubbub, pubsub, ping, push, indieweb, openweb, ostatus
 Requires at least: 4.5
 Tested up to: 4.8
-Stable tag: 2.1.0
+Stable tag: 2.2.0
 
 A better way to tell the world when your blog is updated.
 
@@ -54,6 +54,11 @@ You can visit [PubsSubHubbub on Github](https://github.com/pubsubhubbub "PubsSub
 == Changelog ==
 
 Project maintained on github at [pubsubhubbub/wordpress-pubsubhubbub](https://github.com/pubsubhubbub/wordpress-pubsubhubbub).
+
+= 2.2.0 =
+
+* fixed a discovery bug
+* changed http client
 
 = 2.1.0 =
 

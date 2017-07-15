@@ -13,7 +13,6 @@
  */
 class PubSubHubbub_Publisher {
 	protected $hub_url;
-	protected $last_response;
 
 	// create a new Publisher
 	public function __construct( $hub_url ) {
@@ -29,8 +28,12 @@ class PubSubHubbub_Publisher {
 		$this->hub_url = $hub_url;
 	}
 
-	// accepts either a single url or an array of urls
-	public function publish_update( $topic_urls, $http_function = false ) {
+	/**
+	 * accepts either a single url or an array of urls
+	 *
+	 * @param string|array $topic_urls a single topic url or an array of topic urls
+	 */
+	public function publish_update( $topic_urls ) {
 		if ( ! isset( $topic_urls ) ) {
 			throw new Exception( 'Please specify a topic url' );
 		}
@@ -45,53 +48,23 @@ class PubSubHubbub_Publisher {
 		// loop through each topic url
 		foreach ( $topic_urls as $topic_url ) {
 			// lightweight check that we're actually working w/ a valid url
-			if ( ! preg_match( '|^https?://|i', $topic_url ) ) {
-				throw new Exception( 'The specified topic url does not appear to be valid: ' . $topic_url );
+			if ( preg_match( '|^https?://|i', $topic_url ) ) {
+				// append the topic url parameters
+				$post_string .= '&hub.url=' . esc_url( $topic_url );
 			}
-
-			// append the topic url parameters
-			$post_string .= '&hub.url=' . urlencode( $topic_url );
 		}
 
-		// make the http post request and return true/false
-		// easy to over-write to use your own http function
-		if ( $http_function ) {
-			return $http_function( $this->hub_url, $post_string );
-		} else {
-			return $this->http_post( $this->hub_url, $post_string );
-		}
-	}
-
-	// returns any error message from the latest request
-	public function last_response() {
-		return $this->last_response;
-	}
-
-	// default http function that uses curl to post to the hub endpoint
-	private function http_post( $url, $post_string ) {
-		// add any additional curl options here
-		$options = array(
-			CURLOPT_URL => $url,
-			CURLOPT_POST => true,
-			CURLOPT_POSTFIELDS => $post_string,
-			CURLOPT_RETURNTRANSFER => true,
-			CURLOPT_USERAGENT => 'PubSubHubbub-Publisher-PHP/1.0',
+		$wp_version = get_bloginfo( 'version' );
+		$user_agent = apply_filters( 'http_headers_useragent', 'WordPress/' . $wp_version . '; ' . get_bloginfo( 'url' ) );
+		$args = array(
+			'timeout' => 100,
+			'limit_response_size' => 1048576,
+			'redirection' => 20,
+			'user-agent' => "$user_agent; PubSubHubbub/WebSub",
+			'body' => $post_string,
 		);
 
-		$ch = curl_init();
-		curl_setopt_array( $ch, $options );
-
-		$response = curl_exec( $ch );
-		$this->last_response = $response;
-		$info = curl_getinfo( $ch );
-
-		curl_close( $ch );
-
-		// all good
-		if ( 204 == $info['http_code'] ) {
-			return true;
-		}
-
-		return false;
+		// make the http post request
+		return wp_remote_post( $this->hub_url, $args );
 	}
 }
