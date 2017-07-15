@@ -59,11 +59,17 @@ You can visit [PubsSubHubbub on Github](https://github.com/pubsubhubbub "PubsSub
 
 Project maintained on github at [pubsubhubbub/wordpress-pubsubhubbub](https://github.com/pubsubhubbub/wordpress-pubsubhubbub).
 
+### 2.1.0 ###
+
+* save pinged URLs to add correct headers
+
 ### 2.0.0 ###
+
 * Complete rewrite
 * Support WebSub
 
 ### 1.0.0 ###
+
 * First attempt
 
 ## Upgrade Notice ##
