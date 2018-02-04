@@ -28,3 +28,4 @@ phpunit.xml.dist
 tests
 node_modules
 vendor
+package-lock.json

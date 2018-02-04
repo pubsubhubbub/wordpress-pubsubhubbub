@@ -16,7 +16,7 @@ services:
     links:
       - db
     ports:
-      - "80:80"
+      - "8082:80"
     volumes:
       - .:/var/www/html/wp-content/plugins/pubsub
     restart: always

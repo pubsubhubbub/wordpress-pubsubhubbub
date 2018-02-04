@@ -1,16 +1,16 @@
 === WebSub/PubSubHubbub ===
 Contributors: pfefferle, joshfraz
-Donate link: http://14101978.de
+Donate link: https://notiz.blog/donate/
 Tags: webhooks, websub, puhsubhubbub, pubsub, ping, push, indieweb, openweb, ostatus
 Requires at least: 4.5
-Tested up to: 4.8
-Stable tag: 2.2.0
+Tested up to: 4.9.3
+Stable tag: 2.2.1
 
 A better way to tell the world when your blog is updated.
 
 == Description ==
 
-This plugin is a simple way to let people know in real-time when your blog is updated.  PubSubHubbub is widely adopted and is used by Google Reader, Google Alerts and many other services.  WebSub provides a common mechanism for communication between publishers of any kind of Web content and their subscribers, based on HTTP web hooks. Subscription requests are relayed through hubs, which validate and verify the request. Hubs then distribute new and updated content to subscribers when it becomes available. WebSub was previously known as PubSubHubbub.
+This plugin is a simple way to let people know in real-time when your blog is updated.  PubSubHubbub is widely adopted and is used by Google Reader, Google Alerts and many other services.  The latest version of the spec is called WebSub, and is developed by the W3C. Subscription requests are relayed through hubs, which validate and verify the request. Hubs then distribute new and updated content to subscribers when it becomes available.
 
 This plugin:
 
@@ -54,6 +54,10 @@ You can visit [PubsSubHubbub on Github](https://github.com/pubsubhubbub "PubsSub
 == Changelog ==
 
 Project maintained on github at [pubsubhubbub/wordpress-pubsubhubbub](https://github.com/pubsubhubbub/wordpress-pubsubhubbub).
+
+= 2.2.1 =
+
+* display topic URLs on the settings page
 
 = 2.2.0 =
 

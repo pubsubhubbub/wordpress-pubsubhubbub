@@ -1,5 +1,7 @@
 <div class="wrap">
-<h2><?php _e( 'Define custom hubs', 'pubsubhubbub' ); ?></h2>
+<h2><?php _e( 'WebSub/PubSubHubbub', 'pubsubhubbub' ); ?></h2>
+
+<h3><?php _e( 'Define custom hubs', 'pubsubhubbub' ); ?></h3>
 
 <form method="post" action="options.php">
 <!-- starting -->
@@ -22,6 +24,18 @@ $pubsubhubbub_endpoints = trim( implode( PHP_EOL, pubsubhubbub_get_hubs() ), PHP
 <?php submit_button(); ?>
 
 </form>
+
+<h3><?php _e( 'Topic URLs', 'pubsubhubbub' ); ?></h3>
+
+<p><?php _e( 'These topic URLs will be send to the hub if you post a new, or update an existing post:', 'pubsubhubbub' ); ?></p>
+
+<ul>
+<?php foreach ( pubsubhubbub_get_topic_urls() as $topic_url ) { ?>
+	<li><pre><?php echo $topic_url; ?></pre></li>
+<?php } ?>
+</ul>
+
+<hr />
 
 <p><strong><?php _e( 'Thanks for using WebSub/PubSubHubbub!', 'pubsubhubbub' ); ?></strong></p>
 </div>
