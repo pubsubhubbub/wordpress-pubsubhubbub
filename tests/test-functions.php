@@ -7,8 +7,6 @@ class FunctionsTest extends WP_UnitTestCase {
 			'http://example.org/?feed=atom',
 			'http://example.org/?feed=rdf',
 			'http://example.org/?feed=rss2',
-			'http://example.org/?feed=comments-atom',
-			'http://example.org/?feed=comments-rss2',
 		);
 
 		$this->assertEquals( $result, $urls );
@@ -23,8 +21,6 @@ class FunctionsTest extends WP_UnitTestCase {
 			'http://example.org/?feed=atom',
 			'http://example.org/?feed=rdf',
 			'http://example.org/?feed=rss2',
-			'http://example.org/?feed=comments-atom',
-			'http://example.org/?feed=comments-rss2',
 			'http://example.org/?feed=json',
 		);
 
