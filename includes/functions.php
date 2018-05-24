@@ -81,8 +81,8 @@ function pubsubhubbub_get_topic_urls() {
 		get_bloginfo( 'atom_url' ),
 		get_bloginfo( 'rdf_url' ),
 		get_bloginfo( 'rss2_url' ),
-		get_bloginfo( 'comments_atom_url' ),
-		get_bloginfo( 'comments_rss2_url' ),
+		//get_bloginfo( 'comments_atom_url' ),
+		//get_bloginfo( 'comments_rss2_url' ),
 	);
 
 	$feeds = get_option( 'pubsubhubbub_topic_urls', $default_feeds );

@@ -3,8 +3,8 @@ Contributors: pfefferle, joshfraz
 Donate link: https://notiz.blog/donate/
 Tags: webhooks, websub, puhsubhubbub, pubsub, ping, push, indieweb, openweb, ostatus
 Requires at least: 4.5
-Tested up to: 4.9.3
-Stable tag: 2.2.1
+Tested up to: 4.9.6
+Stable tag: 2.2.2
 
 A better way to tell the world when your blog is updated.
 
@@ -54,6 +54,10 @@ You can visit [PubsSubHubbub on Github](https://github.com/pubsubhubbub "PubsSub
 == Changelog ==
 
 Project maintained on github at [pubsubhubbub/wordpress-pubsubhubbub](https://github.com/pubsubhubbub/wordpress-pubsubhubbub).
+
+= 2.2.2 =
+
+* temporarily remove comment-feed support to be more GDPR compliant
 
 = 2.2.1 =
 

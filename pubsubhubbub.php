@@ -3,7 +3,7 @@
  * Plugin Name: WebSub/PubSubHubbub
  * Plugin URI: https://github.com/pubsubhubbub/wordpress-pubsubhubbub/
  * Description: A better way to tell the world when your blog is updated.
- * Version: 2.2.1
+ * Version: 2.2.2
  * Author: Matthias Pfefferle
  * Author URI: https://notiz.blog/
  * License: MIT
@@ -24,7 +24,7 @@ class PubSubHubbub_Plugin {
 		require_once( dirname( __FILE__ ) . '/includes/functions.php' );
 
 		add_action( 'publish_post', array( 'PubSubHubbub_Plugin', 'publish_post' ) );
-		add_action( 'comment_post', array( 'PubSubHubbub_Plugin', 'publish_comment' ) );
+		//add_action( 'comment_post', array( 'PubSubHubbub_Plugin', 'publish_comment' ) );
 
 		add_action( 'atom_head', array( 'PubSubHubbub_Plugin', 'add_atom_link_tag' ) );
 		add_action( 'comments_atom_head', array( 'PubSubHubbub_Plugin', 'add_atom_link_tag' ) );
