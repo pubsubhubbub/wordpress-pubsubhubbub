@@ -1,13 +1,12 @@
 <div class="wrap">
-	<h2><?php _e( 'WebSub/PubSubHubbub', 'pubsubhubbub' ); ?></h2>
-
-	<h3><?php _e( 'Define custom hubs', 'pubsubhubbub' ); ?></h3>
+	<h1><?php esc_html_e( 'WebSub/PubSubHubbub', 'pubsubhubbub' ); ?></h1>
 
 	<form method="post" action="options.php">
-		<!-- starting -->
 		<?php settings_fields( 'pubsubhubbub' ); ?>
-		<?php do_settings_fields( 'pubsubhubbub', 'publisher' ); ?>
-		<!-- ending -->
+
+		<h2 class="title"><?php esc_html_e( 'Publisher Settings', 'pubsubhubbub' ); ?></h2>
+
+		<p><?php esc_html_e( 'A WebSub Publisher is an implementation that advertises a topic and hub URL on one or more resource URLs.', 'pubsubhubbub' ); ?></p>
 
 		<?php
 		// load the existing pubsub endpoint list from the WordPress options table
@@ -21,10 +20,11 @@
 			</tr>
 		</table>
 
+		<?php do_settings_fields( 'pubsubhubbub', 'publisher' ); ?>
+
 		<?php do_settings_sections( 'pubsubhubbub' ); ?>
 
 		<?php submit_button(); ?>
-
 	</form>
 
 	<p><strong><?php _e( 'Thanks for using WebSub/PubSubHubbub!', 'pubsubhubbub' ); ?></strong></p>
