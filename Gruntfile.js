@@ -45,5 +45,5 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-replace');
 
 	// Default task(s).
-	grunt.registerTask('default', ['wp_readme_to_markdown', 'replace']);
+	grunt.registerTask('default', ['wp_readme_to_markdown', 'replace', 'makepot']);
 };

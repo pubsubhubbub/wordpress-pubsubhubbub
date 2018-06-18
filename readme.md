@@ -5,14 +5,14 @@
 **Donate link:** https://notiz.blog/donate/  
 **Tags:** webhooks, websub, puhsubhubbub, pubsub, ping, push, indieweb, openweb, ostatus  
 **Requires at least:** 4.5  
-**Tested up to:** 4.9.6  
-**Stable tag:** 2.2.2  
+**Tested up to:** 4.9.7  
+**Stable tag:** 3.0.0  
 
 A better way to tell the world when your blog is updated.
 
 ## Description ##
 
-This plugin is a simple way to let people know in real-time when your blog is updated.  PubSubHubbub is widely adopted and is used by Google Reader, Google Alerts and many other services.  The latest version of the spec is called WebSub, and is developed by the W3C. Subscription requests are relayed through hubs, which validate and verify the request. Hubs then distribute new and updated content to subscribers when it becomes available.
+This plugin is a simple way to let people know in real-time when your blog is updated.  PubSubHubbub/WebSub is widely adopted and is used by Google Reader, Google Alerts and many other services.  Subscription requests are relayed through hubs, which validate and verify the request. Hubs then distribute new and updated content to subscribers when it becomes available.
 
 This plugin:
 
@@ -41,13 +41,20 @@ Please contact me if you operate a hub that you would like to be included as a d
 
 ## Frequently Asked Questions ##
 
+### What is WebSub? ###
+
+WebSub provides a common mechanism for communication between publishers of any kind of Web content and their subscribers, based on HTTP web hooks. Subscription requests are relayed through hubs, which validate and verify the request. Hubs then distribute new and updated content to subscribers when it becomes available. WebSub was previously known as PubSubHubbub.
+
 ### Where can I learn more about the WebSub protocol? ###
 
-You can visit [WebSub on Github](https://github.com/w3c/websub "WebSub on Github")
+* [W3C Spec](https://www.w3.org/TR/websub/ "W3C Spec")
+* [WebSub on Github](https://github.com/w3c/websub "WebSub on Github")
+* [WebSub.rocks - a WebSub validator](https://websub.rocks/ "WebSub.rocks")
 
 ### Where can I learn more about the PubsSubHubbub protocol? ###
 
-You can visit [PubsSubHubbub on Github](https://github.com/pubsubhubbub "PubsSubHubbub on Github")
+* [PubsSubHubbub on Github](https://github.com/pubsubhubbub "PubsSubHubbub on Github")
+* [Latest Spec (0.4)](http://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.4.html)
 
 ## Screenshots ##
 
