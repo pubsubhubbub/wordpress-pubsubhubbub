@@ -56,6 +56,18 @@ WebSub provides a common mechanism for communication between publishers of any k
 * [PubsSubHubbub on Github](https://github.com/pubsubhubbub "PubsSubHubbub on Github")
 * [Latest Spec (0.4)](http://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.4.html)
 
+### What is a Hub? ###
+
+A WebSub Hub is an implementation that handles subscription requests and distributes the content to subscribers when the corresponding topic URL has been updated. Hubs MUST support subscription requests with a secret and deliver authenticated requests when requested. Hubs MUST deliver the full contents of the topic URL in the request, and MAY reduce the payload to a diff if the content type supports it.
+
+### What is a Publisher? ###
+
+A WebSub Publisher is an implementation that advertises a topic and hub URL on one or more resource URLs.
+
+### What is a Subscriber? ###
+
+A WebSub Subscriber is an implementation that discovers the hub and topic URL given a resource URL, subscribes to updates at the hub, and accepts content distribution requests from the hub. The subscriber MAY support authenticated content distribution.
+
 ## Screenshots ##
 
 ### 1. The WebSub Settings page allows you to define which hubs you want to use ###
@@ -68,7 +80,9 @@ Project maintained on github at [pubsubhubbub/wordpress-pubsubhubbub](https://gi
 
 ### 3.0.0 ###
 
-* refactored version to lower the DB load
+* optimized the DB load
+* added help section
+* better code encapsulation
 
 ### 2.2.2 ###
 
