@@ -66,6 +66,10 @@ WebSub provides a common mechanism for communication between publishers of any k
 
 Project maintained on github at [pubsubhubbub/wordpress-pubsubhubbub](https://github.com/pubsubhubbub/wordpress-pubsubhubbub).
 
+### 3.0.0 ###
+
+* refactored version to lower the DB load
+
 ### 2.2.2 ###
 
 * temporarily remove comment-feed support to be more GDPR compliant
