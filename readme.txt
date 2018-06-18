@@ -20,7 +20,7 @@ This plugin:
 * Supports all of the feed formats used by WordPress, not just ATOM and RSS2
 * Supports latest specs
 	* PubSubHubbub [Version 0.4](https://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.4.html)
-	* WebSub [Dev Version](https://www.w3.org/TR/websub/)
+	* WebSub [W3C Version](https://www.w3.org/TR/websub/)
 * Announces which hubs you are using by adding `<link rel="hub" ...>` declarations to your template header and ATOM feed
 * Adds `<atom:link rel="hub" ...>` to your RSS feeds along with the necessary XMLNS declaration for RSS 0.92/1.0
 
