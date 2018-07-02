@@ -23,8 +23,7 @@ This plugin:
 * Supports latest specs
 	* PubSubHubbub [Version 0.4](https://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.4.html)
 	* WebSub [W3C Version](https://www.w3.org/TR/websub/)
-* Announces which hubs you are using by adding `<link rel="hub" ...>` declarations to your template header and ATOM feed
-* Adds `<atom:link rel="hub" ...>` to your RSS feeds along with the necessary XMLNS declaration for RSS 0.92/1.0
+* Announces which hubs you are using by adding `<link rel="hub" ...>` declarations to your template header and Atom feed
 
 By default this plugin will ping the following hubs:
 

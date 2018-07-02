@@ -2,9 +2,9 @@
 # This file is distributed under the MIT.
 msgid ""
 msgstr ""
-"Project-Id-Version: WebSub/PubSubHubbub 2.2.2\n"
+"Project-Id-Version: WebSub/PubSubHubbub 3.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/pubsubhubbub\n"
-"POT-Creation-Date: 2018-06-18 21:20:35+00:00\n"
+"POT-Creation-Date: 2018-07-02 15:10:24+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -21,7 +21,7 @@ msgstr ""
 msgid "Overview"
 msgstr ""
 
-#: includes/class-pubsubhubbub-admin.php:52
+#: includes/class-pubsubhubbub-admin.php:51
 msgid ""
 "WebSub provides a common mechanism for communication between publishers of "
 "any kind of Web content and their subscribers, based on HTTP web hooks. "
@@ -30,25 +30,25 @@ msgid ""
 "when it becomes available. WebSub was previously known as PubSubHubbub."
 msgstr ""
 
-#: includes/class-pubsubhubbub-admin.php:59
+#: includes/class-pubsubhubbub-admin.php:58
 msgid "Terms"
 msgstr ""
 
-#: includes/class-pubsubhubbub-admin.php:62
+#: includes/class-pubsubhubbub-admin.php:61
 msgid "Publisher"
 msgstr ""
 
-#: includes/class-pubsubhubbub-admin.php:63 templates/settings-page.php:9
+#: includes/class-pubsubhubbub-admin.php:62 templates/settings-page.php:9
 msgid ""
 "A WebSub Publisher is an implementation that advertises a topic and hub URL "
 "on one or more resource URLs."
 msgstr ""
 
-#: includes/class-pubsubhubbub-admin.php:66
+#: includes/class-pubsubhubbub-admin.php:65
 msgid "Subscriber"
 msgstr ""
 
-#: includes/class-pubsubhubbub-admin.php:67
+#: includes/class-pubsubhubbub-admin.php:66
 msgid ""
 "A WebSub Subscriber is an implementation that discovers the hub and topic "
 "URL given a resource URL, subscribes to updates at the hub, and accepts "
@@ -56,11 +56,11 @@ msgid ""
 "authenticated content distribution."
 msgstr ""
 
-#: includes/class-pubsubhubbub-admin.php:70
+#: includes/class-pubsubhubbub-admin.php:69
 msgid "Hub"
 msgstr ""
 
-#: includes/class-pubsubhubbub-admin.php:71
+#: includes/class-pubsubhubbub-admin.php:70
 msgid ""
 "A WebSub Hub is an implementation that handles subscription requests and "
 "distributes the content to subscribers when the corresponding topic URL has "
@@ -70,19 +70,19 @@ msgid ""
 "diff if the content type supports it."
 msgstr ""
 
-#: includes/class-pubsubhubbub-admin.php:79
+#: includes/class-pubsubhubbub-admin.php:78
 msgid "The IndieWeb"
 msgstr ""
 
-#: includes/class-pubsubhubbub-admin.php:81
+#: includes/class-pubsubhubbub-admin.php:80
 msgid "The IndieWeb is a people-focused alternative to the \"corporate web\"."
 msgstr ""
 
-#: includes/class-pubsubhubbub-admin.php:83
+#: includes/class-pubsubhubbub-admin.php:82
 msgid "Your content is yours"
 msgstr ""
 
-#: includes/class-pubsubhubbub-admin.php:84
+#: includes/class-pubsubhubbub-admin.php:83
 msgid ""
 "When you post something on the web, it should belong to you, not a "
 "corporation. Too many companies have gone out of business and lost all of "
@@ -90,49 +90,54 @@ msgid ""
 "your control."
 msgstr ""
 
-#: includes/class-pubsubhubbub-admin.php:87
+#: includes/class-pubsubhubbub-admin.php:86
 msgid "You are better connected"
 msgstr ""
 
-#: includes/class-pubsubhubbub-admin.php:88
+#: includes/class-pubsubhubbub-admin.php:87
 msgid ""
 "Your articles and status messages can go to all services, not just one, "
 "allowing you to engage with everyone. Even replies and likes on other "
 "services can come back to your site so they’re all in one place."
 msgstr ""
 
-#: includes/class-pubsubhubbub-admin.php:91
+#: includes/class-pubsubhubbub-admin.php:90
 msgid "You are in control"
 msgstr ""
 
-#: includes/class-pubsubhubbub-admin.php:92
+#: includes/class-pubsubhubbub-admin.php:91
 msgid ""
 "You can post anything you want, in any format you want, with no one "
 "monitoring you. In addition, you share simple readable links such as "
 "example.com/ideas. These links are permanent and will always work."
 msgstr ""
 
-#: includes/class-pubsubhubbub-admin.php:98
+#: includes/class-pubsubhubbub-admin.php:97
 msgid "For more information:"
 msgstr ""
 
-#: includes/class-pubsubhubbub-admin.php:99
+#: includes/class-pubsubhubbub-admin.php:98
 msgid "<a href=\"https://indieweb.org/WebSub\">IndieWeb Wiki page</a>"
 msgstr ""
 
-#: includes/class-pubsubhubbub-admin.php:100
+#: includes/class-pubsubhubbub-admin.php:99
 msgid "<a href=\"https://websub.rocks/\">Test suite</a>"
 msgstr ""
 
-#: includes/class-pubsubhubbub-admin.php:101
+#: includes/class-pubsubhubbub-admin.php:100
 msgid "<a href=\"https://www.w3.org/TR/websub/\">W3C Spec</a>"
 msgstr ""
 
-#: includes/class-pubsubhubbub-publisher.php:50
+#: includes/class-pubsubhubbub-publisher.php:54
 msgid "Please specify a hub url"
 msgstr ""
 
-#: includes/class-pubsubhubbub-publisher.php:58
+#: includes/class-pubsubhubbub-publisher.php:59
+#. translators: %s is the $hub_url
+msgid "The specified hub url does not appear to be valid: %s"
+msgstr ""
+
+#: includes/class-pubsubhubbub-publisher.php:63
 msgid "Please specify a topic url"
 msgstr ""
 
@@ -145,11 +150,7 @@ msgid "Publisher Settings"
 msgstr ""
 
 #: templates/settings-page.php:18
-msgid "Hubs (one per line)"
-msgstr ""
-
-#: templates/settings-page.php:30
-msgid "Thanks for using WebSub/PubSubHubbub!"
+msgid "Hubs <small>(one per line)</small>"
 msgstr ""
 
 #. Plugin URI of the plugin/theme

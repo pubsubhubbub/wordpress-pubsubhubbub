@@ -15,8 +15,10 @@
 
 		<table class="form-table">
 			<tr valign="top">
-				<th scope="row"><?php _e( 'Hubs (one per line)', 'pubsubhubbub' ); ?></th>
-				<td><textarea name="pubsubhubbub_endpoints" id="pubsubhubbub_endpoints" rows="10" cols="50" class="large-text"><?php echo $pubsubhubbub_endpoints; ?></textarea></td>
+				<th scope="row"><?php _e( 'Hubs <small>(one per line)</small>', 'pubsubhubbub' ); ?></th>
+				<td>
+					<textarea name="pubsubhubbub_endpoints" id="pubsubhubbub_endpoints" rows="10" cols="50" class="large-text"><?php echo $pubsubhubbub_endpoints; ?></textarea>
+				</td>
 			</tr>
 		</table>
 
@@ -26,6 +28,4 @@
 
 		<?php submit_button(); ?>
 	</form>
-
-	<p><strong><?php _e( 'Thanks for using WebSub/PubSubHubbub!', 'pubsubhubbub' ); ?></strong></p>
 </div>
