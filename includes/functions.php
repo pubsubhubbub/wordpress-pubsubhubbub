@@ -26,14 +26,19 @@ function pubsubhubbub_get_hubs() {
 function pubsubhubbub_show_discovery() {
 	global $withcomments;
 
+	if ( ! $withcomments ) {
+		$withcomments = 0;
+	}
+
 	$show_discovery = false;
 
-	$supported_feed_types         = apply_filters( 'pubsubhubbub_supported_feed_types', array( 'atom', 'rss2', 'rdf' ) );
-	$supported_comment_feed_types = apply_filters( 'pubsubhubbub_supported_comment_feed_types', array( 'atom', 'rss2' ) );
+	$supported_feed_types = apply_filters( 'pubsubhubbub_show_discovery_for_feed_types', array( 'atom', 'rss2', 'rdf' ) );
+	$supported_comment_feed_types = apply_filters( 'pubsubhubbub_show_discovery_for_comment_feed_types', array( 'atom', 'rss2' ) );
 
 	if (
 		( is_feed( $supported_feed_types ) && ! is_archive() && ! is_singular() && 0 == $withcomments ) ||
-		( is_feed( $supported_comment_feed_types ) && 1 == $withcomments )
+		( is_feed( $supported_comment_feed_types ) && 1 == $withcomments ) ||
+		( is_home() && current_theme_supports( 'microformats2' ) )
 	) {
 		$show_discovery = true;
 	}
@@ -47,5 +52,5 @@ function pubsubhubbub_show_discovery() {
  * @return boolean
  */
 function pubsubhubbub_get_self_link() {
-	return home_url( add_query_arg( null, null ) );
+	return trailingslashit( home_url( add_query_arg( null, null ) ) );
 }

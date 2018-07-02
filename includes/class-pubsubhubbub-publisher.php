@@ -1,6 +1,6 @@
 <?php
 /**
- * A WebSub/PubSubHubbub Publisher
+ * The WebSub/PubSubHubbub publisher class
  */
 class PubSubHubbub_Publisher {
 	/**
@@ -16,10 +16,14 @@ class PubSubHubbub_Publisher {
 		$feed_urls[] = get_bloginfo( 'rdf_url' );
 		$feed_urls[] = get_bloginfo( 'rss2_url' );
 
+		if ( current_theme_supports( 'microformats2' ) ) {
+			$feed_urls[] = site_url( '/' );
+		}
+
 		$feed_urls = apply_filters( 'pubsubhubbub_feed_urls', $feed_urls, $post_id );
 
 		// publish them
-		pubsubhubbub_publish_to_hub( $feed_urls );
+		self::publish_to_hub( $feed_urls );
 	}
 
 	/**
@@ -37,7 +41,7 @@ class PubSubHubbub_Publisher {
 		$feed_urls = apply_filters( 'pubsubhubbub_comment_feed_urls', $feed_urls, $comment_id );
 
 		// publish them
-		pubsubhubbub_publish_to_hub( $feed_urls );
+		self::publish_to_hub( $feed_urls );
 	}
 
 	/**
@@ -51,7 +55,8 @@ class PubSubHubbub_Publisher {
 		}
 
 		if ( ! preg_match( '|^https?://|i', $hub_url ) ) {
-			return new WP_Error( 'invalid_hub_url', __( 'The specified hub url does not appear to be valid: ' . $hub_url, 'pubsubhubbub' ) );
+			/* translators: %s is the $hub_url */
+			return new WP_Error( 'invalid_hub_url', sprintf( __( 'The specified hub url does not appear to be valid: %s', 'pubsubhubbub' ), $hub_url ) );
 		}
 
 		if ( ! isset( $topic_urls ) ) {
@@ -76,6 +81,7 @@ class PubSubHubbub_Publisher {
 
 		$wp_version = get_bloginfo( 'version' );
 		$user_agent = apply_filters( 'http_headers_useragent', 'WordPress/' . $wp_version . '; ' . get_bloginfo( 'url' ) );
+
 		$args = array(
 			'timeout' => 100,
 			'limit_response_size' => 1048576,
@@ -85,7 +91,7 @@ class PubSubHubbub_Publisher {
 		);
 
 		// make the http post request
-		return wp_remote_post( $this->hub_url, $args );
+		return wp_remote_post( $hub_url, $args );
 	}
 
 	/**

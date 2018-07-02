@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * The WebSub/PubSubHubbub class
+ */
 class Pubsubhubbub {
 	/**
 	 * Load the plugin textdomain.
