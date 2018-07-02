@@ -1,7 +1,10 @@
 <?php
-class Pubsubhubbub_Feed {
+/**
+ * The WebSub/PubSubHubbub topics class
+ */
+class Pubsubhubbub_Topics {
 	/**
-	 * Add hub-<link> to the atom feed
+	 * Add hub-<link> to the Atom feed
 	 */
 	public static function add_atom_link_tag() {
 		// check if current url is one of the feed urls
@@ -17,7 +20,7 @@ class Pubsubhubbub_Feed {
 	}
 
 	/**
-	 * Add hub-<link> to the rss/rdf feed
+	 * Add hub-<link> to the RSS/RDF feed
 	 */
 	public static function add_rss_link_tag() {
 		// check if current url is one of the feed urls
@@ -33,7 +36,7 @@ class Pubsubhubbub_Feed {
 	}
 
 	/**
-	 * Add atom namespace to rdf-feed
+	 * Add Atom namespace to rdf-feed
 	 */
 	public static function add_rss_ns_link() {
 		echo ' xmlns:atom="http://www.w3.org/2005/Atom" ' . PHP_EOL;
