@@ -1,6 +1,6 @@
 <?php
 /**
- *
+ * The WebSub/PubSubHubbub admin class
  */
 class Pubsubhubbub_Admin {
 	/**
@@ -48,8 +48,7 @@ class Pubsubhubbub_Admin {
 			array(
 				'id'      => 'overview',
 				'title'   => __( 'Overview', 'pubsubhubbub' ),
-				'content' =>
-					'<p>' . __( 'WebSub provides a common mechanism for communication between publishers of any kind of Web content and their subscribers, based on HTTP web hooks. Subscription requests are relayed through hubs, which validate and verify the request. Hubs then distribute new and updated content to subscribers when it becomes available. WebSub was previously known as PubSubHubbub.', 'pubsubhubbub' ) . '</p>'
+				'content' => '<p>' . __( 'WebSub provides a common mechanism for communication between publishers of any kind of Web content and their subscribers, based on HTTP web hooks. Subscription requests are relayed through hubs, which validate and verify the request. Hubs then distribute new and updated content to subscribers when it becomes available. WebSub was previously known as PubSubHubbub.', 'pubsubhubbub' ) . '</p>',
 			)
 		);
 
@@ -69,7 +68,7 @@ class Pubsubhubbub_Admin {
 					'<p>
 						<strong>' . __( 'Hub', 'pubsubhubbub' ) . '</strong><br />' .
 						__( 'A WebSub Hub is an implementation that handles subscription requests and distributes the content to subscribers when the corresponding topic URL has been updated. Hubs MUST support subscription requests with a secret and deliver authenticated requests when requested. Hubs MUST deliver the full contents of the topic URL in the request, and MAY reduce the payload to a diff if the content type supports it.', 'pubsubhubbub' ) .
-					'</p>'
+					'</p>',
 			)
 		);
 
