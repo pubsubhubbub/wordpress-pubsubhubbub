@@ -3,7 +3,7 @@
  * Plugin Name: WebSub/PubSubHubbub
  * Plugin URI: https://github.com/pubsubhubbub/wordpress-pubsubhubbub/
  * Description: A better way to tell the world when your blog is updated.
- * Version: 2.2.2
+ * Version: 3.0.0
  * Author: Matthias Pfefferle
  * Author URI: https://notiz.blog/
  * License: MIT
@@ -12,8 +12,9 @@
  * Domain Path: /languages
  */
 
-add_action( 'plugins_loaded', 'pubsubhubbub_init' );
-
+/**
+ * Initialize plugin
+ */
 function pubsubhubbub_init() {
 	require_once( dirname( __FILE__ ) . '/includes/functions.php' );
 
@@ -36,21 +37,21 @@ function pubsubhubbub_init() {
 	/**
 	 * Feed integrations
 	 */
-	require_once( dirname( __FILE__ ) . '/includes/class-pubsubhubbub-feed.php' );
+	require_once( dirname( __FILE__ ) . '/includes/class-pubsubhubbub-topics.php' );
 
-	add_action( 'atom_head', array( 'PubSubHubbub_Feed', 'add_atom_link_tag' ) );
-	add_action( 'rdf_header', array( 'PubSubHubbub_Feed', 'add_rss_link_tag' ) );
-	add_action( 'rss2_head', array( 'PubSubHubbub_Feed', 'add_rss_link_tag' ) );
+	add_action( 'atom_head', array( 'Pubsubhubbub_Topics', 'add_atom_link_tag' ) );
+	add_action( 'rdf_header', array( 'Pubsubhubbub_Topics', 'add_rss_link_tag' ) );
+	add_action( 'rss2_head', array( 'Pubsubhubbub_Topics', 'add_rss_link_tag' ) );
 
-	add_action( 'comments_atom_head', array( 'PubSubHubbub_Feed', 'add_atom_link_tag' ) );
-	add_action( 'commentsrss2_head', array( 'PubSubHubbub_Feed', 'add_rss_link_tag' ) );
+	add_action( 'comments_atom_head', array( 'Pubsubhubbub_Topics', 'add_atom_link_tag' ) );
+	add_action( 'commentsrss2_head', array( 'Pubsubhubbub_Topics', 'add_rss_link_tag' ) );
 
-	add_action( 'rdf_ns', array( 'PubSubHubbub_Feed', 'add_rss_ns_link' ) );
+	add_action( 'rdf_ns', array( 'Pubsubhubbub_Topics', 'add_rss_ns_link' ) );
 
-	add_action( 'template_redirect', array( 'PubSubHubbub_Feed', 'template_redirect' ) );
+	add_action( 'template_redirect', array( 'Pubsubhubbub_Topics', 'template_redirect' ) );
 
 	/**
-	 * Main Class
+	 * Main class
 	 */
 	require_once( dirname( __FILE__ ) . '/includes/class-pubsubhubbub.php' );
 
@@ -61,3 +62,5 @@ function pubsubhubbub_init() {
 	 */
 	require_once( dirname( __FILE__ ) . '/includes/deprecated.php' );
 }
+
+add_action( 'plugins_loaded', 'pubsubhubbub_init' );
