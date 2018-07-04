@@ -77,6 +77,7 @@ class Pubsubhubbub_Admin {
 				'id'      => 'indieweb',
 				'title'   => __( 'The IndieWeb', 'pubsubhubbub' ),
 				'content' =>
+					'<p>' . __( 'WebSub is a proposed standard of the IndieWeb stack.', 'pubsubhubbub' ) . '</p>' .
 					'<p>' . __( 'The IndieWeb is a people-focused alternative to the "corporate web".', 'pubsubhubbub' ) . '</p>' .
 					'<p>
 						<strong>' . __( 'Your content is yours', 'pubsubhubbub' ) . '</strong><br />' .
@@ -89,15 +90,41 @@ class Pubsubhubbub_Admin {
 					'<p>
 						<strong>' . __( 'You are in control', 'pubsubhubbub' ) . '</strong><br />' .
 						__( 'You can post anything you want, in any format you want, with no one monitoring you. In addition, you share simple readable links such as example.com/ideas. These links are permanent and will always work.', 'pubsubhubbub' ) .
+					'</p>' .
+					'<p>
+						<strong>' . __( 'IndieWeb for WordPress', 'pubsubhubbub' ) . '</strong><br />' .
+						__( 'Try out "<a href="https://wordpress.org/plugins/indieweb/" target="_blank">IndieWeb for WordPress</a>"', 'pubsubhubbub' ) .
+					'</p>',
+			)
+		);
+
+		get_current_screen()->add_help_tab(
+			array(
+				'id'      => 'ostatus',
+				'title'   => __( 'The Fediverse', 'pubsubhubbub' ),
+				'content' =>
+					'<p>' . __( 'WebSub is one of the building blocks of OStauts, wich is the base of the Fediverse.', 'pubsubhubbub' ) . '</p>' .
+					'<p>
+						<strong>' . __( 'The Fediverse', 'pubsubhubbub' ) . '</strong><br />' .
+						__( 'Fediverse is a portmanteau of "federation" and "universe". It is a common, informal name for a somewhat broad federation of social network servers whose main purpose is microblogging, the sharing of short, public messages.<br />By running social network software that supports a standard set of protocols called ActivityPub, independently run servers can connect to the Fediverse, allowing its users to follow and receive short messages from each other, regardless of which particular ActivityPub server implementation they are running. The Fediverse is built on Free Software. Some of its social networks are vaguely Twitter-ish in style (for example Mastodon, or GNU Social, similar in activities and their microblogging function), while other federated platforms include more communication and transaction options that are instead comparable to Google+ or Facebook (such as is the case with Friendica). (Wikipedia)', 'pubsubhubbub' ) .
+					'</p>' .
+					'<p>
+						<strong>' . __( 'OStatus', 'pubsubhubbub' ) . '</strong><br />' .
+						__( ' OStatus lets people on different social networks follow each other. It applies a group of related protocols (PubSubHubbub, ActivityStreams, Salmon, Portable Contacts, and Webfinger) to this problem in what we believe is a simple and obvious way. OStatus is a minimal specification for distributed status updates or microblogging.<br />Many social applications can be modelled with status updates, however. Practically any software that generates RSS or Atom feeds could be OStatus-enabled. Travel networks, event invitation systems, wikis, photo-sharing systems, social news sites, social music sites, podcasting servers, blogs, version control systems, and general purpose social networks would all be candidates for OStatus use. ', 'pubsubhubbub' ) .
+					'</p>' .
+					'<p>
+						<strong>' . __( 'OStatus for WordPress', 'pubsubhubbub' ) . '</strong><br />' .
+						__( 'Try out "<a href="https://wordpress.org/plugins/ostatus-for-wordpress/" target="_blank">OStatus for WordPress</a>"!', 'pubsubhubbub' ) .
 					'</p>',
 			)
 		);
 
 		get_current_screen()->set_help_sidebar(
 			'<p><strong>' . __( 'For more information:', 'pubsubhubbub' ) . '</strong></p>' .
-			'<p>' . __( '<a href="https://indieweb.org/WebSub">IndieWeb Wiki page</a>', 'pubsubhubbub' ) . '</p>' .
 			'<p>' . __( '<a href="https://websub.rocks/">Test suite</a>', 'pubsubhubbub' ) . '</p>' .
-			'<p>' . __( '<a href="https://www.w3.org/TR/websub/">W3C Spec</a>', 'pubsubhubbub' ) . '</p>'
+			'<p>' . __( '<a href="https://www.w3.org/TR/websub/">W3C Spec</a>', 'pubsubhubbub' ) . '</p>' .
+			'<p>' . __( '<a href="https://indieweb.org/WebSub">IndieWeb <small>(Wiki)</small></a>', 'pubsubhubbub' ) . '</p>' .
+			'<p>' . __( '<a href="https://www.w3.org/community/ostatus/">OStatus <small>(W3C Community)</small></a>', 'pubsubhubbub' ) . '</p>'
 		);
 	}
 }
