@@ -124,7 +124,9 @@ class Pubsubhubbub_Admin {
 			'<p>' . __( '<a href="https://websub.rocks/">Test suite</a>', 'pubsubhubbub' ) . '</p>' .
 			'<p>' . __( '<a href="https://www.w3.org/TR/websub/">W3C Spec</a>', 'pubsubhubbub' ) . '</p>' .
 			'<p>' . __( '<a href="https://indieweb.org/WebSub">IndieWeb <small>(Wiki)</small></a>', 'pubsubhubbub' ) . '</p>' .
-			'<p>' . __( '<a href="https://www.w3.org/community/ostatus/">OStatus <small>(W3C Community)</small></a>', 'pubsubhubbub' ) . '</p>'
+			'<p>' . __( '<a href="https://www.w3.org/community/ostatus/">OStatus <small>(W3C Community)</small></a>', 'pubsubhubbub' ) . '</p>' .
+			'<hr />' .
+			'<p>' . __( '<a href="https://notiz.blog/donate">Donate</a>', 'pubsubhubbub' ) . '</p>'
 		);
 	}
 }

@@ -2,16 +2,17 @@
 # This file is distributed under the MIT.
 msgid ""
 msgstr ""
-"Project-Id-Version: WebSub/PubSubHubbub 3.0.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/pubsubhubbub\n"
-"POT-Creation-Date: 2018-07-02 15:10:24+00:00\n"
+"Project-Id-Version: WebSub/PubSubHubbub 3.0.1\n"
+"Report-Msgid-Bugs-To: "
+"https://wordpress.org/support/plugin/wordpress-pubsubhubbub\n"
+"POT-Creation-Date: 2018-10-07 13:43:47+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "PO-Revision-Date: 2018-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"X-Generator: grunt-wp-i18n 0.5.4\n"
+"X-Generator: grunt-wp-i18n1.0.2\n"
 
 #: includes/class-pubsubhubbub-admin.php:39
 msgid "The WebSub/PubSubHubbub endpoints"
@@ -75,14 +76,18 @@ msgid "The IndieWeb"
 msgstr ""
 
 #: includes/class-pubsubhubbub-admin.php:80
+msgid "WebSub is a proposed standard of the IndieWeb stack."
+msgstr ""
+
+#: includes/class-pubsubhubbub-admin.php:81
 msgid "The IndieWeb is a people-focused alternative to the \"corporate web\"."
 msgstr ""
 
-#: includes/class-pubsubhubbub-admin.php:82
+#: includes/class-pubsubhubbub-admin.php:83
 msgid "Your content is yours"
 msgstr ""
 
-#: includes/class-pubsubhubbub-admin.php:83
+#: includes/class-pubsubhubbub-admin.php:84
 msgid ""
 "When you post something on the web, it should belong to you, not a "
 "corporation. Too many companies have gone out of business and lost all of "
@@ -90,42 +95,118 @@ msgid ""
 "your control."
 msgstr ""
 
-#: includes/class-pubsubhubbub-admin.php:86
+#: includes/class-pubsubhubbub-admin.php:87
 msgid "You are better connected"
 msgstr ""
 
-#: includes/class-pubsubhubbub-admin.php:87
+#: includes/class-pubsubhubbub-admin.php:88
 msgid ""
 "Your articles and status messages can go to all services, not just one, "
 "allowing you to engage with everyone. Even replies and likes on other "
 "services can come back to your site so they’re all in one place."
 msgstr ""
 
-#: includes/class-pubsubhubbub-admin.php:90
+#: includes/class-pubsubhubbub-admin.php:91
 msgid "You are in control"
 msgstr ""
 
-#: includes/class-pubsubhubbub-admin.php:91
+#: includes/class-pubsubhubbub-admin.php:92
 msgid ""
 "You can post anything you want, in any format you want, with no one "
 "monitoring you. In addition, you share simple readable links such as "
 "example.com/ideas. These links are permanent and will always work."
 msgstr ""
 
-#: includes/class-pubsubhubbub-admin.php:97
+#: includes/class-pubsubhubbub-admin.php:95
+msgid "IndieWeb for WordPress"
+msgstr ""
+
+#: includes/class-pubsubhubbub-admin.php:96
+msgid ""
+"Try out \"<a href=\"https://wordpress.org/plugins/indieweb/\" "
+"target=\"_blank\">IndieWeb for WordPress</a>\""
+msgstr ""
+
+#: includes/class-pubsubhubbub-admin.php:104
+#: includes/class-pubsubhubbub-admin.php:108
+msgid "The Fediverse"
+msgstr ""
+
+#: includes/class-pubsubhubbub-admin.php:106
+msgid ""
+"WebSub is one of the building blocks of OStauts, wich is the base of the "
+"Fediverse."
+msgstr ""
+
+#: includes/class-pubsubhubbub-admin.php:109
+msgid ""
+"Fediverse is a portmanteau of \"federation\" and \"universe\". It is a "
+"common, informal name for a somewhat broad federation of social network "
+"servers whose main purpose is microblogging, the sharing of short, public "
+"messages.<br />By running social network software that supports a standard "
+"set of protocols called ActivityPub, independently run servers can connect "
+"to the Fediverse, allowing its users to follow and receive short messages "
+"from each other, regardless of which particular ActivityPub server "
+"implementation they are running. The Fediverse is built on Free Software. "
+"Some of its social networks are vaguely Twitter-ish in style (for example "
+"Mastodon, or GNU Social, similar in activities and their microblogging "
+"function), while other federated platforms include more communication and "
+"transaction options that are instead comparable to Google+ or Facebook "
+"(such as is the case with Friendica). (Wikipedia)"
+msgstr ""
+
+#: includes/class-pubsubhubbub-admin.php:112
+msgid "OStatus"
+msgstr ""
+
+#: includes/class-pubsubhubbub-admin.php:113
+msgid ""
+" OStatus lets people on different social networks follow each other. It "
+"applies a group of related protocols (PubSubHubbub, ActivityStreams, "
+"Salmon, Portable Contacts, and Webfinger) to this problem in what we "
+"believe is a simple and obvious way. OStatus is a minimal specification for "
+"distributed status updates or microblogging.<br />Many social applications "
+"can be modelled with status updates, however. Practically any software that "
+"generates RSS or Atom feeds could be OStatus-enabled. Travel networks, "
+"event invitation systems, wikis, photo-sharing systems, social news sites, "
+"social music sites, podcasting servers, blogs, version control systems, and "
+"general purpose social networks would all be candidates for OStatus use. "
+msgstr ""
+
+#: includes/class-pubsubhubbub-admin.php:116
+msgid "OStatus for WordPress"
+msgstr ""
+
+#: includes/class-pubsubhubbub-admin.php:117
+msgid ""
+"Try out \"<a href=\"https://wordpress.org/plugins/ostatus-for-wordpress/\" "
+"target=\"_blank\">OStatus for WordPress</a>\"!"
+msgstr ""
+
+#: includes/class-pubsubhubbub-admin.php:123
 msgid "For more information:"
 msgstr ""
 
-#: includes/class-pubsubhubbub-admin.php:98
-msgid "<a href=\"https://indieweb.org/WebSub\">IndieWeb Wiki page</a>"
-msgstr ""
-
-#: includes/class-pubsubhubbub-admin.php:99
+#: includes/class-pubsubhubbub-admin.php:124
 msgid "<a href=\"https://websub.rocks/\">Test suite</a>"
 msgstr ""
 
-#: includes/class-pubsubhubbub-admin.php:100
+#: includes/class-pubsubhubbub-admin.php:125
 msgid "<a href=\"https://www.w3.org/TR/websub/\">W3C Spec</a>"
+msgstr ""
+
+#: includes/class-pubsubhubbub-admin.php:126
+msgid "<a href=\"https://indieweb.org/WebSub\">IndieWeb <small>(Wiki)</small></a>"
+msgstr ""
+
+#: includes/class-pubsubhubbub-admin.php:127
+msgid ""
+"<a href=\"https://www.w3.org/community/ostatus/\">OStatus <small>(W3C "
+"Community)</small></a>"
+msgstr ""
+
+#: includes/class-pubsubhubbub-admin.php:129
+msgid "<a href=\"https://notiz.blog/donate\">Donate</a>"
 msgstr ""
 
 #: includes/class-pubsubhubbub-publisher.php:54
