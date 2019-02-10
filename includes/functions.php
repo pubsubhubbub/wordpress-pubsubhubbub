@@ -52,5 +52,7 @@ function pubsubhubbub_show_discovery() {
  * @return boolean
  */
 function pubsubhubbub_get_self_link() {
-	return trailingslashit( home_url( add_query_arg( null, null ) ) );
+	$host = wp_parse_url( home_url() );
+
+	return esc_url( apply_filters( 'self_link', set_url_scheme( 'http://' . $host['host'] . wp_unslash( $_SERVER['REQUEST_URI'] ) ) ) );
 }
