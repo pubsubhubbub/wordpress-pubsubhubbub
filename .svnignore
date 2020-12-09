@@ -2,12 +2,14 @@
 .editorconfig
 .git
 .gitignore
+.gitattributes
 .github
 .wordpress-org
 .travis.yml
 .codeclimate.yml
 .data
 .svnignore
+.distignore
 Gruntfile.js
 LINGUAS
 Makefile
