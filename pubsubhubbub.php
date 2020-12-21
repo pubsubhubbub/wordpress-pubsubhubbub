@@ -4,8 +4,8 @@
  * Plugin URI: https://github.com/pubsubhubbub/wordpress-pubsubhubbub/
  * Description: A better way to tell the world when your blog is updated.
  * Version: 3.0.3
- * Author: Matthias Pfefferle
- * Author URI: https://notiz.blog/
+ * Author: Josh Fraser and Matthias Pfefferle
+ * Author URI: https://github.com/pubsubhubbub/wordpress-pubsubhubbub
  * License: MIT
  * License URI: http://opensource.org/licenses/MIT
  * Text Domain: pubsubhubbub
