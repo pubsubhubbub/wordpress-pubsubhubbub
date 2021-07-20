@@ -1,9 +1,9 @@
 [![Build Status](https://travis-ci.org/pubsubhubbub/wordpress-pubsubhubbub.svg?branch=master)](https://travis-ci.org/pubsubhubbub/wordpress-pubsubhubbub) [![Issue Count](https://codeclimate.com/github/pubsubhubbub/wordpress-pubsubhubbub/badges/issue_count.svg)](https://codeclimate.com/github/pubsubhubbub/wordpress-pubsubhubbub) 
 
-# WebSub/PubSubHubbub #
+# WebSub (FKA. PubSubHubbub) #
 **Contributors:** [pfefferle](https://profiles.wordpress.org/pfefferle), [joshfraz](https://profiles.wordpress.org/joshfraz)  
 **Donate link:** https://notiz.blog/donate/  
-**Tags:** webhooks, websub, puhsubhubbub, pubsub, ping, push, indieweb, openweb, ostatus  
+**Tags:** webhook, websub, pubsub, ping, indieweb, ostatus  
 **Requires at least:** 4.5  
 **Tested up to:** 5.8  
 **Stable tag:** 3.1.0  

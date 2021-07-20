@@ -1,7 +1,7 @@
-=== WebSub/PubSubHubbub ===
+=== WebSub (FKA. PubSubHubbub) ===
 Contributors: pfefferle, joshfraz
 Donate link: https://notiz.blog/donate/
-Tags: webhooks, websub, puhsubhubbub, pubsub, ping, push, indieweb, openweb, ostatus
+Tags: webhook, websub, pubsub, ping, indieweb, ostatus
 Requires at least: 4.5
 Tested up to: 5.8
 Stable tag: 3.1.0
