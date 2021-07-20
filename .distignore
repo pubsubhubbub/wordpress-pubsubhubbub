@@ -22,4 +22,5 @@ readme.md
 .svnignore
 .gitignore
 .gitattributes
+.editorconfig
 docker-compose.yml
