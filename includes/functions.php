@@ -52,18 +52,18 @@ function pubsubhubbub_get_self_link() {
 }
 
 /**
- * Undocumented function
+ * Return the list of feed types that are supported by PubSubHubbub
  *
- * @return void
+ * @return array List of supported feed types
  */
 function pubsubhubbub_get_supported_feed_types() {
 	return apply_filters( 'pubsubhubbub_supported_feed_types', array( 'atom', 'rss2' ) );
 }
 
 /**
- * Undocumented function
+ * Return the list of comment feed types that are supported by PubSubHubbub
  *
- * @return void
+ * @return array List of supported comment feed types
  */
 function pubsubhubbub_get_supported_comment_feed_types() {
 	return apply_filters( 'pubsubhubbub_supported_comment_feed_types', array( 'atom', 'rss2' ) );
