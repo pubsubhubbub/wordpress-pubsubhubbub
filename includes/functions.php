@@ -24,20 +24,14 @@ function pubsubhubbub_get_hubs() {
  * @return boolean
  */
 function pubsubhubbub_show_discovery() {
-	global $withcomments;
-
-	if ( ! $withcomments ) {
-		$withcomments = 0;
-	}
-
 	$show_discovery = false;
 
-	$supported_feed_types = apply_filters( 'pubsubhubbub_show_discovery_for_feed_types', array( 'atom', 'rss2', 'rdf' ) );
-	$supported_comment_feed_types = apply_filters( 'pubsubhubbub_show_discovery_for_comment_feed_types', array( 'atom', 'rss2' ) );
+	$supported_feed_types = apply_filters( 'pubsubhubbub_show_discovery_for_feed_types', pubsubhubbub_get_supported_feed_types() );
+	$supported_comment_feed_types = apply_filters( 'pubsubhubbub_show_discovery_for_comment_feed_types', pubsubhubbub_get_supported_comment_feed_types() );
 
 	if (
-		( is_feed( $supported_feed_types ) && ! is_archive() && ! is_singular() && 0 == $withcomments ) ||
-		( is_feed( $supported_comment_feed_types ) && 1 == $withcomments ) ||
+		( is_feed( $supported_feed_types ) && ! is_date() && ! is_post_type_archive() && ! is_singular() ) ||
+		( is_feed( $supported_comment_feed_types ) && is_singular() ) ||
 		( is_home() && current_theme_supports( 'microformats2' ) )
 	) {
 		$show_discovery = true;
@@ -55,4 +49,22 @@ function pubsubhubbub_get_self_link() {
 	$host = wp_parse_url( home_url() );
 
 	return esc_url( apply_filters( 'self_link', set_url_scheme( 'http://' . $host['host'] . wp_unslash( $_SERVER['REQUEST_URI'] ) ) ) );
+}
+
+/**
+ * Undocumented function
+ *
+ * @return void
+ */
+function pubsubhubbub_get_supported_feed_types() {
+	return apply_filters( 'pubsubhubbub_supported_feed_types', array( 'atom', 'rss2' ) );
+}
+
+/**
+ * Undocumented function
+ *
+ * @return void
+ */
+function pubsubhubbub_get_supported_comment_feed_types() {
+	return apply_filters( 'pubsubhubbub_supported_comment_feed_types', array( 'atom', 'rss2' ) );
 }

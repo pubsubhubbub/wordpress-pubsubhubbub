@@ -12,12 +12,34 @@ class PubSubHubbub_Publisher {
 	public static function publish_post( $post_id ) {
 		// we want to notify the hub for every feed
 		$feed_urls   = array();
-		$feed_urls[] = get_bloginfo( 'atom_url' );
-		$feed_urls[] = get_bloginfo( 'rdf_url' );
-		$feed_urls[] = get_bloginfo( 'rss2_url' );
 
 		if ( current_theme_supports( 'microformats2' ) ) {
 			$feed_urls[] = site_url( '/' );
+		}
+
+		$post = get_post( $post_id );
+
+		$feed_types = pubsubhubbub_get_supported_feed_types();
+
+		foreach ( $feed_types as $feed_type ) {
+			$feed_urls[] = get_feed_link( $feed_type );
+
+			// add tag-feeds
+			$tags = wp_get_post_tags( $post_id );
+
+			foreach ( $tags as $tag ) {
+				$feed_urls[] = get_term_feed_link( $tag->term_id, 'post_tag', $feed_type );
+			}
+
+			// add category-feeds
+			$categories = wp_get_post_categories( $post_id );
+
+			foreach ( $categories as $category ) {
+				$feed_urls[] = get_term_feed_link( $category, 'category', $feed_type );
+			}
+
+			// add author-feeds
+			$feed_urls[] = get_author_feed_link( $post->post_author, $feed_type );
 		}
 
 		$feed_urls = apply_filters( 'pubsubhubbub_feed_urls', $feed_urls, $post_id );

@@ -3,8 +3,8 @@ Contributors: pfefferle, joshfraz
 Donate link: https://notiz.blog/donate/
 Tags: webhooks, websub, puhsubhubbub, pubsub, ping, push, indieweb, openweb, ostatus
 Requires at least: 4.5
-Tested up to: 5.7
-Stable tag: 3.0.3
+Tested up to: 5.8
+Stable tag: 3.1.0
 
 A better way to tell the world when your blog is updated.
 
@@ -72,6 +72,11 @@ A WebSub Subscriber is an implementation that discovers the hub and topic URL gi
 == Changelog ==
 
 Project maintained on github at [pubsubhubbub/wordpress-pubsubhubbub](https://github.com/pubsubhubbub/wordpress-pubsubhubbub).
+
+= 3.1.0 =
+
+* update wording (more consequent use of WebSub)
+* add category-, tag- and author-feeds support
 
 = 3.0.3 =
 

@@ -1,6 +1,5 @@
 <div class="wrap">
-	<h1><?php esc_html_e( 'WebSub/PubSubHubbub', 'pubsubhubbub' ); ?></h1>
-
+	<h1><?php esc_html_e( 'WebSub', 'pubsubhubbub' ); ?> <small><?php esc_html_e( '(FKA. PubSubhubbub)', 'pubsubhubbub' ); ?></small></h1>
 	<form method="post" action="options.php">
 		<?php settings_fields( 'pubsubhubbub' ); ?>
 

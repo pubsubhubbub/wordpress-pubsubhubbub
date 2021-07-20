@@ -8,8 +8,8 @@ class Pubsubhubbub_Admin {
 	 */
 	public static function add_plugin_menu() {
 		$options_page = add_options_page(
-			'WebSub/PubSubHubbub Settings',
-			'WebSub/PubSubHubbub',
+			'WebSub Settings',
+			'WebSub',
 			'administrator',
 			'pubsubhubbub',
 			array(
