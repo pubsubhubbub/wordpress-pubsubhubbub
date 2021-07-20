@@ -3,6 +3,8 @@
 # WebSub (FKA. PubSubHubbub) #
 **Contributors:** [pfefferle](https://profiles.wordpress.org/pfefferle), [joshfraz](https://profiles.wordpress.org/joshfraz)  
 **Donate link:** https://notiz.blog/donate/  
+**Author:** PubSubHubbub Team  
+**Author URI:** https://github.com/pubsubhubbub/wordpress-pubsubhubbub  
 **Tags:** webhook, websub, pubsub, ping, indieweb, ostatus  
 **Requires at least:** 4.5  
 **Tested up to:** 5.8  
