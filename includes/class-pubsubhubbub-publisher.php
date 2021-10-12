@@ -11,38 +11,7 @@ class PubSubHubbub_Publisher {
 	 */
 	public static function publish_post( $post_id ) {
 		// we want to notify the hub for every feed
-		$feed_urls   = array();
-
-		if ( current_theme_supports( 'microformats2' ) ) {
-			$feed_urls[] = site_url( '/' );
-		}
-
-		$post = get_post( $post_id );
-
-		$feed_types = pubsubhubbub_get_supported_feed_types();
-
-		foreach ( $feed_types as $feed_type ) {
-			$feed_urls[] = get_feed_link( $feed_type );
-
-			// add tag-feeds
-			$tags = wp_get_post_tags( $post_id );
-
-			foreach ( $tags as $tag ) {
-				$feed_urls[] = get_term_feed_link( $tag->term_id, 'post_tag', $feed_type );
-			}
-
-			// add category-feeds
-			$categories = wp_get_post_categories( $post_id );
-
-			foreach ( $categories as $category ) {
-				$feed_urls[] = get_term_feed_link( $category, 'category', $feed_type );
-			}
-
-			// add author-feeds
-			$feed_urls[] = get_author_feed_link( $post->post_author, $feed_type );
-		}
-
-		$feed_urls = apply_filters( 'pubsubhubbub_feed_urls', $feed_urls, $post_id );
+		$feed_urls = self::get_feed_urls_by_post_id( $post_id );
 
 		// publish them
 		self::publish_to_hub( $feed_urls );
@@ -165,5 +134,47 @@ class PubSubHubbub_Publisher {
 		}
 
 		return apply_filters( 'pubsubhubbub_hub_urls', $hub_urls );
+	}
+
+	/**
+	 * Returns a list of feed URLs for a given Post
+	 *
+	 * @param int $post_id The post ID
+	 *
+	 * @return array An array of feed URLs
+	 */
+	public static function get_feed_urls_by_post_id( $post_id ) {
+		$post = get_post( $post_id );
+
+		$feed_types = pubsubhubbub_get_supported_feed_types();
+
+		foreach ( $feed_types as $feed_type ) {
+			$feed_urls[] = get_feed_link( $feed_type );
+
+			// add tag-feeds
+			$tags = wp_get_post_tags( $post_id );
+
+			foreach ( $tags as $tag ) {
+				$feed_urls[] = get_term_feed_link( $tag->term_id, 'post_tag', $feed_type );
+			}
+
+			// add category-feeds
+			$categories = wp_get_post_categories( $post_id );
+
+			foreach ( $categories as $category ) {
+				$feed_urls[] = get_term_feed_link( $category, 'category', $feed_type );
+			}
+
+			// add author-feeds
+			$feed_urls[] = get_author_feed_link( $post->post_author, $feed_type );
+		}
+
+		if ( current_theme_supports( 'microformats2' ) ) {
+			$feed_urls[] = site_url( '/' );
+		}
+
+		$feed_urls = apply_filters( 'pubsubhubbub_feed_urls', $feed_urls, $post_id );
+
+		return $feed_urls;
 	}
 }
