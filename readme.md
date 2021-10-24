@@ -8,7 +8,7 @@
 **Tags:** webhook, websub, pubsub, ping, indieweb, ostatus  
 **Requires at least:** 4.5  
 **Tested up to:** 5.8  
-**Stable tag:** 3.1.0  
+**Stable tag:** 3.1.1  
 
 A better way to tell the world when your blog is updated.
 
@@ -78,6 +78,11 @@ A WebSub Subscriber is an implementation that discovers the hub and topic URL gi
 ## Changelog ##
 
 Project maintained on github at [pubsubhubbub/wordpress-pubsubhubbub](https://github.com/pubsubhubbub/wordpress-pubsubhubbub).
+
+### 3.1.1 ###
+
+* fix deprecation issue (PHP8)
+* add `_deprecated_function` warnings
 
 ### 3.1.0 ###
 

@@ -2,10 +2,10 @@
 # This file is distributed under the MIT.
 msgid ""
 msgstr ""
-"Project-Id-Version: WebSub (FKA. PubSubHubbub) 3.1.0\n"
+"Project-Id-Version: WebSub (FKA. PubSubHubbub) 3.1.1\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/wordpress-pubsubhubbub\n"
-"POT-Creation-Date: 2021-07-20 13:39:53+00:00\n"
+"POT-Creation-Date: 2021-10-24 10:40:10+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -209,16 +209,16 @@ msgstr ""
 msgid "<a href=\"https://notiz.blog/donate\">Donate</a>"
 msgstr ""
 
-#: includes/class-pubsubhubbub-publisher.php:76
+#: includes/class-pubsubhubbub-publisher.php:45
 msgid "Please specify a hub url"
 msgstr ""
 
-#: includes/class-pubsubhubbub-publisher.php:81
+#: includes/class-pubsubhubbub-publisher.php:50
 #. translators: %s is the $hub_url
 msgid "The specified hub url does not appear to be valid: %s"
 msgstr ""
 
-#: includes/class-pubsubhubbub-publisher.php:85
+#: includes/class-pubsubhubbub-publisher.php:54
 msgid "Please specify a topic url"
 msgstr ""
 
@@ -236,6 +236,18 @@ msgstr ""
 
 #: templates/settings-page.php:17
 msgid "Hubs <small>(one per line)</small>"
+msgstr ""
+
+#: templates/settings-page.php:31
+msgid "Example"
+msgstr ""
+
+#: templates/settings-page.php:42
+msgid "For the article:"
+msgstr ""
+
+#: templates/settings-page.php:49
+msgid "...the following feed-URLs will be published:"
 msgstr ""
 
 #. Plugin Name of the plugin/theme
