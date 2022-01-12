@@ -121,6 +121,7 @@ class PubSubHubbub_Publisher {
 			$hub_urls = array(
 				'https://pubsubhubbub.appspot.com',
 				'https://pubsubhubbub.superfeedr.com',
+				'https://websubhub.com/hub'
 			);
 		}
 
