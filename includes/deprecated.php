@@ -34,7 +34,7 @@ function pshb_publish_to_hub( $feed_urls ) {
  * @deprecated
  */
 function pshb_feed_urls( $feed_urls ) {
-	_deprecated_function( __FUNCTION__, '3.0.0', 'get_feed_urls_by_post_id()' );
+	//_deprecated_function( __FUNCTION__, '3.0.0', 'get_feed_urls_by_post_id()' );
 
 	return apply_filters( 'pshb_feed_urls', $feed_urls );
 }
