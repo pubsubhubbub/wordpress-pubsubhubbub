@@ -31,6 +31,7 @@ By default this plugin will ping the following hubs:
 
 * [Demo hub on Google App Engine](https://pubsubhubbub.appspot.com "Demo hub on Google App Engine")
 * [SuperFeedr](https://pubsubhubbub.superfeedr.com "SuperFeedr")
+* [WebSubHub](https://websubhub.com "WebSubHub")
 
 Please contact me if you operate a hub that you would like to be included as a default option.
 
