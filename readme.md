@@ -7,7 +7,7 @@
 **Author URI:** https://github.com/pubsubhubbub/wordpress-pubsubhubbub  
 **Tags:** webhook, websub, pubsub, ping, indieweb, ostatus  
 **Requires at least:** 4.5  
-**Tested up to:** 5.9  
+**Tested up to:** 6.0  
 **Stable tag:** 3.1.2  
 
 A better way to tell the world when your blog is updated.
