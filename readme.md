@@ -1,13 +1,11 @@
-[![Build Status](https://travis-ci.org/pubsubhubbub/wordpress-pubsubhubbub.svg?branch=master)](https://travis-ci.org/pubsubhubbub/wordpress-pubsubhubbub) [![Issue Count](https://codeclimate.com/github/pubsubhubbub/wordpress-pubsubhubbub/badges/issue_count.svg)](https://codeclimate.com/github/pubsubhubbub/wordpress-pubsubhubbub) 
-
 # WebSub (FKA. PubSubHubbub) #
-**Contributors:** [pfefferle](https://profiles.wordpress.org/pfefferle), [joshfraz](https://profiles.wordpress.org/joshfraz)  
+**Contributors:** [pfefferle](https://profiles.wordpress.org/pfefferle/), [joshfraz](https://profiles.wordpress.org/joshfraz/)  
 **Donate link:** https://notiz.blog/donate/  
 **Author:** PubSubHubbub Team  
 **Author URI:** https://github.com/pubsubhubbub/wordpress-pubsubhubbub  
 **Tags:** webhook, websub, pubsub, ping, indieweb, ostatus  
 **Requires at least:** 4.5  
-**Tested up to:** 6.0  
+**Tested up to:** 6.1  
 **Stable tag:** 3.1.2  
 
 A better way to tell the world when your blog is updated.
@@ -53,9 +51,9 @@ WebSub provides a common mechanism for communication between publishers of any k
 * [WebSub on Github](https://github.com/w3c/websub "WebSub on Github")
 * [WebSub.rocks - a WebSub validator](https://websub.rocks/ "WebSub.rocks")
 
-### Where can I learn more about the PubsSubHubbub protocol? ###
+### Where can I learn more about the PubSubHubbub protocol? ###
 
-* [PubsSubHubbub on Github](https://github.com/pubsubhubbub "PubsSubHubbub on Github")
+* [PubSubHubbub on Github](https://github.com/pubsubhubbub "PubSubHubbub on Github")
 * [Latest Spec (0.4)](http://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.4.html)
 
 ### What is a Hub? ###

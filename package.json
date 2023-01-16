@@ -7,7 +7,6 @@
   },
   "devDependencies": {
     "grunt": "^1.0.3",
-    "grunt-replace": "^2.0.2",
     "grunt-wp-i18n": "^1.0.2",
     "grunt-wp-readme-to-markdown": "^2.0.1"
   },

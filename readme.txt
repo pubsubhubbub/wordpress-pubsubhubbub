@@ -51,9 +51,9 @@ WebSub provides a common mechanism for communication between publishers of any k
 * [WebSub on Github](https://github.com/w3c/websub "WebSub on Github")
 * [WebSub.rocks - a WebSub validator](https://websub.rocks/ "WebSub.rocks")
 
-= Where can I learn more about the PubsSubHubbub protocol? =
+= Where can I learn more about the PubSubHubbub protocol? =
 
-* [PubsSubHubbub on Github](https://github.com/pubsubhubbub "PubsSubHubbub on Github")
+* [PubSubHubbub on Github](https://github.com/pubsubhubbub "PubSubHubbub on Github")
 * [Latest Spec (0.4)](http://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.4.html)
 
 = What is a Hub? =
