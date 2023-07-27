@@ -79,7 +79,7 @@ class PubSubHubbub_Publisher {
 			'redirection' => 20,
 			'user-agent' => "$user_agent; PubSubHubbub/WebSub",
 			'headers' => array(
-				'content-type' => 'application/x-www-form-urlencoded;charset=UTF-8'
+				'content-type' => 'application/x-www-form-urlencoded'
 			),
 			'body' => $post_string,
 		);
