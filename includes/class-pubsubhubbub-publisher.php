@@ -78,6 +78,9 @@ class PubSubHubbub_Publisher {
 			'limit_response_size' => 1048576,
 			'redirection' => 20,
 			'user-agent' => "$user_agent; PubSubHubbub/WebSub",
+			'headers' => array(
+				'content-type' => 'application/x-www-form-urlencoded'
+			),
 			'body' => $post_string,
 		);
 
