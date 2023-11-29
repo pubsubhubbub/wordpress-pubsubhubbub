@@ -3,7 +3,7 @@
  * Plugin Name: WebSub (FKA. PubSubHubbub)
  * Plugin URI: https://github.com/pubsubhubbub/wordpress-pubsubhubbub/
  * Description: A better way to tell the world when your blog is updated.
- * Version: 3.1.3
+ * Version: 3.1.4
  * Author: PubSubHubbub Team
  * Author URI: https://github.com/pubsubhubbub/wordpress-pubsubhubbub
  * License: MIT
