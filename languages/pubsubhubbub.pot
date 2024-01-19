@@ -1,15 +1,15 @@
-# Copyright (C) 2023 PubSubHubbub Team
+# Copyright (C) 2024 PubSubHubbub Team
 # This file is distributed under the MIT.
 msgid ""
 msgstr ""
-"Project-Id-Version: WebSub (FKA. PubSubHubbub) 3.1.4\n"
+"Project-Id-Version: WebSub (FKA. PubSubHubbub) 3.2.0\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/wordpress-pubsubhubbub\n"
-"POT-Creation-Date: 2023-11-29 10:08:17+00:00\n"
+"POT-Creation-Date: 2024-01-19 19:12:05+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2023-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2024-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "X-Generator: grunt-wp-i18n 1.0.3\n"
@@ -18,11 +18,11 @@ msgstr ""
 msgid "The WebSub/PubSubHubbub endpoints"
 msgstr ""
 
-#: includes/class-pubsubhubbub-admin.php:50
+#: includes/class-pubsubhubbub-admin.php:58
 msgid "Overview"
 msgstr ""
 
-#: includes/class-pubsubhubbub-admin.php:51
+#: includes/class-pubsubhubbub-admin.php:59
 msgid ""
 "WebSub provides a common mechanism for communication between publishers of "
 "any kind of Web content and their subscribers, based on HTTP web hooks. "
@@ -31,25 +31,25 @@ msgid ""
 "when it becomes available. WebSub was previously known as PubSubHubbub."
 msgstr ""
 
-#: includes/class-pubsubhubbub-admin.php:58
+#: includes/class-pubsubhubbub-admin.php:66
 msgid "Terms"
 msgstr ""
 
-#: includes/class-pubsubhubbub-admin.php:61
+#: includes/class-pubsubhubbub-admin.php:69
 msgid "Publisher"
 msgstr ""
 
-#: includes/class-pubsubhubbub-admin.php:62 templates/settings-page.php:8
+#: includes/class-pubsubhubbub-admin.php:70 templates/settings-page.php:8
 msgid ""
 "A WebSub Publisher is an implementation that advertises a topic and hub URL "
 "on one or more resource URLs."
 msgstr ""
 
-#: includes/class-pubsubhubbub-admin.php:65
+#: includes/class-pubsubhubbub-admin.php:73
 msgid "Subscriber"
 msgstr ""
 
-#: includes/class-pubsubhubbub-admin.php:66
+#: includes/class-pubsubhubbub-admin.php:74
 msgid ""
 "A WebSub Subscriber is an implementation that discovers the hub and topic "
 "URL given a resource URL, subscribes to updates at the hub, and accepts "
@@ -57,11 +57,11 @@ msgid ""
 "authenticated content distribution."
 msgstr ""
 
-#: includes/class-pubsubhubbub-admin.php:69
+#: includes/class-pubsubhubbub-admin.php:77
 msgid "Hub"
 msgstr ""
 
-#: includes/class-pubsubhubbub-admin.php:70
+#: includes/class-pubsubhubbub-admin.php:78
 msgid ""
 "A WebSub Hub is an implementation that handles subscription requests and "
 "distributes the content to subscribers when the corresponding topic URL has "
@@ -71,23 +71,23 @@ msgid ""
 "diff if the content type supports it."
 msgstr ""
 
-#: includes/class-pubsubhubbub-admin.php:78
+#: includes/class-pubsubhubbub-admin.php:86
 msgid "The IndieWeb"
 msgstr ""
 
-#: includes/class-pubsubhubbub-admin.php:80
+#: includes/class-pubsubhubbub-admin.php:88
 msgid "WebSub is a proposed standard of the IndieWeb stack."
 msgstr ""
 
-#: includes/class-pubsubhubbub-admin.php:81
+#: includes/class-pubsubhubbub-admin.php:89
 msgid "The IndieWeb is a people-focused alternative to the \"corporate web\"."
 msgstr ""
 
-#: includes/class-pubsubhubbub-admin.php:83
+#: includes/class-pubsubhubbub-admin.php:91
 msgid "Your content is yours"
 msgstr ""
 
-#: includes/class-pubsubhubbub-admin.php:84
+#: includes/class-pubsubhubbub-admin.php:92
 msgid ""
 "When you post something on the web, it should belong to you, not a "
 "corporation. Too many companies have gone out of business and lost all of "
@@ -95,50 +95,50 @@ msgid ""
 "your control."
 msgstr ""
 
-#: includes/class-pubsubhubbub-admin.php:87
+#: includes/class-pubsubhubbub-admin.php:95
 msgid "You are better connected"
 msgstr ""
 
-#: includes/class-pubsubhubbub-admin.php:88
+#: includes/class-pubsubhubbub-admin.php:96
 msgid ""
 "Your articles and status messages can go to all services, not just one, "
 "allowing you to engage with everyone. Even replies and likes on other "
 "services can come back to your site so they’re all in one place."
 msgstr ""
 
-#: includes/class-pubsubhubbub-admin.php:91
+#: includes/class-pubsubhubbub-admin.php:99
 msgid "You are in control"
 msgstr ""
 
-#: includes/class-pubsubhubbub-admin.php:92
+#: includes/class-pubsubhubbub-admin.php:100
 msgid ""
 "You can post anything you want, in any format you want, with no one "
 "monitoring you. In addition, you share simple readable links such as "
 "example.com/ideas. These links are permanent and will always work."
 msgstr ""
 
-#: includes/class-pubsubhubbub-admin.php:95
+#: includes/class-pubsubhubbub-admin.php:103
 msgid "IndieWeb for WordPress"
 msgstr ""
 
-#: includes/class-pubsubhubbub-admin.php:96
+#: includes/class-pubsubhubbub-admin.php:104
 msgid ""
 "Try out \"<a href=\"https://wordpress.org/plugins/indieweb/\" "
 "target=\"_blank\">IndieWeb for WordPress</a>\""
 msgstr ""
 
-#: includes/class-pubsubhubbub-admin.php:104
-#: includes/class-pubsubhubbub-admin.php:108
+#: includes/class-pubsubhubbub-admin.php:112
+#: includes/class-pubsubhubbub-admin.php:116
 msgid "The Fediverse"
 msgstr ""
 
-#: includes/class-pubsubhubbub-admin.php:106
+#: includes/class-pubsubhubbub-admin.php:114
 msgid ""
 "WebSub is one of the building blocks of OStauts, wich is the base of the "
 "Fediverse."
 msgstr ""
 
-#: includes/class-pubsubhubbub-admin.php:109
+#: includes/class-pubsubhubbub-admin.php:117
 msgid ""
 "Fediverse is a portmanteau of \"federation\" and \"universe\". It is a "
 "common, informal name for a somewhat broad federation of social network "
@@ -155,11 +155,11 @@ msgid ""
 "(such as is the case with Friendica). (Wikipedia)"
 msgstr ""
 
-#: includes/class-pubsubhubbub-admin.php:112
+#: includes/class-pubsubhubbub-admin.php:120
 msgid "OStatus"
 msgstr ""
 
-#: includes/class-pubsubhubbub-admin.php:113
+#: includes/class-pubsubhubbub-admin.php:121
 msgid ""
 " OStatus lets people on different social networks follow each other. It "
 "applies a group of related protocols (PubSubHubbub, ActivityStreams, "
@@ -173,39 +173,39 @@ msgid ""
 "general purpose social networks would all be candidates for OStatus use. "
 msgstr ""
 
-#: includes/class-pubsubhubbub-admin.php:116
+#: includes/class-pubsubhubbub-admin.php:124
 msgid "OStatus for WordPress"
 msgstr ""
 
-#: includes/class-pubsubhubbub-admin.php:117
+#: includes/class-pubsubhubbub-admin.php:125
 msgid ""
 "Try out \"<a href=\"https://wordpress.org/plugins/ostatus-for-wordpress/\" "
 "target=\"_blank\">OStatus for WordPress</a>\"!"
 msgstr ""
 
-#: includes/class-pubsubhubbub-admin.php:123
+#: includes/class-pubsubhubbub-admin.php:131
 msgid "For more information:"
 msgstr ""
 
-#: includes/class-pubsubhubbub-admin.php:124
+#: includes/class-pubsubhubbub-admin.php:132
 msgid "<a href=\"https://websub.rocks/\">Test suite</a>"
 msgstr ""
 
-#: includes/class-pubsubhubbub-admin.php:125
+#: includes/class-pubsubhubbub-admin.php:133
 msgid "<a href=\"https://www.w3.org/TR/websub/\">W3C Spec</a>"
 msgstr ""
 
-#: includes/class-pubsubhubbub-admin.php:126
+#: includes/class-pubsubhubbub-admin.php:134
 msgid "<a href=\"https://indieweb.org/WebSub\">IndieWeb <small>(Wiki)</small></a>"
 msgstr ""
 
-#: includes/class-pubsubhubbub-admin.php:127
+#: includes/class-pubsubhubbub-admin.php:135
 msgid ""
 "<a href=\"https://www.w3.org/community/ostatus/\">OStatus <small>(W3C "
 "Community)</small></a>"
 msgstr ""
 
-#: includes/class-pubsubhubbub-admin.php:129
+#: includes/class-pubsubhubbub-admin.php:137
 msgid "<a href=\"https://notiz.blog/donate\">Donate</a>"
 msgstr ""
 

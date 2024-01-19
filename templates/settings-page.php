@@ -9,14 +9,14 @@
 
 		<?php
 		// load the existing pubsub endpoint list from the WordPress options table
-		$pubsubhubbub_endpoints = trim( implode( PHP_EOL, pubsubhubbub_get_hubs() ), PHP_EOL );
+		$endpoints = get_option( 'pubsubhubbub_endpoints' );
 		?>
 
 		<table class="form-table">
 			<tr valign="top">
 				<th scope="row"><?php _e( 'Hubs <small>(one per line)</small>', 'pubsubhubbub' ); ?></th>
 				<td>
-					<textarea name="pubsubhubbub_endpoints" id="pubsubhubbub_endpoints" rows="10" cols="50" class="large-text"><?php echo $pubsubhubbub_endpoints; ?></textarea>
+					<textarea name="pubsubhubbub_endpoints" id="pubsubhubbub_endpoints" rows="10" cols="50" class="large-text"><?php echo esc_textarea( $endpoints ); ?></textarea>
 				</td>
 			</tr>
 		</table>

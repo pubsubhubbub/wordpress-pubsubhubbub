@@ -47,7 +47,7 @@ class PubSubHubbub_Publisher {
 
 		if ( ! preg_match( '|^https?://|i', $hub_url ) ) {
 			/* translators: %s is the $hub_url */
-			return new WP_Error( 'invalid_hub_url', sprintf( __( 'The specified hub url does not appear to be valid: %s', 'pubsubhubbub' ), $hub_url ) );
+			return new WP_Error( 'invalid_hub_url', sprintf( __( 'The specified hub url does not appear to be valid: %s', 'pubsubhubbub' ), esc_url( $hub_url ) ) );
 		}
 
 		if ( ! isset( $topic_urls ) ) {
@@ -118,24 +118,6 @@ class PubSubHubbub_Publisher {
 	public static function get_hubs() {
 		$endpoints = get_option( 'pubsubhubbub_endpoints' );
 		$hub_urls  = explode( PHP_EOL, $endpoints );
-
-		// if no values have been set, revert to the defaults (websub on app engine & superfeedr)
-		if ( ! $endpoints || ! $hub_urls || ! is_array( $hub_urls ) ) {
-			$hub_urls = array(
-				'https://pubsubhubbub.appspot.com',
-				'https://pubsubhubbub.superfeedr.com',
-				'https://websubhub.com/hub'
-			);
-		}
-
-		// clean out any blank values
-		foreach ( $hub_urls as $key => $value ) {
-			if ( empty( $value ) ) {
-				unset( $hub_urls[ $key ] );
-			} else {
-				$hub_urls[ $key ] = trim( $hub_urls[ $key ] );
-			}
-		}
 
 		return apply_filters( 'pubsubhubbub_hub_urls', $hub_urls );
 	}

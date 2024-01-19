@@ -35,10 +35,18 @@ class Pubsubhubbub_Admin {
 	public static function register_settings() {
 		register_setting(
 			'pubsubhubbub', 'pubsubhubbub_endpoints', array(
-				'type'         => 'string',
-				'description'  => __( 'The WebSub/PubSubHubbub endpoints', 'pubsubhubbub' ),
-				'show_in_rest' => true,
-				'default'      => '',
+				'type'              => 'string',
+				'description'       => __( 'The WebSub/PubSubHubbub endpoints', 'pubsubhubbub' ),
+				'show_in_rest'      => true,
+				'default'           => "https://pubsubhubbub.appspot.com\nhttps://pubsubhubbub.superfeedr.com\nhttps://websubhub.com/hub",
+				'sanitize_callback' => function ( $value ) {
+					$value = explode( PHP_EOL, $value );
+					$value = array_filter( array_map( 'trim', $value ) );
+					$value = array_filter( array_map( 'sanitize_url', $value ) );
+					$value = implode( PHP_EOL, $value );
+
+					return $value;
+				},
 			)
 		);
 	}

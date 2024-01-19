@@ -15,7 +15,7 @@ class Pubsubhubbub_Topics {
 		$hub_urls = pubsubhubbub_get_hubs();
 
 		foreach ( $hub_urls as $hub_url ) {
-			printf( '<link rel="hub" href="%s" />', $hub_url ) . PHP_EOL;
+			printf( '<link rel="hub" href="%s" />', esc_url( $hub_url ) ) . PHP_EOL;
 		}
 	}
 
@@ -31,7 +31,7 @@ class Pubsubhubbub_Topics {
 		$hub_urls = pubsubhubbub_get_hubs();
 
 		foreach ( $hub_urls as $hub_url ) {
-			printf( '<atom:link rel="hub" href="%s"/>', $hub_url ) . PHP_EOL;
+			printf( '<atom:link rel="hub" href="%s"/>', esc_url( $hub_url ) ) . PHP_EOL;
 		}
 	}
 
@@ -54,7 +54,7 @@ class Pubsubhubbub_Topics {
 		$hub_urls = pubsubhubbub_get_hubs();
 		// add all "hub" headers
 		foreach ( $hub_urls as $hub_url ) {
-			header( sprintf( 'Link: <%s>; rel="hub"', $hub_url ), false );
+			header( sprintf( 'Link: <%s>; rel="hub"', esc_url( $hub_url ) ), false );
 		}
 
 		// add the "self" header
