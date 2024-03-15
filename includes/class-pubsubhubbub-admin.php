@@ -38,7 +38,7 @@ class Pubsubhubbub_Admin {
 				'type'              => 'string',
 				'description'       => __( 'The WebSub/PubSubHubbub endpoints', 'pubsubhubbub' ),
 				'show_in_rest'      => true,
-				'default'           => "https://pubsubhubbub.appspot.com\nhttps://pubsubhubbub.superfeedr.com\nhttps://websubhub.com/hub",
+				'default'           => implode( PHP_EOL, Pubsubhubbub::DEFAULT_HUBS ),
 				'sanitize_callback' => function ( $value ) {
 					$value = explode( PHP_EOL, $value );
 					$value = array_filter( array_map( 'trim', $value ) );
@@ -49,8 +49,6 @@ class Pubsubhubbub_Admin {
 				},
 			)
 		);
-
-		add_option( 'pubsubhubbub_endpoints', "https://pubsubhubbub.appspot.com\nhttps://pubsubhubbub.superfeedr.com\nhttps://websubhub.com/hub" );
 	}
 
 	public static function add_help_tab() {
