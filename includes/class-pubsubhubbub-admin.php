@@ -49,6 +49,8 @@ class Pubsubhubbub_Admin {
 				},
 			)
 		);
+
+		add_option( 'pubsubhubbub_endpoints', "https://pubsubhubbub.appspot.com\nhttps://pubsubhubbub.superfeedr.com\nhttps://websubhub.com/hub" );
 	}
 
 	public static function add_help_tab() {
