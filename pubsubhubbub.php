@@ -31,7 +31,7 @@ function pubsubhubbub_init() {
 	 */
 	require_once( dirname( __FILE__ ) . '/includes/class-pubsubhubbub-admin.php' );
 
-	add_action( 'admin_init', array( 'PubSubHubbub_Admin', 'register_settings' ) );
+	add_action( 'init', array( 'PubSubHubbub_Admin', 'register_settings' ) );
 	add_action( 'admin_menu', array( 'Pubsubhubbub_Admin', 'add_plugin_menu' ) );
 
 	/**
@@ -64,14 +64,3 @@ function pubsubhubbub_init() {
 }
 
 add_action( 'plugins_loaded', 'pubsubhubbub_init' );
-
-function pubsubhubbub_activation() {
-
-	require_once( dirname( __FILE__ ) . '/includes/class-pubsubhubbub.php' );
-
-	// Set default hubs
-	add_option( 'pubsubhubbub_endpoints', implode( PHP_EOL, Pubsubhubbub::DEFAULT_HUBS ) );
-
-}
-
-register_activation_hook( __FILE__, 'pubsubhubbub_activation' );
