@@ -117,7 +117,13 @@ class PubSubHubbub_Publisher {
 	 */
 	public static function get_hubs() {
 		$endpoints = get_option( 'pubsubhubbub_endpoints' );
-		$hub_urls  = explode( PHP_EOL, $endpoints );
+
+		// Fail with an empty array when option retrieval fails
+		if ( ! $endpoints ) {
+			$hub_urls = Pubsubhubbub::DEFAULT_HUBS;
+		} else {
+			$hub_urls = explode( PHP_EOL, $endpoints );
+		}
 
 		return apply_filters( 'pubsubhubbub_hub_urls', $hub_urls );
 	}

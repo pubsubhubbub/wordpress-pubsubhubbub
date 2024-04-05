@@ -3,6 +3,12 @@
  * The WebSub/PubSubHubbub class
  */
 class Pubsubhubbub {
+	const DEFAULT_HUBS = array(
+		'https://pubsubhubbub.appspot.com',
+		'https://pubsubhubbub.superfeedr.com',
+		'https://websubhub.com/hub',
+	);
+
 	/**
 	 * Load the plugin textdomain.
 	 */
