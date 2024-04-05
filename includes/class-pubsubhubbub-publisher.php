@@ -120,7 +120,7 @@ class PubSubHubbub_Publisher {
 
 		// Fail with an empty array when option retrieval fails
 		if ( ! $endpoints ) {
-			$hub_urls = array();
+			$hub_urls = Pubsubhubbub::DEFAULT_HUBS;
 		} else {
 			$hub_urls = explode( PHP_EOL, $endpoints );
 		}
