@@ -5,8 +5,8 @@ Author: PubSubHubbub Team
 Author URI: https://github.com/pubsubhubbub/wordpress-pubsubhubbub
 Tags: webhook, websub, pubsub, ping, indieweb, ostatus
 Requires at least: 4.5
-Tested up to: 6.4
-Stable tag: 3.2.0
+Tested up to: 6.5
+Stable tag: 3.2.1
 
 A better way to tell the world when your blog is updated.
 
@@ -75,6 +75,10 @@ A WebSub Subscriber is an implementation that discovers the hub and topic URL gi
 == Changelog ==
 
 Project maintained on github at [pubsubhubbub/wordpress-pubsubhubbub](https://github.com/pubsubhubbub/wordpress-pubsubhubbub).
+
+= 3.2.1 =
+
+* fix: empty option on fresh install leads to broken feed links
 
 = 3.2.0 =
 
