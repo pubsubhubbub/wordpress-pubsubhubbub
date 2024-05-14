@@ -3,7 +3,9 @@ Contributors: pfefferle, joshfraz
 Donate link: https://notiz.blog/donate/
 Author: PubSubHubbub Team
 Author URI: https://github.com/pubsubhubbub/wordpress-pubsubhubbub
-Tags: webhook, websub, pubsub, ping, indieweb, ostatus
+Tags: websub, pubsub, indieweb, ostatus, rss
+License: MIT
+License URI: http://opensource.org/licenses/MIT
 Requires at least: 4.5
 Tested up to: 6.5
 Stable tag: 3.2.1
