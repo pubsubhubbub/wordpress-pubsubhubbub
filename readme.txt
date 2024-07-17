@@ -7,7 +7,7 @@ Tags: websub, pubsub, indieweb, ostatus, rss
 License: MIT
 License URI: http://opensource.org/licenses/MIT
 Requires at least: 4.5
-Tested up to: 6.5
+Tested up to: 6.6
 Stable tag: 3.2.1
 
 A better way to tell the world when your blog is updated.
