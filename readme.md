@@ -1,5 +1,5 @@
 # WebSub (FKA. PubSubHubbub) #
-**Contributors:** [pfefferle](https://profiles.wordpress.org/pfefferle/), [joshfraz](https://profiles.wordpress.org/joshfraz/)  
+**Contributors:** [pfefferle](https://profiles.wordpress.org/pfefferle/), [joshfraz](https://profiles.wordpress.org/joshfraz/), [indieweb](https://profiles.wordpress.org/indieweb/)  
 **Donate link:** https://notiz.blog/donate/  
 **Author:** PubSubHubbub Team  
 **Author URI:** https://github.com/pubsubhubbub/wordpress-pubsubhubbub  
