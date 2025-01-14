@@ -2,13 +2,13 @@ name: Plugin asset/readme update
 on:
   push:
     branches:
-    - master
+    - main
 jobs:
-  master:
-    name: Push to master
+  main:
+    name: Push to main
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@main
     - name: Install SVN ( Subversion )
       run: |
         sudo apt-get update
