@@ -293,28 +293,20 @@ class Test_Publisher extends \WP_UnitTestCase {
 
 		\add_filter( 'pubsubhubbub_comment_feed_urls', $filter, 10, 2 );
 
-		// We need to capture the feed URLs before they're published.
-		$captured_urls = array();
-		$capture       = function ( $feed_urls ) use ( &$captured_urls ) {
-			$captured_urls = $feed_urls;
-			return array(); // Return empty to prevent actual HTTP requests.
-		};
-		\add_filter( 'websub_feed_urls', $capture, 999 );
-
-		// Create a comment to trigger the filter.
+		// Create a comment.
 		$post_id    = self::factory()->post->create();
 		$comment_id = self::factory()->comment->create( array( 'comment_post_ID' => $post_id ) );
 
-		// Use reflection to test the filter is applied.
+		// Simulate the deprecated filter call as done in Publisher::publish_comment().
 		$feed_urls   = array();
 		$feed_urls[] = \get_bloginfo( 'comments_atom_url' );
 		$feed_urls[] = \get_bloginfo( 'comments_rss2_url' );
-		$feed_urls   = \apply_filters( 'pubsubhubbub_comment_feed_urls', $feed_urls, $comment_id );
+		$feed_urls   = \apply_filters_deprecated( 'pubsubhubbub_comment_feed_urls', array( $feed_urls, $comment_id ), '4.0.0', 'websub_comment_feed_urls' );
+		$feed_urls   = \apply_filters( 'websub_comment_feed_urls', $feed_urls, $comment_id );
 
 		$this->assertContains( 'https://deprecated-comment-feed.example.com', $feed_urls );
 
 		\remove_filter( 'pubsubhubbub_comment_feed_urls', $filter, 10 );
-		\remove_filter( 'websub_feed_urls', $capture, 999 );
 	}
 
 	/**
