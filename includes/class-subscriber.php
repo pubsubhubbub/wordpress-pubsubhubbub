@@ -100,7 +100,7 @@ class Subscriber {
 		 * @param string $subscription_id The subscription identifier.
 		 * @param string $hub_url         The hub URL.
 		 */
-		\do_action( 'websub_' . $mode, $topic_url, $subscription_id, $hub_url );
+		\do_action( 'websub_pre_' . $mode, $topic_url, $subscription_id, $hub_url );
 
 		// Build request body.
 		$body = array(

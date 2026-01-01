@@ -130,7 +130,7 @@ class Pubsubhubbub {
 	 * These hooks allow other plugins to trigger subscriptions via do_action().
 	 */
 	public function register_subscriber_hooks() {
-		\add_action( 'websub_request_subscribe', array( Subscriber::class, 'subscribe' ), 10, 3 );
-		\add_action( 'websub_request_unsubscribe', array( Subscriber::class, 'unsubscribe' ), 10, 3 );
+		\add_action( 'websub_subscribe', array( Subscriber::class, 'subscribe' ), 10, 3 );
+		\add_action( 'websub_unsubscribe', array( Subscriber::class, 'unsubscribe' ), 10, 3 );
 	}
 }
