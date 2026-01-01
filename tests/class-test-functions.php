@@ -5,16 +5,22 @@
  * @package Pubsubhubbub
  */
 
+namespace Pubsubhubbub\Tests;
+
 use Pubsubhubbub\Pubsubhubbub;
 use Pubsubhubbub\Publisher;
 
 /**
  * Test class for functions.
+ *
+ * @coversDefaultClass \Pubsubhubbub\Pubsubhubbub
  */
-class Test_Functions extends WP_UnitTestCase {
+class Test_Functions extends \WP_UnitTestCase {
 
 	/**
 	 * Test plugin initialization.
+	 *
+	 * @covers ::get_instance
 	 */
 	public function test_plugin_instance() {
 		$this->assertInstanceOf( Pubsubhubbub::class, Pubsubhubbub::get_instance() );
@@ -22,14 +28,26 @@ class Test_Functions extends WP_UnitTestCase {
 
 	/**
 	 * Test default hubs constant.
+	 *
+	 * @covers ::DEFAULT_HUBS
 	 */
 	public function test_default_hubs() {
-		$this->assertIsArray( Pubsubhubbub::DEFAULT_HUBS );
-		$this->assertNotEmpty( Pubsubhubbub::DEFAULT_HUBS );
+		$default_hubs = Pubsubhubbub::DEFAULT_HUBS;
+
+		$this->assertIsArray( $default_hubs );
+		$this->assertGreaterThan( 0, count( $default_hubs ) );
+
+		foreach ( $default_hubs as $hub ) {
+			$this->assertIsString( $hub );
+			$this->assertNotEmpty( $hub );
+			$this->assertNotFalse( filter_var( $hub, FILTER_VALIDATE_URL ) );
+		}
 	}
 
 	/**
 	 * Test get_hubs function.
+	 *
+	 * @covers \Pubsubhubbub\Publisher::get_hubs
 	 */
 	public function test_get_hubs() {
 		$hubs = Publisher::get_hubs();
@@ -62,9 +80,23 @@ class Test_Functions extends WP_UnitTestCase {
 
 	/**
 	 * Test supported feed types.
+	 *
+	 * @covers \Pubsubhubbub\get_supported_feed_types
 	 */
 	public function test_supported_feed_types() {
 		$feed_types = \Pubsubhubbub\get_supported_feed_types();
+		$this->assertIsArray( $feed_types );
+		$this->assertContains( 'atom', $feed_types );
+		$this->assertContains( 'rss2', $feed_types );
+	}
+
+	/**
+	 * Test supported comment feed types.
+	 *
+	 * @covers \Pubsubhubbub\get_supported_comment_feed_types
+	 */
+	public function test_supported_comment_feed_types() {
+		$feed_types = \Pubsubhubbub\get_supported_comment_feed_types();
 		$this->assertIsArray( $feed_types );
 		$this->assertContains( 'atom', $feed_types );
 		$this->assertContains( 'rss2', $feed_types );

@@ -1,8 +1,40 @@
 <?xml version="1.0"?>
-<ruleset name="WordPress">
-	<description>WordPress Coding Standard.</description>
-	<rule ref="WordPress-Core">
-		<exclude name="Generic.Formatting.MultipleStatementAlignment.NotSameWarning" />
-		<exclude name="WordPress.Arrays.MultipleStatementAlignment.DoubleArrowNotAligned" />
+<ruleset name="WebSub/PubSubHubbub">
+	<description>Custom ruleset for the WebSub/PubSubHubbub plugin.</description>
+
+	<!-- What to scan -->
+	<file>.</file>
+
+	<!-- Exclude patterns -->
+	<exclude-pattern>\.git/*</exclude-pattern>
+	<exclude-pattern>\.github/*</exclude-pattern>
+	<exclude-pattern>*/vendor/*</exclude-pattern>
+	<exclude-pattern>*/node_modules/*</exclude-pattern>
+	<exclude-pattern>\.wordpress-org/*</exclude-pattern>
+
+	<!-- How to scan -->
+	<arg value="ps"/>
+	<arg name="basepath" value="."/>
+	<arg name="colors"/>
+	<arg name="extensions" value="php"/>
+	<arg name="parallel" value="8"/>
+
+	<!-- PHP Compatibility -->
+	<config name="testVersion" value="7.2-"/>
+	<config name="minimum_wp_version" value="6.0"/>
+	<config name="text_domain" value="pubsubhubbub"/>
+
+	<!-- Rules -->
+	<rule ref="PHPCompatibilityWP"/>
+
+	<rule ref="WordPress">
+		<exclude name="Universal.Operators.DisallowShortTernary"/>
+	</rule>
+
+	<rule ref="VariableAnalysis"/>
+
+	<!-- Allow short array syntax -->
+	<rule ref="Generic.Arrays.DisallowShortArraySyntax.Found">
+		<severity>0</severity>
 	</rule>
 </ruleset>
