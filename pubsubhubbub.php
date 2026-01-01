@@ -9,58 +9,32 @@
  * License: MIT
  * License URI: http://opensource.org/licenses/MIT
  * Text Domain: pubsubhubbub
- * Domain Path: /languages
+ * Requires PHP: 5.6
  */
 
-/**
- * Initialize plugin
- */
-function pubsubhubbub_init() {
-	require_once( dirname( __FILE__ ) . '/includes/functions.php' );
+namespace Pubsubhubbub;
 
-	/**
-	 * Publisher integration
-	 */
-	require_once( dirname( __FILE__ ) . '/includes/class-pubsubhubbub-publisher.php' );
+\defined( 'ABSPATH' ) || exit;
 
-	add_action( 'publish_post', array( 'PubSubHubbub_Publisher', 'publish_post' ) );
-	//add_action( 'comment_post', array( 'PubSubHubbub_Publisher', 'publish_comment' ) );
+\define( 'PUBSUBHUBBUB_VERSION', '3.2.1' );
+\define( 'PUBSUBHUBBUB_PLUGIN_DIR', \plugin_dir_path( __FILE__ ) );
+\define( 'PUBSUBHUBBUB_PLUGIN_BASENAME', \plugin_basename( __FILE__ ) );
+\define( 'PUBSUBHUBBUB_PLUGIN_FILE', __FILE__ );
+\define( 'PUBSUBHUBBUB_PLUGIN_URL', \plugin_dir_url( __FILE__ ) );
 
-	/**
-	 * Admin panel
-	 */
-	require_once( dirname( __FILE__ ) . '/includes/class-pubsubhubbub-admin.php' );
+// Load the autoloader.
+require_once PUBSUBHUBBUB_PLUGIN_DIR . 'includes/class-autoloader.php';
 
-	add_action( 'init', array( 'PubSubHubbub_Admin', 'register_settings' ) );
-	add_action( 'admin_menu', array( 'Pubsubhubbub_Admin', 'add_plugin_menu' ) );
+// Load helper functions.
+require_once PUBSUBHUBBUB_PLUGIN_DIR . 'includes/functions.php';
 
-	/**
-	 * Feed integrations
-	 */
-	require_once( dirname( __FILE__ ) . '/includes/class-pubsubhubbub-topics.php' );
+// Load deprecated functions for backward compatibility.
+require_once PUBSUBHUBBUB_PLUGIN_DIR . 'includes/deprecated.php';
 
-	add_action( 'atom_head', array( 'Pubsubhubbub_Topics', 'add_atom_link_tag' ) );
-	add_action( 'rdf_header', array( 'Pubsubhubbub_Topics', 'add_rss_link_tag' ) );
-	add_action( 'rss2_head', array( 'Pubsubhubbub_Topics', 'add_rss_link_tag' ) );
+// Register the autoloader.
+Autoloader::register_path( __NAMESPACE__, PUBSUBHUBBUB_PLUGIN_DIR . 'includes' );
 
-	add_action( 'comments_atom_head', array( 'Pubsubhubbub_Topics', 'add_atom_link_tag' ) );
-	add_action( 'commentsrss2_head', array( 'Pubsubhubbub_Topics', 'add_rss_link_tag' ) );
+// Initialize the plugin.
+$pubsubhubbub = Pubsubhubbub::get_instance();
+$pubsubhubbub->init();
 
-	add_action( 'rdf_ns', array( 'Pubsubhubbub_Topics', 'add_rss_ns_link' ) );
-
-	add_action( 'template_redirect', array( 'Pubsubhubbub_Topics', 'template_redirect' ) );
-
-	/**
-	 * Main class
-	 */
-	require_once( dirname( __FILE__ ) . '/includes/class-pubsubhubbub.php' );
-
-	add_action( 'init', array( 'PubSubHubbub', 'load_textdomain' ) );
-
-	/**
-	 * Deprecated functions
-	 */
-	require_once( dirname( __FILE__ ) . '/includes/deprecated.php' );
-}
-
-add_action( 'plugins_loaded', 'pubsubhubbub_init' );
