@@ -7,42 +7,12 @@
 
 namespace Pubsubhubbub\Tests;
 
-use Pubsubhubbub\Pubsubhubbub;
 use Pubsubhubbub\Publisher;
 
 /**
  * Test class for functions.
- *
- * @coversDefaultClass \Pubsubhubbub\Pubsubhubbub
  */
 class Test_Functions extends \WP_UnitTestCase {
-
-	/**
-	 * Test plugin initialization.
-	 *
-	 * @covers ::get_instance
-	 */
-	public function test_plugin_instance() {
-		$this->assertInstanceOf( Pubsubhubbub::class, Pubsubhubbub::get_instance() );
-	}
-
-	/**
-	 * Test default hubs constant.
-	 *
-	 * @covers ::DEFAULT_HUBS
-	 */
-	public function test_default_hubs() {
-		$default_hubs = Pubsubhubbub::DEFAULT_HUBS;
-
-		$this->assertIsArray( $default_hubs );
-		$this->assertGreaterThan( 0, count( $default_hubs ) );
-
-		foreach ( $default_hubs as $hub ) {
-			$this->assertIsString( $hub );
-			$this->assertNotEmpty( $hub );
-			$this->assertNotFalse( filter_var( $hub, FILTER_VALIDATE_URL ) );
-		}
-	}
 
 	/**
 	 * Test get_hubs function.

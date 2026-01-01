@@ -10,6 +10,8 @@
  * License URI: http://opensource.org/licenses/MIT
  * Text Domain: pubsubhubbub
  * Requires PHP: 5.6
+ *
+ * @package Pubsubhubbub
  */
 
 namespace Pubsubhubbub;
@@ -37,4 +39,3 @@ Autoloader::register_path( __NAMESPACE__, PUBSUBHUBBUB_PLUGIN_DIR . 'includes' )
 // Initialize the plugin.
 $pubsubhubbub = Pubsubhubbub::get_instance();
 $pubsubhubbub->init();
-
