@@ -19,7 +19,7 @@
 		"phpcompatibility/phpcompatibility-wp": "^2.1",
 		"squizlabs/php_codesniffer": "^3.0",
 		"wp-coding-standards/wpcs": "^3.0",
-		"yoast/phpunit-polyfills": "^2.0 || ^3.0",
+		"yoast/phpunit-polyfills": "^4.0.0",
 		"dealerdirect/phpcodesniffer-composer-installer": "^1.0.0",
 		"sirbrillig/phpcs-variable-analysis": "^2.11"
 	},
