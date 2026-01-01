@@ -36,13 +36,13 @@ class Test_Discovery extends \WP_UnitTestCase {
 	 */
 	public function test_add_atom_link_tag_with_discovery() {
 		// Force show_discovery to return true.
-		\add_filter( 'pubsubhubbub_show_discovery', '__return_true' );
+		\add_filter( 'websub_show_discovery', '__return_true' );
 
 		\ob_start();
 		Discovery::add_atom_link_tag();
 		$output = \ob_get_clean();
 
-		\remove_filter( 'pubsubhubbub_show_discovery', '__return_true' );
+		\remove_filter( 'websub_show_discovery', '__return_true' );
 
 		$this->assertStringContainsString( 'rel="hub"', $output );
 		$this->assertStringContainsString( '<link', $output );
@@ -55,13 +55,13 @@ class Test_Discovery extends \WP_UnitTestCase {
 	 */
 	public function test_add_atom_link_tag_without_discovery() {
 		// Force show_discovery to return false.
-		\add_filter( 'pubsubhubbub_show_discovery', '__return_false' );
+		\add_filter( 'websub_show_discovery', '__return_false' );
 
 		\ob_start();
 		Discovery::add_atom_link_tag();
 		$output = \ob_get_clean();
 
-		\remove_filter( 'pubsubhubbub_show_discovery', '__return_false' );
+		\remove_filter( 'websub_show_discovery', '__return_false' );
 
 		$this->assertEmpty( $output );
 	}
@@ -73,13 +73,13 @@ class Test_Discovery extends \WP_UnitTestCase {
 	 */
 	public function test_add_rss_link_tag_with_discovery() {
 		// Force show_discovery to return true.
-		\add_filter( 'pubsubhubbub_show_discovery', '__return_true' );
+		\add_filter( 'websub_show_discovery', '__return_true' );
 
 		\ob_start();
 		Discovery::add_rss_link_tag();
 		$output = \ob_get_clean();
 
-		\remove_filter( 'pubsubhubbub_show_discovery', '__return_true' );
+		\remove_filter( 'websub_show_discovery', '__return_true' );
 
 		$this->assertStringContainsString( 'rel="hub"', $output );
 		$this->assertStringContainsString( '<atom:link', $output );
@@ -92,13 +92,13 @@ class Test_Discovery extends \WP_UnitTestCase {
 	 */
 	public function test_add_rss_link_tag_without_discovery() {
 		// Force show_discovery to return false.
-		\add_filter( 'pubsubhubbub_show_discovery', '__return_false' );
+		\add_filter( 'websub_show_discovery', '__return_false' );
 
 		\ob_start();
 		Discovery::add_rss_link_tag();
 		$output = \ob_get_clean();
 
-		\remove_filter( 'pubsubhubbub_show_discovery', '__return_false' );
+		\remove_filter( 'websub_show_discovery', '__return_false' );
 
 		$this->assertEmpty( $output );
 	}
@@ -113,13 +113,13 @@ class Test_Discovery extends \WP_UnitTestCase {
 		\update_option( 'pubsubhubbub_endpoints', $custom_hubs );
 
 		// Force show_discovery to return true.
-		\add_filter( 'pubsubhubbub_show_discovery', '__return_true' );
+		\add_filter( 'websub_show_discovery', '__return_true' );
 
 		\ob_start();
 		Discovery::add_atom_link_tag();
 		$output = \ob_get_clean();
 
-		\remove_filter( 'pubsubhubbub_show_discovery', '__return_true' );
+		\remove_filter( 'websub_show_discovery', '__return_true' );
 		\delete_option( 'pubsubhubbub_endpoints' );
 
 		$this->assertStringContainsString( 'https://hub1.example.com', $output );
@@ -136,13 +136,13 @@ class Test_Discovery extends \WP_UnitTestCase {
 		\update_option( 'pubsubhubbub_endpoints', $custom_hubs );
 
 		// Force show_discovery to return true.
-		\add_filter( 'pubsubhubbub_show_discovery', '__return_true' );
+		\add_filter( 'websub_show_discovery', '__return_true' );
 
 		\ob_start();
 		Discovery::add_rss_link_tag();
 		$output = \ob_get_clean();
 
-		\remove_filter( 'pubsubhubbub_show_discovery', '__return_true' );
+		\remove_filter( 'websub_show_discovery', '__return_true' );
 		\delete_option( 'pubsubhubbub_endpoints' );
 
 		$this->assertStringContainsString( 'https://hub1.example.com', $output );

@@ -69,13 +69,13 @@ class Test_Publisher extends \WP_UnitTestCase {
 			return $hubs;
 		};
 
-		\add_filter( 'pubsubhubbub_hub_urls', $filter );
+		\add_filter( 'websub_hub_urls', $filter );
 
 		$hubs = Publisher::get_hubs();
 
 		$this->assertContains( 'https://filtered-hub.example.com', $hubs );
 
-		\remove_filter( 'pubsubhubbub_hub_urls', $filter );
+		\remove_filter( 'websub_hub_urls', $filter );
 	}
 
 	/**
@@ -194,12 +194,12 @@ class Test_Publisher extends \WP_UnitTestCase {
 			return $feed_urls;
 		};
 
-		\add_filter( 'pubsubhubbub_feed_urls', $filter, 10, 2 );
+		\add_filter( 'websub_feed_urls', $filter, 10, 2 );
 
 		$feed_urls = Publisher::get_feed_urls_by_post_id( $post_id );
 
 		$this->assertContains( 'https://custom-feed.example.com', $feed_urls );
 
-		\remove_filter( 'pubsubhubbub_feed_urls', $filter, 10 );
+		\remove_filter( 'websub_feed_urls', $filter, 10 );
 	}
 }
