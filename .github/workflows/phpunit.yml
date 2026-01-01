@@ -39,6 +39,11 @@ jobs:
           - php-versions: '8.4'
             wp-version: 'trunk'
     steps:
+      - name: Install svn
+        run: |
+          sudo apt-get update
+          sudo apt-get install subversion
+
       - name: Checkout
         uses: actions/checkout@v4
 
