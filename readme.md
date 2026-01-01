@@ -1,16 +1,12 @@
 # WebSub (FKA. PubSubHubbub)
 
-Contributors: pfefferle, joshfraz
-Donate link: https://notiz.blog/donate/
-Tags: websub, pubsubhubbub, pubsub, indieweb, feed
-Requires at least: 4.5
-Tested up to: 6.9
-Stable tag: 3.2.1
-Requires PHP: 7.2
-License: MIT
-License URI: http://opensource.org/licenses/MIT
-
 A WebSub plugin for WordPress that enables real-time publishing and subscription capabilities.
+
+**Contributors:** pfefferle, joshfraz
+**Requires at least:** 4.5
+**Tested up to:** 6.9
+**Requires PHP:** 7.2
+**License:** [MIT](http://opensource.org/licenses/MIT)
 
 ## Description
 
