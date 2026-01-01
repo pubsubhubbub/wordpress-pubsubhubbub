@@ -183,7 +183,7 @@ class Test_Subscriber extends \WP_UnitTestCase {
 		$captured     = array();
 
 		\add_action(
-			'websub_subscribe',
+			'websub_pre_subscribe',
 			function ( $topic, $id, $hub ) use ( &$action_fired, &$captured ) {
 				$action_fired      = true;
 				$captured['topic'] = $topic;
@@ -240,7 +240,7 @@ class Test_Subscriber extends \WP_UnitTestCase {
 
 		$captured_hub = '';
 		\add_action(
-			'websub_subscribe',
+			'websub_pre_subscribe',
 			function ( $topic, $id, $hub ) use ( &$captured_hub ) {
 				$captured_hub = $hub;
 			},
