@@ -21,7 +21,7 @@ function publish_to_hub( $feed_urls ) {
 /**
  * Get the endpoints from the WordPress options table.
  *
- * @uses apply_filters() Calls 'pubsubhubbub_hub_urls' filter.
+ * @uses apply_filters() Calls 'websub_hub_urls' filter.
  *
  * @return array The hub URLs.
  */
@@ -30,15 +30,32 @@ function get_hubs() {
 }
 
 /**
- * Check if link supports PubSubHubbub or WebSub.
+ * Check if link supports WebSub.
  *
  * @return boolean
  */
 function show_discovery() {
 	$show_discovery = false;
 
-	$supported_feed_types         = \apply_filters( 'pubsubhubbub_show_discovery_for_feed_types', get_supported_feed_types() );
-	$supported_comment_feed_types = \apply_filters( 'pubsubhubbub_show_discovery_for_comment_feed_types', get_supported_comment_feed_types() );
+	/**
+	 * Filter the list of feed types that show WebSub discovery.
+	 *
+	 * @since 4.0.0
+	 *
+	 * @param array $feed_types List of feed types (e.g., 'atom', 'rss2').
+	 */
+	$supported_feed_types         = \apply_filters( 'websub_show_discovery_for_feed_types', get_supported_feed_types() );
+	$supported_feed_types         = \apply_filters_deprecated( 'pubsubhubbub_show_discovery_for_feed_types', array( $supported_feed_types ), '4.0.0', 'websub_show_discovery_for_feed_types' );
+
+	/**
+	 * Filter the list of comment feed types that show WebSub discovery.
+	 *
+	 * @since 4.0.0
+	 *
+	 * @param array $feed_types List of comment feed types (e.g., 'atom', 'rss2').
+	 */
+	$supported_comment_feed_types = \apply_filters( 'websub_show_discovery_for_comment_feed_types', get_supported_comment_feed_types() );
+	$supported_comment_feed_types = \apply_filters_deprecated( 'pubsubhubbub_show_discovery_for_comment_feed_types', array( $supported_comment_feed_types ), '4.0.0', 'websub_show_discovery_for_comment_feed_types' );
 
 	if (
 		( \is_feed( $supported_feed_types ) && ! \is_date() && ! \is_post_type_archive() && ! \is_singular() ) ||
@@ -48,7 +65,17 @@ function show_discovery() {
 		$show_discovery = true;
 	}
 
-	return \apply_filters( 'pubsubhubbub_show_discovery', $show_discovery );
+	/**
+	 * Filter whether to show WebSub discovery links.
+	 *
+	 * @since 4.0.0
+	 *
+	 * @param bool $show_discovery Whether to show discovery links.
+	 */
+	$show_discovery = \apply_filters( 'websub_show_discovery', $show_discovery );
+	$show_discovery = \apply_filters_deprecated( 'pubsubhubbub_show_discovery', array( $show_discovery ), '4.0.0', 'websub_show_discovery' );
+
+	return $show_discovery;
 }
 
 /**
@@ -70,7 +97,17 @@ function get_self_link() {
  * @return array List of supported feed types.
  */
 function get_supported_feed_types() {
-	return \apply_filters( 'pubsubhubbub_supported_feed_types', array( 'atom', 'rss2' ) );
+	/**
+	 * Filter the list of supported feed types for WebSub.
+	 *
+	 * @since 4.0.0
+	 *
+	 * @param array $feed_types List of supported feed types. Default: array( 'atom', 'rss2' ).
+	 */
+	$feed_types = \apply_filters( 'websub_supported_feed_types', array( 'atom', 'rss2' ) );
+	$feed_types = \apply_filters_deprecated( 'pubsubhubbub_supported_feed_types', array( $feed_types ), '4.0.0', 'websub_supported_feed_types' );
+
+	return $feed_types;
 }
 
 /**
@@ -79,5 +116,15 @@ function get_supported_feed_types() {
  * @return array List of supported comment feed types.
  */
 function get_supported_comment_feed_types() {
-	return \apply_filters( 'pubsubhubbub_supported_comment_feed_types', array( 'atom', 'rss2' ) );
+	/**
+	 * Filter the list of supported comment feed types for WebSub.
+	 *
+	 * @since 4.0.0
+	 *
+	 * @param array $feed_types List of supported comment feed types. Default: array( 'atom', 'rss2' ).
+	 */
+	$feed_types = \apply_filters( 'websub_supported_comment_feed_types', array( 'atom', 'rss2' ) );
+	$feed_types = \apply_filters_deprecated( 'pubsubhubbub_supported_comment_feed_types', array( $feed_types ), '4.0.0', 'websub_supported_comment_feed_types' );
+
+	return $feed_types;
 }
