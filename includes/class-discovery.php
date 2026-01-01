@@ -17,7 +17,9 @@ namespace Pubsubhubbub;
 class Discovery {
 
 	/**
-	 * Add hub-<link> to the Atom feed.
+	 * Add hub and self links to the Atom feed.
+	 *
+	 * @see https://www.w3.org/TR/websub/#discovery
 	 *
 	 * @return void
 	 */
@@ -32,10 +34,16 @@ class Discovery {
 		foreach ( $hub_urls as $hub_url ) {
 			echo '<link rel="hub" href="' . \esc_url( $hub_url ) . '" />' . PHP_EOL;
 		}
+
+		// Add self link for WebSub discovery.
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- get_self_link() already escapes.
+		echo '<link rel="self" href="' . get_self_link() . '" />' . PHP_EOL;
 	}
 
 	/**
-	 * Add hub-<link> to the RSS/RDF feed.
+	 * Add hub and self links to the RSS/RDF feed.
+	 *
+	 * @see https://www.w3.org/TR/websub/#discovery
 	 *
 	 * @return void
 	 */
@@ -50,6 +58,10 @@ class Discovery {
 		foreach ( $hub_urls as $hub_url ) {
 			echo '<atom:link rel="hub" href="' . \esc_url( $hub_url ) . '"/>' . PHP_EOL;
 		}
+
+		// Add self link for WebSub discovery.
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- get_self_link() already escapes.
+		echo '<atom:link rel="self" href="' . get_self_link() . '"/>' . PHP_EOL;
 	}
 
 	/**
@@ -62,7 +74,9 @@ class Discovery {
 	}
 
 	/**
-	 * Adds link headers as defined in the current v0.4 draft.
+	 * Adds Link headers as defined in the W3C WebSub Recommendation.
+	 *
+	 * @see https://www.w3.org/TR/websub/#discovery
 	 *
 	 * @return void
 	 */

@@ -84,8 +84,8 @@ class Publisher {
 		foreach ( $topic_urls as $topic_url ) {
 			// Lightweight check that we're actually working w/ a valid url.
 			if ( \preg_match( '|^https?://|i', $topic_url ) ) {
-				// Append the topic url parameters.
-				$post_string .= '&hub.url=' . \esc_url( $topic_url );
+				// Append the topic url parameters (URL-encoded per WebSub spec).
+				$post_string .= '&hub.url=' . \rawurlencode( $topic_url );
 			}
 		}
 
