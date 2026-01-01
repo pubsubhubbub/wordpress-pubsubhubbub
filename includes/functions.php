@@ -57,7 +57,8 @@ function show_discovery() {
  * @return string The self link URL.
  */
 function get_self_link() {
-	$host        = \wp_parse_url( \home_url() );
+	$host = \wp_parse_url( \home_url() );
+	// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 	$request_uri = isset( $_SERVER['REQUEST_URI'] ) ? \wp_unslash( $_SERVER['REQUEST_URI'] ) : '';
 
 	return \esc_url( \apply_filters( 'self_link', \set_url_scheme( 'http://' . $host['host'] . $request_uri ) ) );
@@ -80,4 +81,3 @@ function get_supported_feed_types() {
 function get_supported_comment_feed_types() {
 	return \apply_filters( 'pubsubhubbub_supported_comment_feed_types', array( 'atom', 'rss2' ) );
 }
-

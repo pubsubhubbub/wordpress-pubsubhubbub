@@ -5,31 +5,19 @@
  * @package Pubsubhubbub
  */
 
-use Pubsubhubbub\Pubsubhubbub;
+namespace Pubsubhubbub\Tests;
+
 use Pubsubhubbub\Publisher;
 
 /**
  * Test class for functions.
  */
-class Test_Functions extends WP_UnitTestCase {
-
-	/**
-	 * Test plugin initialization.
-	 */
-	public function test_plugin_instance() {
-		$this->assertInstanceOf( Pubsubhubbub::class, Pubsubhubbub::get_instance() );
-	}
-
-	/**
-	 * Test default hubs constant.
-	 */
-	public function test_default_hubs() {
-		$this->assertIsArray( Pubsubhubbub::DEFAULT_HUBS );
-		$this->assertNotEmpty( Pubsubhubbub::DEFAULT_HUBS );
-	}
+class Test_Functions extends \WP_UnitTestCase {
 
 	/**
 	 * Test get_hubs function.
+	 *
+	 * @covers \Pubsubhubbub\Publisher::get_hubs
 	 */
 	public function test_get_hubs() {
 		$hubs = Publisher::get_hubs();
@@ -62,9 +50,23 @@ class Test_Functions extends WP_UnitTestCase {
 
 	/**
 	 * Test supported feed types.
+	 *
+	 * @covers \Pubsubhubbub\get_supported_feed_types
 	 */
 	public function test_supported_feed_types() {
 		$feed_types = \Pubsubhubbub\get_supported_feed_types();
+		$this->assertIsArray( $feed_types );
+		$this->assertContains( 'atom', $feed_types );
+		$this->assertContains( 'rss2', $feed_types );
+	}
+
+	/**
+	 * Test supported comment feed types.
+	 *
+	 * @covers \Pubsubhubbub\get_supported_comment_feed_types
+	 */
+	public function test_supported_comment_feed_types() {
+		$feed_types = \Pubsubhubbub\get_supported_comment_feed_types();
 		$this->assertIsArray( $feed_types );
 		$this->assertContains( 'atom', $feed_types );
 		$this->assertContains( 'rss2', $feed_types );

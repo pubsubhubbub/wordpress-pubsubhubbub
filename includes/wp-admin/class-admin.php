@@ -190,11 +190,11 @@ class Admin {
 					'<p>' . \__( 'The IndieWeb is a people-focused alternative to the "corporate web".', 'pubsubhubbub' ) . '</p>' .
 					'<p>
 						<strong>' . \__( 'Your content is yours', 'pubsubhubbub' ) . '</strong><br />' .
-						\__( 'When you post something on the web, it should belong to you, not a corporation. Too many companies have gone out of business and lost all of their users' data. By joining the IndieWeb, your content stays yours and in your control.', 'pubsubhubbub' ) .
+						\__( 'When you post something on the web, it should belong to you, not a corporation. Too many companies have gone out of business and lost all of their users\' data. By joining the IndieWeb, your content stays yours and in your control.', 'pubsubhubbub' ) .
 					'</p>' .
 					'<p>
 						<strong>' . \__( 'You are better connected', 'pubsubhubbub' ) . '</strong><br />' .
-						\__( 'Your articles and status messages can go to all services, not just one, allowing you to engage with everyone. Even replies and likes on other services can come back to your site so they're all in one place.', 'pubsubhubbub' ) .
+						\__( 'Your articles and status messages can go to all services, not just one, allowing you to engage with everyone. Even replies and likes on other services can come back to your site so they\'re all in one place.', 'pubsubhubbub' ) .
 					'</p>' .
 					'<p>
 						<strong>' . \__( 'You are in control', 'pubsubhubbub' ) . '</strong><br />' .

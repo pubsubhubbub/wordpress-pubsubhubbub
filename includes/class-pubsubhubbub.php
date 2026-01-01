@@ -90,8 +90,8 @@ class Pubsubhubbub {
 	public function register_hooks() {
 		// Publisher integration.
 		\add_action( 'publish_post', array( Publisher::class, 'publish_post' ) );
-		// Uncomment to enable comment publishing.
-		// \add_action( 'comment_post', array( Publisher::class, 'publish_comment' ) );
+		// phpcs:ignore Squiz.Commenting.InlineComment.InvalidEndChar
+		// Uncomment to enable comment publishing: \add_action( 'comment_post', array( Publisher::class, 'publish_comment' ) );
 
 		// Feed integrations.
 		\add_action( 'atom_head', array( Discovery::class, 'add_atom_link_tag' ) );
