@@ -57,9 +57,10 @@ function show_discovery() {
  * @return string The self link URL.
  */
 function get_self_link() {
-	$host = \wp_parse_url( \home_url() );
+	$host        = \wp_parse_url( \home_url() );
+	$request_uri = isset( $_SERVER['REQUEST_URI'] ) ? \wp_unslash( $_SERVER['REQUEST_URI'] ) : '';
 
-	return \esc_url( \apply_filters( 'self_link', \set_url_scheme( 'http://' . $host['host'] . \wp_unslash( $_SERVER['REQUEST_URI'] ) ) ) );
+	return \esc_url( \apply_filters( 'self_link', \set_url_scheme( 'http://' . $host['host'] . $request_uri ) ) );
 }
 
 /**

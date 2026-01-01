@@ -30,8 +30,7 @@ class Discovery {
 		$hub_urls = get_hubs();
 
 		foreach ( $hub_urls as $hub_url ) {
-			\printf( '<link rel="hub" href="%s" />', \esc_url( $hub_url ) );
-			echo PHP_EOL;
+			echo '<link rel="hub" href="' . \esc_url( $hub_url ) . '" />' . PHP_EOL;
 		}
 	}
 
@@ -49,8 +48,7 @@ class Discovery {
 		$hub_urls = get_hubs();
 
 		foreach ( $hub_urls as $hub_url ) {
-			\printf( '<atom:link rel="hub" href="%s"/>', \esc_url( $hub_url ) );
-			echo PHP_EOL;
+			echo '<atom:link rel="hub" href="' . \esc_url( $hub_url ) . '"/>' . PHP_EOL;
 		}
 	}
 
@@ -60,19 +58,18 @@ class Discovery {
 	 * @return void
 	 */
 	public static function add_rss_ns_link() {
-		echo ' xmlns:atom="http://www.w3.org/2005/Atom" ';
-		echo PHP_EOL;
+		echo ' xmlns:atom="http://www.w3.org/2005/Atom" ' . PHP_EOL;
 	}
 
 	/**
 	 * Adds link headers as defined in the current v0.4 draft.
 	 *
-	 * @return bool False if discovery should not be shown.
+	 * @return void
 	 */
 	public static function template_redirect() {
 		// Check if current url is one of the feed urls.
 		if ( ! show_discovery() ) {
-			return false;
+			return;
 		}
 
 		$hub_urls = get_hubs();

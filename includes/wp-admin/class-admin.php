@@ -141,7 +141,7 @@ class Admin {
 	public static function sanitize_endpoints( $value ) {
 		$value = \explode( PHP_EOL, $value );
 		$value = \array_filter( \array_map( 'trim', $value ) );
-		$value = \array_filter( \array_map( 'sanitize_url', $value ) );
+		$value = \array_filter( \array_map( 'esc_url_raw', $value ) );
 		$value = \implode( PHP_EOL, $value );
 
 		return $value;
