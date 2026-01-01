@@ -44,8 +44,8 @@ function show_discovery() {
 	 *
 	 * @param array $feed_types List of feed types (e.g., 'atom', 'rss2').
 	 */
-	$supported_feed_types         = \apply_filters( 'websub_show_discovery_for_feed_types', get_supported_feed_types() );
-	$supported_feed_types         = \apply_filters_deprecated( 'pubsubhubbub_show_discovery_for_feed_types', array( $supported_feed_types ), '4.0.0', 'websub_show_discovery_for_feed_types' );
+	$supported_feed_types = \apply_filters( 'websub_show_discovery_for_feed_types', get_supported_feed_types() );
+	$supported_feed_types = \apply_filters_deprecated( 'pubsubhubbub_show_discovery_for_feed_types', array( $supported_feed_types ), '4.0.0', 'websub_show_discovery_for_feed_types' );
 
 	/**
 	 * Filter the list of comment feed types that show WebSub discovery.
