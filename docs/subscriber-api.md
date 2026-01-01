@@ -44,7 +44,7 @@ When a hub sends a verification request, you must confirm the subscription via t
 ```php
 add_filter( 'websub_verify_subscription', function( $allow, $subscription_id, $topic, $mode ) {
     // Only verify subscriptions from your plugin
-    if ( str_starts_with( $subscription_id, 'my-plugin-' ) ) {
+    if ( 0 === strpos( $subscription_id, 'my-plugin-' ) ) {
         // Verify this matches a subscription you requested
         $stored_topic = get_option( 'my_plugin_sub_' . $subscription_id );
         if ( $stored_topic === $topic ) {
@@ -61,7 +61,7 @@ If you provided a secret when subscribing, you must return it for signature veri
 
 ```php
 add_filter( 'websub_subscription_secret', function( $secret, $subscription_id ) {
-    if ( str_starts_with( $subscription_id, 'my-plugin-' ) ) {
+    if ( 0 === strpos( $subscription_id, 'my-plugin-' ) ) {
         return get_option( 'my_plugin_secret_' . $subscription_id );
     }
     return $secret;
@@ -74,7 +74,7 @@ When the hub delivers new content, handle it via the `websub_received` action:
 
 ```php
 add_action( 'websub_received', function( $subscription_id, $topic, $content, $content_type ) {
-    if ( str_starts_with( $subscription_id, 'my-plugin-' ) ) {
+    if ( 0 === strpos( $subscription_id, 'my-plugin-' ) ) {
         // Process the feed content
         $feed = simplexml_load_string( $content );
         // Update local cache, notify users, etc.
@@ -122,7 +122,7 @@ class My_Feed_Reader {
      * Verify subscription requests.
      */
     public function verify( $allow, $subscription_id, $topic, $mode ) {
-        if ( ! str_starts_with( $subscription_id, 'my-reader-' ) ) {
+        if ( 0 !== strpos( $subscription_id, 'my-reader-' ) ) {
             return $allow;
         }
 
@@ -134,7 +134,7 @@ class My_Feed_Reader {
      * Provide secret for signature verification.
      */
     public function get_secret( $secret, $subscription_id ) {
-        if ( str_starts_with( $subscription_id, 'my-reader-' ) ) {
+        if ( 0 === strpos( $subscription_id, 'my-reader-' ) ) {
             return get_option( 'my_reader_secret_' . $subscription_id, '' );
         }
         return $secret;
@@ -144,7 +144,7 @@ class My_Feed_Reader {
      * Handle subscription verification success.
      */
     public function subscription_verified( $subscription_id, $topic, $lease_seconds, $mode ) {
-        if ( ! str_starts_with( $subscription_id, 'my-reader-' ) ) {
+        if ( 0 !== strpos( $subscription_id, 'my-reader-' ) ) {
             return;
         }
 
@@ -160,7 +160,7 @@ class My_Feed_Reader {
      * Handle received content.
      */
     public function handle_content( $subscription_id, $topic, $content, $content_type ) {
-        if ( ! str_starts_with( $subscription_id, 'my-reader-' ) ) {
+        if ( 0 !== strpos( $subscription_id, 'my-reader-' ) ) {
             return;
         }
 

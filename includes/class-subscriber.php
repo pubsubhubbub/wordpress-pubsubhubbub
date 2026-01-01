@@ -250,8 +250,8 @@ class Subscriber {
 		$headers = is_array( $header ) ? $header : array( $header );
 
 		foreach ( $headers as $link ) {
-			// Match pattern: <URL>; rel="value" or <URL>; rel=value.
-			if ( \preg_match( '/<([^>]+)>;\s*rel=["\']?' . \preg_quote( $rel, '/' ) . '["\']?/i', $link, $matches ) ) {
+			// Match pattern: <URL>; rel="value" or <URL>; rel=value (with optional whitespace per RFC 8288).
+			if ( \preg_match( '/<([^>]+)>\s*;\s*rel=["\']?' . \preg_quote( $rel, '/' ) . '["\']?/i', $link, $matches ) ) {
 				return $matches[1];
 			}
 		}
@@ -269,7 +269,15 @@ class Subscriber {
 	protected static function parse_feed_for_hub( $content ) {
 		// Try to parse as XML (Atom/RSS).
 		\libxml_use_internal_errors( true );
-		$xml = \simplexml_load_string( $content );
+
+		// Disable external entity loading for security (prevents XXE attacks).
+		// phpcs:ignore PHPCompatibility.FunctionUse.RemovedFunctions.libxml_disable_entity_loaderDeprecated
+		if ( \PHP_VERSION_ID < 80000 && \function_exists( 'libxml_disable_entity_loader' ) ) {
+			\libxml_disable_entity_loader( true );
+		}
+
+		// Parse with LIBXML_NONET to prevent network access during parsing.
+		$xml = \simplexml_load_string( $content, 'SimpleXMLElement', \LIBXML_NONET );
 
 		if ( false !== $xml ) {
 			// Check for Atom namespace.
@@ -286,7 +294,7 @@ class Subscriber {
 			}
 
 			// RSS with Atom namespace.
-			if ( isset( $namespaces['atom'] ) ) {
+			if ( isset( $namespaces['atom'] ) && isset( $xml->channel ) ) {
 				$atom = $xml->channel->children( $namespaces['atom'] );
 				foreach ( $atom->link as $link ) {
 					$attrs = $link->attributes();
