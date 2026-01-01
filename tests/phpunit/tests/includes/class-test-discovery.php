@@ -148,4 +148,56 @@ class Test_Discovery extends \WP_UnitTestCase {
 		$this->assertStringContainsString( 'https://hub1.example.com', $output );
 		$this->assertStringContainsString( 'https://hub2.example.com', $output );
 	}
+
+	/**
+	 * Test deprecated pubsubhubbub_show_discovery filter still works.
+	 *
+	 * @covers ::add_atom_link_tag
+	 * @expectedDeprecated pubsubhubbub_show_discovery
+	 */
+	public function test_deprecated_show_discovery_filter() {
+		// Force show_discovery to return true via deprecated filter.
+		\add_filter( 'pubsubhubbub_show_discovery', '__return_true' );
+
+		\ob_start();
+		Discovery::add_atom_link_tag();
+		$output = \ob_get_clean();
+
+		\remove_filter( 'pubsubhubbub_show_discovery', '__return_true' );
+
+		$this->assertStringContainsString( 'rel="hub"', $output );
+	}
+
+	/**
+	 * Test that deprecated show_discovery filter runs before new filter.
+	 *
+	 * @covers ::add_atom_link_tag
+	 * @expectedDeprecated pubsubhubbub_show_discovery
+	 */
+	public function test_deprecated_show_discovery_filter_runs_before_new_filter() {
+		$order = array();
+
+		$deprecated_filter = function ( $show ) use ( &$order ) {
+			$order[] = 'deprecated';
+			return $show;
+		};
+
+		// phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.Found, VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable
+		$new_filter = function ( $show ) use ( &$order ) {
+			$order[] = 'new';
+			return true; // Force true to generate output.
+		};
+
+		\add_filter( 'pubsubhubbub_show_discovery', $deprecated_filter );
+		\add_filter( 'websub_show_discovery', $new_filter );
+
+		\ob_start();
+		Discovery::add_atom_link_tag();
+		\ob_get_clean();
+
+		$this->assertEquals( array( 'deprecated', 'new' ), $order );
+
+		\remove_filter( 'pubsubhubbub_show_discovery', $deprecated_filter );
+		\remove_filter( 'websub_show_discovery', $new_filter );
+	}
 }

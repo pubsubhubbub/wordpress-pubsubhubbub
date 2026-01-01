@@ -202,4 +202,79 @@ class Test_Publisher extends \WP_UnitTestCase {
 
 		\remove_filter( 'websub_feed_urls', $filter, 10 );
 	}
+
+	/**
+	 * Test deprecated pubsubhubbub_hub_urls filter still works.
+	 *
+	 * @covers ::get_hubs
+	 * @expectedDeprecated pubsubhubbub_hub_urls
+	 */
+	public function test_deprecated_hub_urls_filter() {
+		$filter = function ( $hubs ) {
+			$hubs[] = 'https://deprecated-hub.example.com';
+			return $hubs;
+		};
+
+		\add_filter( 'pubsubhubbub_hub_urls', $filter );
+
+		$hubs = Publisher::get_hubs();
+
+		$this->assertContains( 'https://deprecated-hub.example.com', $hubs );
+
+		\remove_filter( 'pubsubhubbub_hub_urls', $filter );
+	}
+
+	/**
+	 * Test deprecated pubsubhubbub_feed_urls filter still works.
+	 *
+	 * @covers ::get_feed_urls_by_post_id
+	 * @expectedDeprecated pubsubhubbub_feed_urls
+	 */
+	public function test_deprecated_feed_urls_filter() {
+		$post_id = self::factory()->post->create();
+
+		$filter = function ( $feed_urls, $filtered_post_id ) use ( $post_id ) {
+			$this->assertEquals( $post_id, $filtered_post_id );
+			$feed_urls[] = 'https://deprecated-feed.example.com';
+			return $feed_urls;
+		};
+
+		\add_filter( 'pubsubhubbub_feed_urls', $filter, 10, 2 );
+
+		$feed_urls = Publisher::get_feed_urls_by_post_id( $post_id );
+
+		$this->assertContains( 'https://deprecated-feed.example.com', $feed_urls );
+
+		\remove_filter( 'pubsubhubbub_feed_urls', $filter, 10 );
+	}
+
+	/**
+	 * Test that deprecated filter runs before new filter.
+	 *
+	 * @covers ::get_hubs
+	 * @expectedDeprecated pubsubhubbub_hub_urls
+	 */
+	public function test_deprecated_filter_runs_before_new_filter() {
+		$order = array();
+
+		$deprecated_filter = function ( $hubs ) use ( &$order ) {
+			$order[] = 'deprecated';
+			return $hubs;
+		};
+
+		$new_filter = function ( $hubs ) use ( &$order ) {
+			$order[] = 'new';
+			return $hubs;
+		};
+
+		\add_filter( 'pubsubhubbub_hub_urls', $deprecated_filter );
+		\add_filter( 'websub_hub_urls', $new_filter );
+
+		Publisher::get_hubs();
+
+		$this->assertEquals( array( 'deprecated', 'new' ), $order );
+
+		\remove_filter( 'pubsubhubbub_hub_urls', $deprecated_filter );
+		\remove_filter( 'websub_hub_urls', $new_filter );
+	}
 }

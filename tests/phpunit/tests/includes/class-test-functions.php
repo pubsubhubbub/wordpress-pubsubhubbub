@@ -71,4 +71,96 @@ class Test_Functions extends \WP_UnitTestCase {
 		$this->assertContains( 'atom', $feed_types );
 		$this->assertContains( 'rss2', $feed_types );
 	}
+
+	/**
+	 * Test deprecated pubsubhubbub_supported_feed_types filter still works.
+	 *
+	 * @covers \Pubsubhubbub\get_supported_feed_types
+	 * @expectedDeprecated pubsubhubbub_supported_feed_types
+	 */
+	public function test_deprecated_supported_feed_types_filter() {
+		$filter = function ( $feed_types ) {
+			$feed_types[] = 'json';
+			return $feed_types;
+		};
+
+		\add_filter( 'pubsubhubbub_supported_feed_types', $filter );
+
+		$feed_types = \Pubsubhubbub\get_supported_feed_types();
+
+		$this->assertContains( 'json', $feed_types );
+
+		\remove_filter( 'pubsubhubbub_supported_feed_types', $filter );
+	}
+
+	/**
+	 * Test deprecated pubsubhubbub_supported_comment_feed_types filter still works.
+	 *
+	 * @covers \Pubsubhubbub\get_supported_comment_feed_types
+	 * @expectedDeprecated pubsubhubbub_supported_comment_feed_types
+	 */
+	public function test_deprecated_supported_comment_feed_types_filter() {
+		$filter = function ( $feed_types ) {
+			$feed_types[] = 'json';
+			return $feed_types;
+		};
+
+		\add_filter( 'pubsubhubbub_supported_comment_feed_types', $filter );
+
+		$feed_types = \Pubsubhubbub\get_supported_comment_feed_types();
+
+		$this->assertContains( 'json', $feed_types );
+
+		\remove_filter( 'pubsubhubbub_supported_comment_feed_types', $filter );
+	}
+
+	/**
+	 * Test websub_supported_feed_types filter works.
+	 *
+	 * @covers \Pubsubhubbub\get_supported_feed_types
+	 */
+	public function test_websub_supported_feed_types_filter() {
+		$filter = function ( $feed_types ) {
+			$feed_types[] = 'rdf';
+			return $feed_types;
+		};
+
+		\add_filter( 'websub_supported_feed_types', $filter );
+
+		$feed_types = \Pubsubhubbub\get_supported_feed_types();
+
+		$this->assertContains( 'rdf', $feed_types );
+
+		\remove_filter( 'websub_supported_feed_types', $filter );
+	}
+
+	/**
+	 * Test that deprecated filter runs before new filter for supported feed types.
+	 *
+	 * @covers \Pubsubhubbub\get_supported_feed_types
+	 * @expectedDeprecated pubsubhubbub_supported_feed_types
+	 */
+	public function test_deprecated_supported_feed_types_filter_runs_before_new() {
+		$order = array();
+
+		$deprecated_filter = function ( $types ) use ( &$order ) {
+			$order[] = 'deprecated';
+			return $types;
+		};
+
+		$new_filter = function ( $types ) use ( &$order ) {
+			$order[] = 'new';
+			return $types;
+		};
+
+		\add_filter( 'pubsubhubbub_supported_feed_types', $deprecated_filter );
+		\add_filter( 'websub_supported_feed_types', $new_filter );
+
+		\Pubsubhubbub\get_supported_feed_types();
+
+		$this->assertEquals( array( 'deprecated', 'new' ), $order );
+
+		\remove_filter( 'pubsubhubbub_supported_feed_types', $deprecated_filter );
+		\remove_filter( 'websub_supported_feed_types', $new_filter );
+	}
 }
