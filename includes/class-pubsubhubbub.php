@@ -1,8 +1,33 @@
 <?php
 /**
- * The WebSub/PubSubHubbub class
+ * Pubsubhubbub Class
+ *
+ * @package Pubsubhubbub
+ */
+
+namespace Pubsubhubbub;
+
+use Pubsubhubbub\WP_Admin\Admin;
+
+/**
+ * Pubsubhubbub Class
+ *
+ * @package Pubsubhubbub
  */
 class Pubsubhubbub {
+
+	/**
+	 * Instance of the class.
+	 *
+	 * @var Pubsubhubbub
+	 */
+	private static $instance;
+
+	/**
+	 * Default hub URLs.
+	 *
+	 * @var array
+	 */
 	const DEFAULT_HUBS = array(
 		'https://pubsubhubbub.appspot.com',
 		'https://pubsubhubbub.superfeedr.com',
@@ -10,9 +35,82 @@ class Pubsubhubbub {
 	);
 
 	/**
-	 * Load the plugin textdomain.
+	 * Whether the class has been initialized.
+	 *
+	 * @var boolean
 	 */
-	public static function load_textdomain() {
-		load_plugin_textdomain( 'pubsubhubbub', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+	private $initialized = false;
+
+	/**
+	 * Get the instance of the class.
+	 *
+	 * @return Pubsubhubbub
+	 */
+	public static function get_instance() {
+		if ( null === self::$instance ) {
+			self::$instance = new self();
+		}
+
+		return self::$instance;
+	}
+
+	/**
+	 * Do not allow multiple instances of the class.
+	 */
+	private function __construct() {
+		// Do nothing.
+	}
+
+	/**
+	 * Initialize the plugin.
+	 */
+	public function init() {
+		if ( $this->initialized ) {
+			return;
+		}
+
+		$this->register_hooks();
+		$this->register_admin_hooks();
+
+		$this->initialized = true;
+	}
+
+	/**
+	 * Get the plugin version.
+	 *
+	 * @return string
+	 */
+	public function get_version() {
+		return PUBSUBHUBBUB_VERSION;
+	}
+
+	/**
+	 * Register hooks.
+	 */
+	public function register_hooks() {
+		// Publisher integration.
+		\add_action( 'publish_post', array( Publisher::class, 'publish_post' ) );
+		// Uncomment to enable comment publishing.
+		// \add_action( 'comment_post', array( Publisher::class, 'publish_comment' ) );
+
+		// Feed integrations.
+		\add_action( 'atom_head', array( Discovery::class, 'add_atom_link_tag' ) );
+		\add_action( 'rdf_header', array( Discovery::class, 'add_rss_link_tag' ) );
+		\add_action( 'rss2_head', array( Discovery::class, 'add_rss_link_tag' ) );
+
+		\add_action( 'comments_atom_head', array( Discovery::class, 'add_atom_link_tag' ) );
+		\add_action( 'commentsrss2_head', array( Discovery::class, 'add_rss_link_tag' ) );
+
+		\add_action( 'rdf_ns', array( Discovery::class, 'add_rss_ns_link' ) );
+
+		\add_action( 'template_redirect', array( Discovery::class, 'template_redirect' ) );
+	}
+
+	/**
+	 * Register admin hooks.
+	 */
+	public function register_admin_hooks() {
+		\add_action( 'admin_init', array( Admin::class, 'register_settings' ) );
+		\add_action( 'admin_menu', array( Admin::class, 'add_plugin_menu' ) );
 	}
 }
