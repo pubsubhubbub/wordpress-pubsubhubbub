@@ -35,7 +35,8 @@ class Discovery {
 			echo '<link rel="hub" href="' . \esc_url( $hub_url ) . '" />' . PHP_EOL;
 		}
 
-		// Add self link for WebSub discovery (get_self_link() already escapes).
+		// Add self link for WebSub discovery.
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- get_self_link() already escapes.
 		echo '<link rel="self" href="' . get_self_link() . '" />' . PHP_EOL;
 	}
 
@@ -58,7 +59,8 @@ class Discovery {
 			echo '<atom:link rel="hub" href="' . \esc_url( $hub_url ) . '"/>' . PHP_EOL;
 		}
 
-		// Add self link for WebSub discovery (get_self_link() already escapes).
+		// Add self link for WebSub discovery.
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- get_self_link() already escapes.
 		echo '<atom:link rel="self" href="' . get_self_link() . '"/>' . PHP_EOL;
 	}
 
