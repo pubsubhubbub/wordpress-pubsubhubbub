@@ -9,7 +9,7 @@
  * License: MIT
  * License URI: http://opensource.org/licenses/MIT
  * Text Domain: pubsubhubbub
- * Requires PHP: 5.6
+ * Requires PHP: 7.2
  *
  * @package Pubsubhubbub
  */

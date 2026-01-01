@@ -39,8 +39,6 @@ class Test_Pubsubhubbub extends \WP_UnitTestCase {
 
 	/**
 	 * Test default hubs constant.
-	 *
-	 * @covers ::DEFAULT_HUBS
 	 */
 	public function test_default_hubs() {
 		$default_hubs = Pubsubhubbub::DEFAULT_HUBS;
