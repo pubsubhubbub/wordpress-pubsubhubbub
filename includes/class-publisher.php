@@ -52,8 +52,8 @@ class Publisher {
 		 * @param array $feed_urls  List of comment feed URLs.
 		 * @param int   $comment_id The comment ID that triggered the publish.
 		 */
-		$feed_urls = \apply_filters( 'websub_comment_feed_urls', $feed_urls, $comment_id );
 		$feed_urls = \apply_filters_deprecated( 'pubsubhubbub_comment_feed_urls', array( $feed_urls, $comment_id ), '4.0.0', 'websub_comment_feed_urls' );
+		$feed_urls = \apply_filters( 'websub_comment_feed_urls', $feed_urls, $comment_id );
 
 		// Publish them.
 		self::publish_to_hub( $feed_urls );
@@ -142,8 +142,8 @@ class Publisher {
 			 *
 			 * @param array|\WP_Error $response The HTTP response or WP_Error on failure.
 			 */
-			\do_action( 'websub_publish_update_response', $response );
 			\do_action_deprecated( 'pubsubhubbub_publish_update_response', array( $response ), '4.0.0', 'websub_publish_update_response' );
+			\do_action( 'websub_publish_update_response', $response );
 		}
 	}
 
@@ -171,8 +171,8 @@ class Publisher {
 		 *
 		 * @param array $hub_urls List of hub URLs.
 		 */
-		$hub_urls = \apply_filters( 'websub_hub_urls', $hub_urls );
 		$hub_urls = \apply_filters_deprecated( 'pubsubhubbub_hub_urls', array( $hub_urls ), '4.0.0', 'websub_hub_urls' );
+		$hub_urls = \apply_filters( 'websub_hub_urls', $hub_urls );
 
 		return $hub_urls;
 	}
@@ -223,8 +223,8 @@ class Publisher {
 		 * @param array $feed_urls List of feed URLs.
 		 * @param int   $post_id   The post ID that triggered the publish.
 		 */
-		$feed_urls = \apply_filters( 'websub_feed_urls', $feed_urls, $post_id );
 		$feed_urls = \apply_filters_deprecated( 'pubsubhubbub_feed_urls', array( $feed_urls, $post_id ), '4.0.0', 'websub_feed_urls' );
+		$feed_urls = \apply_filters( 'websub_feed_urls', $feed_urls, $post_id );
 
 		return $feed_urls;
 	}
