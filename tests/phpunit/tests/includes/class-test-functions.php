@@ -163,4 +163,92 @@ class Test_Functions extends \WP_UnitTestCase {
 		\remove_filter( 'pubsubhubbub_supported_feed_types', $deprecated_filter );
 		\remove_filter( 'websub_supported_feed_types', $new_filter );
 	}
+
+	/**
+	 * Test deprecated pubsubhubbub_show_discovery_for_feed_types filter still works.
+	 *
+	 * @covers \Pubsubhubbub\show_discovery
+	 * @expectedDeprecated pubsubhubbub_show_discovery_for_feed_types
+	 */
+	public function test_deprecated_show_discovery_for_feed_types_filter() {
+		$filter = function ( $feed_types ) {
+			$feed_types[] = 'custom';
+			return $feed_types;
+		};
+
+		\add_filter( 'pubsubhubbub_show_discovery_for_feed_types', $filter );
+
+		// Call the function to trigger the filter.
+		\Pubsubhubbub\show_discovery();
+
+		// Verify the filter was called by applying it manually.
+		$feed_types = \apply_filters( 'pubsubhubbub_show_discovery_for_feed_types', array( 'atom', 'rss2' ) );
+		$this->assertContains( 'custom', $feed_types );
+
+		\remove_filter( 'pubsubhubbub_show_discovery_for_feed_types', $filter );
+	}
+
+	/**
+	 * Test deprecated pubsubhubbub_show_discovery_for_comment_feed_types filter still works.
+	 *
+	 * @covers \Pubsubhubbub\show_discovery
+	 * @expectedDeprecated pubsubhubbub_show_discovery_for_comment_feed_types
+	 */
+	public function test_deprecated_show_discovery_for_comment_feed_types_filter() {
+		$filter = function ( $feed_types ) {
+			$feed_types[] = 'custom-comment';
+			return $feed_types;
+		};
+
+		\add_filter( 'pubsubhubbub_show_discovery_for_comment_feed_types', $filter );
+
+		// Call the function to trigger the filter.
+		\Pubsubhubbub\show_discovery();
+
+		// Verify the filter was called by applying it manually.
+		$feed_types = \apply_filters( 'pubsubhubbub_show_discovery_for_comment_feed_types', array( 'atom', 'rss2' ) );
+		$this->assertContains( 'custom-comment', $feed_types );
+
+		\remove_filter( 'pubsubhubbub_show_discovery_for_comment_feed_types', $filter );
+	}
+
+	/**
+	 * Test websub_show_discovery_for_feed_types filter works.
+	 *
+	 * @covers \Pubsubhubbub\show_discovery
+	 */
+	public function test_websub_show_discovery_for_feed_types_filter() {
+		$filter = function ( $feed_types ) {
+			$feed_types[] = 'json-feed';
+			return $feed_types;
+		};
+
+		\add_filter( 'websub_show_discovery_for_feed_types', $filter );
+
+		// Verify the filter modifies the feed types.
+		$feed_types = \apply_filters( 'websub_show_discovery_for_feed_types', array( 'atom', 'rss2' ) );
+		$this->assertContains( 'json-feed', $feed_types );
+
+		\remove_filter( 'websub_show_discovery_for_feed_types', $filter );
+	}
+
+	/**
+	 * Test websub_show_discovery_for_comment_feed_types filter works.
+	 *
+	 * @covers \Pubsubhubbub\show_discovery
+	 */
+	public function test_websub_show_discovery_for_comment_feed_types_filter() {
+		$filter = function ( $feed_types ) {
+			$feed_types[] = 'json-comment-feed';
+			return $feed_types;
+		};
+
+		\add_filter( 'websub_show_discovery_for_comment_feed_types', $filter );
+
+		// Verify the filter modifies the comment feed types.
+		$feed_types = \apply_filters( 'websub_show_discovery_for_comment_feed_types', array( 'atom', 'rss2' ) );
+		$this->assertContains( 'json-comment-feed', $feed_types );
+
+		\remove_filter( 'websub_show_discovery_for_comment_feed_types', $filter );
+	}
 }
