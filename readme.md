@@ -1,6 +1,6 @@
 # WebSub (FKA. PubSubHubbub)
 
-- Contributors: pfefferle, joshfraz
+- Contributors: pfefferle, joshfraz, indieweb
 - Donate link: https://notiz.blog/donate/
 - Author: PubSubHubbub Team
 - Author URI: https://github.com/pubsubhubbub/wordpress-pubsubhubbub
