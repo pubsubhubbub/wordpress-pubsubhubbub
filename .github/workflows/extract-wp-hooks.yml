@@ -1,0 +1,24 @@
+name: Extract WordPress Hooks
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '**.php'
+  workflow_dispatch:
+
+jobs:
+  extract-hooks:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: akirk/extract-wp-hooks@1.3.0
+        with:
+          namespace: 'Pubsubhubbub'
+          wiki-directory: '../wordpress-pubsubhubbub.wiki'
+          github-blob-url: 'https://github.com/pubsubhubbub/wordpress-pubsubhubbub/blob/main/'
+          example-style: 'prefixed'
+          exclude-dirs: 'build,node_modules,tests,vendor'
+          ignore-filters: 'http_headers_useragent'

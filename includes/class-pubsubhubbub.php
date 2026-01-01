@@ -8,6 +8,7 @@
 namespace Pubsubhubbub;
 
 use Pubsubhubbub\WP_Admin\Admin;
+use Pubsubhubbub\Rest\Subscriber_Controller;
 
 /**
  * Pubsubhubbub Class
@@ -71,6 +72,8 @@ class Pubsubhubbub {
 
 		$this->register_hooks();
 		$this->register_admin_hooks();
+		$this->register_rest_hooks();
+		$this->register_subscriber_hooks();
 
 		$this->initialized = true;
 	}
@@ -112,5 +115,22 @@ class Pubsubhubbub {
 	public function register_admin_hooks() {
 		\add_action( 'admin_init', array( Admin::class, 'register_settings' ) );
 		\add_action( 'admin_menu', array( Admin::class, 'add_plugin_menu' ) );
+	}
+
+	/**
+	 * Register REST API hooks.
+	 */
+	public function register_rest_hooks() {
+		\add_action( 'rest_api_init', array( Subscriber_Controller::class, 'register_routes' ) );
+	}
+
+	/**
+	 * Register subscriber action hooks.
+	 *
+	 * These hooks allow other plugins to trigger subscriptions via do_action().
+	 */
+	public function register_subscriber_hooks() {
+		\add_action( 'websub_subscribe', array( Subscriber::class, 'subscribe' ), 10, 3 );
+		\add_action( 'websub_unsubscribe', array( Subscriber::class, 'unsubscribe' ), 10, 3 );
 	}
 }

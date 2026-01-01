@@ -1,44 +1,60 @@
 # WebSub (FKA. PubSubHubbub)
 
-- Contributors: pfefferle, joshfraz, indieweb
+- Contributors: pfefferle, joshfraz
 - Donate link: https://notiz.blog/donate/
 - Author: PubSubHubbub Team
 - Author URI: https://github.com/pubsubhubbub/wordpress-pubsubhubbub
-- Tags: websub, pubsub, indieweb, ostatus, rss
+- Tags: websub, pubsubhubbub, pubsub, indieweb, feed
 - License: MIT
 - License URI: http://opensource.org/licenses/MIT
 - Requires at least: 4.5
 - Tested up to: 6.9
 - Stable tag: 3.2.1
+- Requires PHP: 7.2
 
-A better way to tell the world when your blog is updated.
+A WebSub plugin for WordPress that enables real-time publishing and subscription capabilities.
 
 ## Description
 
-This plugin is a simple way to let people know in real-time when your blog is updated.  PubSubHubbub/WebSub is widely adopted and is used by Google Alerts and many other services.  Subscription requests are relayed through hubs, which validate and verify the request. Hubs then distribute new and updated content to subscribers when it becomes available.
+This plugin implements the [WebSub](https://www.w3.org/TR/websub/) protocol (formerly known as PubSubHubbub) for WordPress. It enables real-time notifications when your blog is updated and provides a subscriber API for other plugins to consume WebSub-enabled feeds.
 
-This plugin:
+### Publisher Features
+
+When you publish or update a post, this plugin automatically notifies WebSub hubs, which then distribute the update to all subscribers in real-time.
 
 * Sends realtime notifications when you update your blog
-* Supports multi-user installations (Wordpress MU)
+* Supports multi-user installations (WordPress MU)
 * Supports multiple hubs
-* Supports all of the feed formats used by WordPress, not just ATOM and RSS2
-* Supports latest specs
-	* PubSubHubbub [Version 0.4](https://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.4.html)
-	* WebSub [W3C Version](https://www.w3.org/TR/websub/)
-* Announces which hubs you are using by adding `<link rel="hub" ...>` declarations to your template header and Atom feed
+* Supports all feed formats used by WordPress (Atom, RSS2, RDF)
+* Adds `<link rel="hub">` and `<link rel="self">` declarations to feeds and HTML
+
+### Subscriber Features
+
+The plugin provides a subscriber API that allows other plugins (like feed readers) to subscribe to WebSub-enabled feeds using WordPress hooks.
+
+* REST API callback endpoint for subscription verification and content delivery
+* Hub discovery from topic URLs (HTTP Link headers and feed content)
+* HMAC signature verification (SHA1, SHA256, SHA384, SHA512)
+* Full lifecycle hooks for integration with other plugins
+
+### Supported Specifications
+
+* [WebSub W3C Recommendation](https://www.w3.org/TR/websub/)
+* [PubSubHubbub 0.4](https://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.4.html)
+
+### Default Hubs
 
 By default this plugin will ping the following hubs:
 
-* [Demo hub on Google App Engine](https://pubsubhubbub.appspot.com "Demo hub on Google App Engine")
-* [SuperFeedr](https://pubsubhubbub.superfeedr.com "SuperFeedr")
-* [WebSubHub](https://websubhub.com "WebSubHub")
+* [Demo hub on Google App Engine](https://pubsubhubbub.appspot.com)
+* [SuperFeedr](https://pubsubhubbub.superfeedr.com)
+* [WebSubHub](https://websubhub.com)
 
-Please contact me if you operate a hub that you would like to be included as a default option.
+Please contact us if you operate a hub that you would like to be included as a default option.
 
 ## Installation
 
-1. Upload the `pubsubhubub` directory to your `/wp-content/plugins/` directory
+1. Upload the `pubsubhubbub` directory to your `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. Select custom hubs under your WebSub/PubSubHubbub Settings (optional)
 
@@ -48,38 +64,47 @@ Please contact me if you operate a hub that you would like to be included as a d
 
 WebSub provides a common mechanism for communication between publishers of any kind of Web content and their subscribers, based on HTTP web hooks. Subscription requests are relayed through hubs, which validate and verify the request. Hubs then distribute new and updated content to subscribers when it becomes available. WebSub was previously known as PubSubHubbub.
 
-### Where can I learn more about the WebSub protocol?
+### Where can I learn more about WebSub?
 
-* [W3C Spec](https://www.w3.org/TR/websub/ "W3C Spec")
-* [WebSub on Github](https://github.com/w3c/websub "WebSub on Github")
-* [WebSub.rocks - a WebSub validator](https://websub.rocks/ "WebSub.rocks")
-
-### Where can I learn more about the PubSubHubbub protocol?
-
-* [PubSubHubbub on Github](https://github.com/pubsubhubbub "PubSubHubbub on Github")
-* [Latest Spec (0.4)](http://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.4.html)
+* [W3C WebSub Recommendation](https://www.w3.org/TR/websub/)
+* [WebSub on GitHub](https://github.com/w3c/websub)
+* [WebSub.rocks - WebSub validator](https://websub.rocks/)
 
 ### What is a Hub?
 
-A WebSub Hub is an implementation that handles subscription requests and distributes the content to subscribers when the corresponding topic URL has been updated. Hubs MUST support subscription requests with a secret and deliver authenticated requests when requested. Hubs MUST deliver the full contents of the topic URL in the request, and MAY reduce the payload to a diff if the content type supports it.
+A WebSub Hub is an implementation that handles subscription requests and distributes content to subscribers when the corresponding topic URL has been updated.
 
 ### What is a Publisher?
 
-A WebSub Publisher is an implementation that advertises a topic and hub URL on one or more resource URLs.
+A WebSub Publisher is an implementation that advertises a topic and hub URL on one or more resource URLs. This plugin acts as a publisher for your WordPress site.
 
 ### What is a Subscriber?
 
-A WebSub Subscriber is an implementation that discovers the hub and topic URL given a resource URL, subscribes to updates at the hub, and accepts content distribution requests from the hub. The subscriber MAY support authenticated content distribution.
+A WebSub Subscriber is an implementation that discovers the hub and topic URL given a resource URL, subscribes to updates at the hub, and accepts content distribution requests from the hub. This plugin provides a subscriber API for other plugins to use.
+
+### How can I use the Subscriber API in my plugin?
+
+The Subscriber API allows other plugins to subscribe to WebSub-enabled feeds using WordPress hooks. See the [Subscriber API documentation](https://github.com/pubsubhubbub/wordpress-pubsubhubbub/blob/main/docs/subscriber-api.md) for detailed examples and usage.
+
+### Where can I find a list of available hooks?
+
+For a complete list of available actions and filters, see the [Hooks Wiki](https://github.com/pubsubhubbub/wordpress-pubsubhubbub/wiki).
 
 ## Screenshots
 
-### 1. The WebSub Settings page allows you to define which hubs you want to use
-![The WebSub Settings page allows you to define which hubs you want to use](https://ps.w.org/pubsubhubbub/trunk/screenshot-1.png)
-
+1. The WebSub Settings page allows you to define which hubs you want to use
 
 ## Changelog
 
-Project maintained on github at [pubsubhubbub/wordpress-pubsubhubbub](https://github.com/pubsubhubbub/wordpress-pubsubhubbub).
+Project maintained on GitHub at [pubsubhubbub/wordpress-pubsubhubbub](https://github.com/pubsubhubbub/wordpress-pubsubhubbub).
+
+### 4.0.0
+
+* Complete code refactoring with namespaces
+* Added WebSub Subscriber API with hooks for consumer plugins
+* Added REST API callback endpoint for subscriptions
+* Added hub discovery and HMAC signature verification
+* Improved WebSub spec compliance
 
 ### 3.2.1
 
@@ -157,3 +182,7 @@ Project maintained on github at [pubsubhubbub/wordpress-pubsubhubbub](https://gi
 * First attempt
 
 ## Upgrade Notice
+
+### 4.0.0
+
+Major update with namespace refactoring and new Subscriber API. Review your code if you were using internal functions directly.
