@@ -44,7 +44,16 @@ class Publisher {
 		$feed_urls[] = \get_bloginfo( 'comments_atom_url' );
 		$feed_urls[] = \get_bloginfo( 'comments_rss2_url' );
 
-		$feed_urls = \apply_filters( 'pubsubhubbub_comment_feed_urls', $feed_urls, $comment_id );
+		/**
+		 * Filter the list of comment feed URLs to publish to the hub.
+		 *
+		 * @since 4.0.0
+		 *
+		 * @param array $feed_urls  List of comment feed URLs.
+		 * @param int   $comment_id The comment ID that triggered the publish.
+		 */
+		$feed_urls = \apply_filters_deprecated( 'pubsubhubbub_comment_feed_urls', array( $feed_urls, $comment_id ), '4.0.0', 'websub_comment_feed_urls' );
+		$feed_urls = \apply_filters( 'websub_comment_feed_urls', $feed_urls, $comment_id );
 
 		// Publish them.
 		self::publish_to_hub( $feed_urls );
@@ -126,14 +135,22 @@ class Publisher {
 			// Publish the update to each hub.
 			$response = self::publish_update( $feed_urls, $hub_url );
 
-			\do_action( 'pubsubhubbub_publish_update_response', $response );
+			/**
+			 * Fires after publishing an update to a hub.
+			 *
+			 * @since 4.0.0
+			 *
+			 * @param array|\WP_Error $response The HTTP response or WP_Error on failure.
+			 */
+			\do_action_deprecated( 'pubsubhubbub_publish_update_response', array( $response ), '4.0.0', 'websub_publish_update_response' );
+			\do_action( 'websub_publish_update_response', $response );
 		}
 	}
 
 	/**
 	 * Get the endpoints from the WordPress options table.
 	 *
-	 * @uses apply_filters() Calls 'pubsubhubbub_hub_urls' filter.
+	 * @uses apply_filters() Calls 'websub_hub_urls' filter.
 	 *
 	 * @return array The hub URLs.
 	 */
@@ -147,7 +164,17 @@ class Publisher {
 			$hub_urls = \explode( PHP_EOL, $endpoints );
 		}
 
-		return \apply_filters( 'pubsubhubbub_hub_urls', $hub_urls );
+		/**
+		 * Filter the list of hub URLs to publish updates to.
+		 *
+		 * @since 4.0.0
+		 *
+		 * @param array $hub_urls List of hub URLs.
+		 */
+		$hub_urls = \apply_filters_deprecated( 'pubsubhubbub_hub_urls', array( $hub_urls ), '4.0.0', 'websub_hub_urls' );
+		$hub_urls = \apply_filters( 'websub_hub_urls', $hub_urls );
+
+		return $hub_urls;
 	}
 
 	/**
@@ -188,7 +215,16 @@ class Publisher {
 			$feed_urls[] = \site_url( '/' );
 		}
 
-		$feed_urls = \apply_filters( 'pubsubhubbub_feed_urls', $feed_urls, $post_id );
+		/**
+		 * Filter the list of feed URLs to publish to the hub for a post.
+		 *
+		 * @since 4.0.0
+		 *
+		 * @param array $feed_urls List of feed URLs.
+		 * @param int   $post_id   The post ID that triggered the publish.
+		 */
+		$feed_urls = \apply_filters_deprecated( 'pubsubhubbub_feed_urls', array( $feed_urls, $post_id ), '4.0.0', 'websub_feed_urls' );
+		$feed_urls = \apply_filters( 'websub_feed_urls', $feed_urls, $post_id );
 
 		return $feed_urls;
 	}

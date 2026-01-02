@@ -57,7 +57,7 @@ function pubsubhubbub_publish_to_hub( $feed_urls ) {
  *
  * This function maintains backward compatibility with the old naming convention.
  *
- * @uses apply_filters() Calls 'pubsubhubbub_hub_urls' filter.
+ * @uses apply_filters() Calls 'websub_hub_urls' filter.
  *
  * @return array The hub URLs.
  */
@@ -121,4 +121,4 @@ function pubsubhubbub_get_supported_comment_feed_types() {
 function pshb_feed_urls( $feed_urls ) {
 	return apply_filters( 'pshb_feed_urls', $feed_urls );
 }
-add_filter( 'pubsubhubbub_feed_urls', 'pshb_feed_urls' );
+add_filter( 'websub_feed_urls', 'pshb_feed_urls' );

@@ -271,8 +271,8 @@ class Subscriber {
 		\libxml_use_internal_errors( true );
 
 		// Disable external entity loading for security (prevents XXE attacks).
-		// phpcs:ignore PHPCompatibility.FunctionUse.RemovedFunctions.libxml_disable_entity_loaderDeprecated
 		if ( \PHP_VERSION_ID < 80000 && \function_exists( 'libxml_disable_entity_loader' ) ) {
+			// phpcs:ignore PHPCompatibility.FunctionUse.RemovedFunctions.libxml_disable_entity_loaderDeprecated, Generic.PHP.DeprecatedFunctions.Deprecated
 			\libxml_disable_entity_loader( true );
 		}
 
