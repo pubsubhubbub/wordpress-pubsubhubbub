@@ -5,11 +5,6 @@
     "type": "git",
     "url": "https://github.com/pubsubhubbub/wordpress-pubsubhubbub.git"
   },
-  "devDependencies": {
-    "grunt": "^1.0.3",
-    "grunt-wp-i18n": "^1.0.2",
-    "grunt-wp-readme-to-markdown": "^2.0.1"
-  },
   "license": "MIT",
   "keywords": [
     "pubsubhubbub",
@@ -20,5 +15,13 @@
   "bugs": {
     "url": "https://github.com/pubsubhubbub/wordpress-pubsubhubbub/issues"
   },
-  "homepage": "https://github.com/pubsubhubbub/wordpress-pubsubhubbub"
+  "homepage": "https://github.com/pubsubhubbub/wordpress-pubsubhubbub",
+  "devDependencies": {
+    "@wordpress/env": "^10.0.0"
+  },
+  "scripts": {
+    "env:start": "wp-env start",
+    "env:stop": "wp-env stop",
+    "env:destroy": "wp-env destroy"
+  }
 }
