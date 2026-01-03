@@ -1,0 +1,15 @@
+{
+  "core": null,
+  "plugins": [
+    "."
+  ],
+  "port": 8821,
+  "testsPort": 8822,
+  "config": {
+    "WP_DEBUG": true,
+    "WP_DEBUG_LOG": true
+  },
+  "mappings": {
+    "wp-content/plugins/pubsubhubbub": "."
+  }
+}
