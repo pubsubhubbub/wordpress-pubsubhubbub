@@ -24,7 +24,7 @@ class Subscriber_Controller {
 	 *
 	 * @var string
 	 */
-	const NAMESPACE = 'pubsubhubbub/v1';
+	const NAMESPACE = 'pubsubhubbub/1.0';
 
 	/**
 	 * Route for the callback endpoint.

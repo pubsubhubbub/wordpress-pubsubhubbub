@@ -8,6 +8,7 @@
 namespace Pubsubhubbub\Tests;
 
 use Pubsubhubbub\Subscriber;
+use Pubsubhubbub\Rest\Subscriber_Controller;
 
 /**
  * Test class for the Subscriber class.
@@ -25,7 +26,7 @@ class Test_Subscriber extends \WP_UnitTestCase {
 		$subscription_id = 'test-subscription-123';
 		$callback_url    = Subscriber::get_callback_url( $subscription_id );
 
-		$this->assertStringContainsString( 'pubsubhubbub/v1/callback', $callback_url );
+		$this->assertStringContainsString( Subscriber_Controller::NAMESPACE . Subscriber_Controller::ROUTE, $callback_url );
 		$this->assertStringContainsString( 'subscription_id=test-subscription-123', $callback_url );
 	}
 

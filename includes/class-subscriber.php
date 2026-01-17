@@ -7,6 +7,8 @@
 
 namespace Pubsubhubbub;
 
+use Pubsubhubbub\Rest\Subscriber_Controller;
+
 /**
  * Subscriber Class
  *
@@ -192,7 +194,7 @@ class Subscriber {
 	 * @return string The callback URL.
 	 */
 	public static function get_callback_url( $subscription_id ) {
-		return \rest_url( 'pubsubhubbub/v1/callback' ) . '?subscription_id=' . \rawurlencode( $subscription_id );
+		return \rest_url( Subscriber_Controller::NAMESPACE . Subscriber_Controller::ROUTE ) . '?subscription_id=' . \rawurlencode( $subscription_id );
 	}
 
 	/**
