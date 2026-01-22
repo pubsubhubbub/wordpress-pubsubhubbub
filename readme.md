@@ -9,7 +9,7 @@
 - License URI: http://opensource.org/licenses/MIT
 - Requires at least: 4.5
 - Tested up to: 6.9
-- Stable tag: 3.2.1
+- Stable tag: 4.0.0
 - Requires PHP: 7.2
 
 A WebSub plugin for WordPress that enables real-time publishing and subscription capabilities.
@@ -100,11 +100,11 @@ Project maintained on GitHub at [pubsubhubbub/wordpress-pubsubhubbub](https://gi
 
 ### 4.0.0
 
-* Complete code refactoring with namespaces
 * Added WebSub Subscriber API with hooks for consumer plugins
-* Added REST API callback endpoint for subscriptions
-* Added hub discovery and HMAC signature verification
-* Improved WebSub spec compliance
+* Deprecated all `pubsubhubbub_*` hooks in favor of `websub_*` prefix (old hooks still work)
+* Replaced Grunt and Docker with wp-env for local development
+* Fixed double-escaping issues in feed discovery
+* Improved WebSub spec compliance and PHP 8 compatibility
 
 ### 3.2.1
 
@@ -185,4 +185,4 @@ Project maintained on GitHub at [pubsubhubbub/wordpress-pubsubhubbub](https://gi
 
 ### 4.0.0
 
-Major update with namespace refactoring and new Subscriber API. Review your code if you were using internal functions directly.
+Added WebSub Subscriber API and deprecated `pubsubhubbub_*` hooks in favor of `websub_*` prefix. Old hooks still work but will be removed in a future version.
