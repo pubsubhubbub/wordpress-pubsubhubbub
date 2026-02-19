@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/pubsubhubbub/wordpress-pubsubhubbub",
   "devDependencies": {
-    "@wordpress/env": "^10.0.0"
+    "@wordpress/env": "^11.0.0"
   },
   "scripts": {
     "env:start": "wp-env start",
