@@ -336,4 +336,43 @@ class Test_Publisher extends \WP_UnitTestCase {
 
 		\remove_filter( 'websub_comment_feed_urls', $filter, 10 );
 	}
+
+	/**
+	 * Test publish_update passes the request URL as the second argument to the
+	 * `http_headers_useragent` filter.
+	 *
+	 * Since WordPress 5.1 the `http_headers_useragent` filter receives the
+	 * request URL as a second argument. A callback that requires it must not
+	 * trigger an ArgumentCountError.
+	 *
+	 * @covers ::publish_update
+	 */
+	public function test_publish_update_user_agent_filter_receives_url() {
+		$captured_url = null;
+
+		\add_filter(
+			'http_headers_useragent',
+			function ( $user_agent, $url ) use ( &$captured_url ) {
+				$captured_url = $url;
+				return $user_agent;
+			},
+			10,
+			2
+		);
+
+		// Mock HTTP request to avoid actual network call.
+		\add_filter(
+			'pre_http_request',
+			function () {
+				return array(
+					'response' => array( 'code' => 204 ),
+					'body'     => '',
+				);
+			}
+		);
+
+		Publisher::publish_update( array( 'https://example.com/feed' ), 'https://hub.example.com' );
+
+		$this->assertEquals( 'https://hub.example.com', $captured_url );
+	}
 }

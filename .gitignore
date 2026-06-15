@@ -5,3 +5,4 @@ package-lock.json
 .DS_Store
 .vscode/settings.json
 composer.lock
+.phpunit.result.cache

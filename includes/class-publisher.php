@@ -99,7 +99,7 @@ class Publisher {
 		}
 
 		$wp_version = \get_bloginfo( 'version' );
-		$user_agent = \apply_filters( 'http_headers_useragent', 'WordPress/' . $wp_version . '; ' . \get_bloginfo( 'url' ) );
+		$user_agent = \apply_filters( 'http_headers_useragent', 'WordPress/' . $wp_version . '; ' . \get_bloginfo( 'url' ), $hub_url );
 
 		$args = array(
 			'timeout'             => 100,
