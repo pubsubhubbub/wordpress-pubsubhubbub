@@ -10,7 +10,7 @@
 - Requires at least: 4.5
 - Tested up to: 7.0
 - Stable tag: 4.0.1
-- Requires PHP: 7.2
+- Requires PHP: 7.4
 
 A WebSub plugin for WordPress that enables real-time publishing and subscription capabilities.
 
@@ -101,6 +101,7 @@ Project maintained on GitHub at [pubsubhubbub/wordpress-pubsubhubbub](https://gi
 ### 4.0.1
 
 * Fixed `http_headers_useragent` filter being applied without the required `$url` argument (since WP 5.1), which could cause a fatal `ArgumentCountError` when other plugins hook into it (props @sybrew, [#36](https://github.com/pubsubhubbub/wordpress-pubsubhubbub/issues/36))
+* Raised the minimum PHP requirement to 7.4 (in line with WordPress 7.0)
 * Tested up to WordPress 7.0
 
 ### 4.0.0
