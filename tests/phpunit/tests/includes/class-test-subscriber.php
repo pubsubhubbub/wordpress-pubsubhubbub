@@ -265,4 +265,47 @@ class Test_Subscriber extends \WP_UnitTestCase {
 		$this->assertTrue( $filter_called );
 		$this->assertEquals( 'https://filtered-hub.example.com', $captured_hub );
 	}
+
+	/**
+	 * Test subscribe passes the request URL as the second argument to the
+	 * `http_headers_useragent` filter.
+	 *
+	 * Since WordPress 5.1 the `http_headers_useragent` filter receives the
+	 * request URL as a second argument. A callback that requires it must not
+	 * trigger an ArgumentCountError.
+	 *
+	 * @covers ::subscribe
+	 */
+	public function test_subscribe_user_agent_filter_receives_url() {
+		$captured_url = null;
+
+		\add_filter(
+			'http_headers_useragent',
+			function ( $user_agent, $url ) use ( &$captured_url ) {
+				$captured_url = $url;
+				return $user_agent;
+			},
+			10,
+			2
+		);
+
+		// Mock HTTP request to avoid actual network call.
+		\add_filter(
+			'pre_http_request',
+			function () {
+				return array(
+					'response' => array( 'code' => 202 ),
+					'body'     => '',
+				);
+			}
+		);
+
+		Subscriber::subscribe(
+			'https://example.com/feed',
+			'test-sub-ua',
+			array( 'hub_url' => 'https://hub.example.com' )
+		);
+
+		$this->assertEquals( 'https://hub.example.com', $captured_url );
+	}
 }
