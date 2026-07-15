@@ -139,7 +139,7 @@ class Subscriber {
 			'body'       => $body,
 		);
 
-		$response = \wp_remote_post( $hub_url, $request_args );
+		$response = \wp_safe_remote_post( $hub_url, $request_args );
 
 		if ( \is_wp_error( $response ) ) {
 			/**
@@ -205,12 +205,13 @@ class Subscriber {
 	 * @return string|\WP_Error The hub URL on success, WP_Error on failure.
 	 */
 	public static function discover_hub( $topic_url ) {
-		$response = \wp_remote_get(
-			$topic_url,
-			array(
-				'timeout' => 15,
-			)
-		);
+    $response = \wp_safe_remote_get(
+        $topic_url,
+        array(
+            'timeout'             => 15,
+            'limit_response_size' => 1048576, // 1MB cap — also closes the response-size DoS noted in the report.
+        )
+    );
 
 		if ( \is_wp_error( $response ) ) {
 			return $response;
