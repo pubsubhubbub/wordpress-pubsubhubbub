@@ -208,7 +208,7 @@ class Subscriber {
 		$response = \wp_safe_remote_get(
 			$topic_url,
 			array(
-				'timeout'             => 15,
+				'timeout' => 15,
 				'limit_response_size' => 1048576, 
 			)
 		);
