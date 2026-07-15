@@ -113,7 +113,7 @@ class Publisher {
 		);
 
 		// Make the http post request.
-		return \wp_remote_post( $hub_url, $args );
+		return \wp_safe_remote_post( $hub_url, $args );
 	}
 
 	/**
