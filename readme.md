@@ -8,7 +8,7 @@
 - License: MIT
 - License URI: http://opensource.org/licenses/MIT
 - Requires at least: 4.5
-- Tested up to: 7.0
+- Tested up to: 7.1
 - Stable tag: 4.0.1
 - Requires PHP: 7.4
 
