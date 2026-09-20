@@ -88,7 +88,7 @@ class Admin {
 	 * @return void
 	 */
 	public static function render_publisher_section() {
-		echo '<p>' . \esc_html__( 'A WebSub Publisher is an implementation that advertises a topic and hub URL on one or more resource URLs.', 'pubsubhubbub' ) . '</p>';
+		\printf( '<p>%s</p>', \esc_html__( 'A WebSub Publisher is an implementation that advertises a topic and hub URL on one or more resource URLs.', 'pubsubhubbub' ) );
 	}
 
 	/**
@@ -157,7 +157,10 @@ class Admin {
 			array(
 				'id'      => 'overview',
 				'title'   => \__( 'Overview', 'pubsubhubbub' ),
-				'content' => '<p>' . \__( 'WebSub provides a common mechanism for communication between publishers of any kind of Web content and their subscribers, based on HTTP web hooks. Subscription requests are relayed through hubs, which validate and verify the request. Hubs then distribute new and updated content to subscribers when it becomes available. WebSub was previously known as PubSubHubbub.', 'pubsubhubbub' ) . '</p>',
+				'content' => \sprintf(
+					'<p>%s</p>',
+					\__( 'WebSub provides a common mechanism for communication between publishers of any kind of Web content and their subscribers, based on HTTP web hooks. Subscription requests are relayed through hubs, which validate and verify the request. Hubs then distribute new and updated content to subscribers when it becomes available. WebSub was previously known as PubSubHubbub.', 'pubsubhubbub' )
+				),
 			)
 		);
 
@@ -165,19 +168,15 @@ class Admin {
 			array(
 				'id'      => 'terms',
 				'title'   => \__( 'Terms', 'pubsubhubbub' ),
-				'content' =>
-					'<p>
-						<strong>' . \__( 'Publisher', 'pubsubhubbub' ) . '</strong><br />' .
-						\__( 'A WebSub Publisher is an implementation that advertises a topic and hub URL on one or more resource URLs.', 'pubsubhubbub' ) .
-					'</p>' .
-					'<p>
-						<strong>' . \__( 'Subscriber', 'pubsubhubbub' ) . '</strong><br />' .
-						\__( 'A WebSub Subscriber is an implementation that discovers the hub and topic URL given a resource URL, subscribes to updates at the hub, and accepts content distribution requests from the hub. The subscriber MAY support authenticated content distribution.', 'pubsubhubbub' ) .
-					'</p>' .
-					'<p>
-						<strong>' . \__( 'Hub', 'pubsubhubbub' ) . '</strong><br />' .
-						\__( 'A WebSub Hub is an implementation that handles subscription requests and distributes the content to subscribers when the corresponding topic URL has been updated. Hubs MUST support subscription requests with a secret and deliver authenticated requests when requested. Hubs MUST deliver the full contents of the topic URL in the request, and MAY reduce the payload to a diff if the content type supports it.', 'pubsubhubbub' ) .
-					'</p>',
+				'content' => \sprintf(
+					'<p><strong>%1$s</strong><br />%2$s</p><p><strong>%3$s</strong><br />%4$s</p><p><strong>%5$s</strong><br />%6$s</p>',
+					\__( 'Publisher', 'pubsubhubbub' ),
+					\__( 'A WebSub Publisher is an implementation that advertises a topic and hub URL on one or more resource URLs.', 'pubsubhubbub' ),
+					\__( 'Subscriber', 'pubsubhubbub' ),
+					\__( 'A WebSub Subscriber is an implementation that discovers the hub and topic URL given a resource URL, subscribes to updates at the hub, and accepts content distribution requests from the hub. The subscriber MAY support authenticated content distribution.', 'pubsubhubbub' ),
+					\__( 'Hub', 'pubsubhubbub' ),
+					\__( 'A WebSub Hub is an implementation that handles subscription requests and distributes the content to subscribers when the corresponding topic URL has been updated. Hubs MUST support subscription requests with a secret and deliver authenticated requests when requested. Hubs MUST deliver the full contents of the topic URL in the request, and MAY reduce the payload to a diff if the content type supports it.', 'pubsubhubbub' )
+				),
 			)
 		);
 
@@ -185,25 +184,19 @@ class Admin {
 			array(
 				'id'      => 'indieweb',
 				'title'   => \__( 'The IndieWeb', 'pubsubhubbub' ),
-				'content' =>
-					'<p>' . \__( 'WebSub is part of the IndieWeb stack.', 'pubsubhubbub' ) . '</p>' .
-					'<p>' . \__( 'The IndieWeb is a people-focused alternative to the "corporate web".', 'pubsubhubbub' ) . '</p>' .
-					'<p>
-						<strong>' . \__( 'Your content is yours', 'pubsubhubbub' ) . '</strong><br />' .
-						\__( 'When you post something on the web, it should belong to you, not a corporation. Too many companies have gone out of business and lost all of their users\' data. By joining the IndieWeb, your content stays yours and in your control.', 'pubsubhubbub' ) .
-					'</p>' .
-					'<p>
-						<strong>' . \__( 'You are better connected', 'pubsubhubbub' ) . '</strong><br />' .
-						\__( 'Your articles and status messages can go to all services, not just one, allowing you to engage with everyone. Even replies and likes on other services can come back to your site so they\'re all in one place.', 'pubsubhubbub' ) .
-					'</p>' .
-					'<p>
-						<strong>' . \__( 'You are in control', 'pubsubhubbub' ) . '</strong><br />' .
-						\__( 'You can post anything you want, in any format you want, with no one monitoring you. In addition, you share simple readable links such as example.com/ideas. These links are permanent and will always work.', 'pubsubhubbub' ) .
-					'</p>' .
-					'<p>
-						<strong>' . \__( 'IndieWeb for WordPress', 'pubsubhubbub' ) . '</strong><br />' .
-						\__( 'Try out "<a href="https://wordpress.org/plugins/indieweb/" target="_blank">IndieWeb for WordPress</a>"', 'pubsubhubbub' ) .
-					'</p>',
+				'content' => \sprintf(
+					'<p>%1$s</p><p>%2$s</p><p><strong>%3$s</strong><br />%4$s</p><p><strong>%5$s</strong><br />%6$s</p><p><strong>%7$s</strong><br />%8$s</p><p><strong>%9$s</strong><br />%10$s</p>',
+					\__( 'WebSub is part of the IndieWeb stack.', 'pubsubhubbub' ),
+					\__( 'The IndieWeb is a people-focused alternative to the "corporate web".', 'pubsubhubbub' ),
+					\__( 'Your content is yours', 'pubsubhubbub' ),
+					\__( 'When you post something on the web, it should belong to you, not a corporation. Too many companies have gone out of business and lost all of their users\' data. By joining the IndieWeb, your content stays yours and in your control.', 'pubsubhubbub' ),
+					\__( 'You are better connected', 'pubsubhubbub' ),
+					\__( 'Your articles and status messages can go to all services, not just one, allowing you to engage with everyone. Even replies and likes on other services can come back to your site so they\'re all in one place.', 'pubsubhubbub' ),
+					\__( 'You are in control', 'pubsubhubbub' ),
+					\__( 'You can post anything you want, in any format you want, with no one monitoring you. In addition, you share simple readable links such as example.com/ideas. These links are permanent and will always work.', 'pubsubhubbub' ),
+					\__( 'IndieWeb for WordPress', 'pubsubhubbub' ),
+					\__( 'Try out "<a href="https://wordpress.org/plugins/indieweb/" target="_blank">IndieWeb for WordPress</a>"', 'pubsubhubbub' )
+				),
 			)
 		);
 
@@ -211,29 +204,28 @@ class Admin {
 			array(
 				'id'      => 'fediverse',
 				'title'   => \__( 'The Fediverse', 'pubsubhubbub' ),
-				'content' =>
-					'<p>' . \__( 'WebSub is one of the building blocks of OStatus, which is the base of the Fediverse.', 'pubsubhubbub' ) . '</p>' .
-					'<p>
-						<strong>' . \__( 'The Fediverse', 'pubsubhubbub' ) . '</strong><br />' .
-						\__( 'Fediverse is a portmanteau of "federation" and "universe". It is a common name for a broad federation of social network servers. By running social network software that supports protocols like ActivityPub, independently run servers can connect to the Fediverse.', 'pubsubhubbub' ) .
-					'</p>' .
-					'<p>
-						<strong>' . \__( 'OStatus', 'pubsubhubbub' ) . '</strong><br />' .
-						\__( 'OStatus lets people on different social networks follow each other. It applies a group of related protocols (PubSubHubbub, ActivityStreams, Salmon, Portable Contacts, and Webfinger) to enable distributed status updates or microblogging.', 'pubsubhubbub' ) .
-					'</p>' .
-					'<p>
-						<strong>' . \__( 'OStatus for WordPress', 'pubsubhubbub' ) . '</strong><br />' .
-						\__( 'Try out "<a href="https://wordpress.org/plugins/ostatus-for-wordpress/" target="_blank">OStatus for WordPress</a>"!', 'pubsubhubbub' ) .
-					'</p>',
+				'content' => \sprintf(
+					'<p>%1$s</p><p><strong>%2$s</strong><br />%3$s</p><p><strong>%4$s</strong><br />%5$s</p><p><strong>%6$s</strong><br />%7$s</p>',
+					\__( 'WebSub is one of the building blocks of OStatus, which is the base of the Fediverse.', 'pubsubhubbub' ),
+					\__( 'The Fediverse', 'pubsubhubbub' ),
+					\__( 'Fediverse is a portmanteau of "federation" and "universe". It is a common name for a broad federation of social network servers. By running social network software that supports protocols like ActivityPub, independently run servers can connect to the Fediverse.', 'pubsubhubbub' ),
+					\__( 'OStatus', 'pubsubhubbub' ),
+					\__( 'OStatus lets people on different social networks follow each other. It applies a group of related protocols (PubSubHubbub, ActivityStreams, Salmon, Portable Contacts, and Webfinger) to enable distributed status updates or microblogging.', 'pubsubhubbub' ),
+					\__( 'OStatus for WordPress', 'pubsubhubbub' ),
+					\__( 'Try out "<a href="https://wordpress.org/plugins/ostatus-for-wordpress/" target="_blank">OStatus for WordPress</a>"!', 'pubsubhubbub' )
+				),
 			)
 		);
 
 		\get_current_screen()->set_help_sidebar(
-			'<p><strong>' . \__( 'For more information:', 'pubsubhubbub' ) . '</strong></p>' .
-			'<p>' . \__( '<a href="https://websub.rocks/">Test suite</a>', 'pubsubhubbub' ) . '</p>' .
-			'<p>' . \__( '<a href="https://www.w3.org/TR/websub/">W3C Spec</a>', 'pubsubhubbub' ) . '</p>' .
-			'<p>' . \__( '<a href="https://indieweb.org/WebSub">IndieWeb Wiki</a>', 'pubsubhubbub' ) . '</p>' .
-			'<p>' . \__( '<a href="https://www.w3.org/community/ostatus/">OStatus Community</a>', 'pubsubhubbub' ) . '</p>'
+			\sprintf(
+				'<p><strong>%1$s</strong></p><p>%2$s</p><p>%3$s</p><p>%4$s</p><p>%5$s</p>',
+				\__( 'For more information:', 'pubsubhubbub' ),
+				\__( '<a href="https://websub.rocks/">Test suite</a>', 'pubsubhubbub' ),
+				\__( '<a href="https://www.w3.org/TR/websub/">W3C Spec</a>', 'pubsubhubbub' ),
+				\__( '<a href="https://indieweb.org/WebSub">IndieWeb Wiki</a>', 'pubsubhubbub' ),
+				\__( '<a href="https://www.w3.org/community/ostatus/">OStatus Community</a>', 'pubsubhubbub' )
+			)
 		);
 	}
 }

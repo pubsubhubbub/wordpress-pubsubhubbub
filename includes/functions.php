@@ -88,7 +88,7 @@ function get_self_link() {
 	// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 	$request_uri = isset( $_SERVER['REQUEST_URI'] ) ? \wp_unslash( $_SERVER['REQUEST_URI'] ) : '';
 
-	return \esc_url( \apply_filters( 'self_link', \set_url_scheme( 'http://' . $host['host'] . $request_uri ) ) );
+	return \esc_url( \apply_filters( 'self_link', \set_url_scheme( \sprintf( 'http://%s%s', $host['host'], $request_uri ) ) ) );
 }
 
 /**

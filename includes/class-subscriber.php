@@ -127,8 +127,7 @@ class Subscriber {
 			$body['hub.lease_seconds'] = $lease_seconds;
 		}
 
-		$wp_version = \get_bloginfo( 'version' );
-		$user_agent = \apply_filters( 'http_headers_useragent', 'WordPress/' . $wp_version . '; ' . \get_bloginfo( 'url' ), $hub_url );
+		$user_agent = \apply_filters( 'http_headers_useragent', \sprintf( 'WordPress/%s; %s', \get_bloginfo( 'version' ), \get_bloginfo( 'url' ) ), $hub_url );
 
 		$request_args = array(
 			'timeout'    => 30,
@@ -194,7 +193,11 @@ class Subscriber {
 	 * @return string The callback URL.
 	 */
 	public static function get_callback_url( $subscription_id ) {
-		return \rest_url( Subscriber_Controller::NAMESPACE . Subscriber_Controller::ROUTE ) . '?subscription_id=' . \rawurlencode( $subscription_id );
+		return \sprintf(
+			'%s?subscription_id=%s',
+			\rest_url( Subscriber_Controller::NAMESPACE . Subscriber_Controller::ROUTE ),
+			\rawurlencode( $subscription_id )
+		);
 	}
 
 	/**
