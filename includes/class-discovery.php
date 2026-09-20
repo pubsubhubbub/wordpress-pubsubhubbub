@@ -32,12 +32,12 @@ class Discovery {
 		$hub_urls = get_hubs();
 
 		foreach ( $hub_urls as $hub_url ) {
-			echo '<link rel="hub" href="' . \esc_url( $hub_url ) . '" />' . PHP_EOL;
+			\printf( '<link rel="hub" href="%s" />' . PHP_EOL, \esc_url( $hub_url ) );
 		}
 
 		// Add self link for WebSub discovery.
 		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- get_self_link() already escapes.
-		echo '<link rel="self" href="' . get_self_link() . '" />' . PHP_EOL;
+		\printf( '<link rel="self" href="%s" />' . PHP_EOL, get_self_link() );
 	}
 
 	/**
@@ -56,12 +56,12 @@ class Discovery {
 		$hub_urls = get_hubs();
 
 		foreach ( $hub_urls as $hub_url ) {
-			echo '<atom:link rel="hub" href="' . \esc_url( $hub_url ) . '"/>' . PHP_EOL;
+			\printf( '<atom:link rel="hub" href="%s"/>' . PHP_EOL, \esc_url( $hub_url ) );
 		}
 
 		// Add self link for WebSub discovery.
 		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- get_self_link() already escapes.
-		echo '<atom:link rel="self" href="' . get_self_link() . '"/>' . PHP_EOL;
+		\printf( '<atom:link rel="self" href="%s"/>' . PHP_EOL, get_self_link() );
 	}
 
 	/**

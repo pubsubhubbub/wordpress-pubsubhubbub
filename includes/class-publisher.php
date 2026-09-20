@@ -94,12 +94,11 @@ class Publisher {
 			// Lightweight check that we're actually working w/ a valid url.
 			if ( \preg_match( '|^https?://|i', $topic_url ) ) {
 				// Append the topic url parameters (URL-encoded per WebSub spec).
-				$post_string .= '&hub.url=' . \rawurlencode( $topic_url );
+				$post_string .= \sprintf( '&hub.url=%s', \rawurlencode( $topic_url ) );
 			}
 		}
 
-		$wp_version = \get_bloginfo( 'version' );
-		$user_agent = \apply_filters( 'http_headers_useragent', 'WordPress/' . $wp_version . '; ' . \get_bloginfo( 'url' ), $hub_url );
+		$user_agent = \apply_filters( 'http_headers_useragent', \sprintf( 'WordPress/%s; %s', \get_bloginfo( 'version' ), \get_bloginfo( 'url' ) ), $hub_url );
 
 		$args = array(
 			'timeout'             => 100,
