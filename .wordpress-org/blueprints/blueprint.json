@@ -1,0 +1,41 @@
+{
+	"$schema": "https://playground.wordpress.net/blueprint-schema.json",
+	"landingPage": "/wp-admin/options-general.php?page=pubsubhubbub",
+	"preferredVersions": {
+		"php": "8.2",
+		"wp": "latest"
+	},
+	"features": {
+		"networking": true
+	},
+	"login": true,
+	"steps": [
+		{
+			"step": "setSiteOptions",
+			"options": {
+				"permalink_structure": "/%postname%/",
+				"blogname": "WebSub Demo",
+				"blogdescription": "Real-time publishing for your feeds"
+			}
+		},
+		{
+			"step": "installPlugin",
+			"pluginData": {
+				"resource": "wordpress.org/plugins",
+				"slug": "pubsubhubbub"
+			},
+			"options": {
+				"activate": true
+			}
+		},
+		{
+			"step": "mkdir",
+			"path": "/wordpress/wp-content/mu-plugins"
+		},
+		{
+			"step": "writeFile",
+			"path": "/wordpress/wp-content/mu-plugins/show-admin-notice.php",
+			"data": "<?php\nadd_action(\n'admin_notices',\nfunction() {\n$dismissed = get_user_option( 'dismissed_pubsubhubbub_blueprint_notice', get_current_user_id() );\nif ( $dismissed ) {\nreturn;\n}\necho '<div class=\"notice notice-info is-dismissible\" id=\"pubsubhubbub-admin-notice\"><p>' . esc_html( 'Welcome to WebSub! Every time you publish a post, your hubs get notified so subscribers receive updates in real time. 👋' ) . '</p></div>';\n}\n);\nadd_action('wp_ajax_dismiss_pubsubhubbub-admin-notice', function() {\ncheck_ajax_referer('pubsubhubbub-admin-notice', 'nonce');\n$user_id = get_current_user_id();\nif ( $user_id ) {\nupdate_user_option($user_id, 'dismissed_pubsubhubbub_blueprint_notice', 1, false);\nwp_send_json_success();\n} else {\nwp_send_json_error('User not found');\n}\n} );\nadd_action('admin_footer', function() {\n?>\n<script type=\"text/javascript\">\njQuery(document).ready( function($) {\nvar ajaxurl = '<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>';\nvar nonce = '<?php echo esc_js( wp_create_nonce( 'pubsubhubbub-admin-notice' ) ); ?>';\n$( '#pubsubhubbub-admin-notice' ).on( 'click', '.notice-dismiss', function() {\n$.ajax({\nurl: ajaxurl,\ntype: 'POST',\ndata: {\naction: 'dismiss_pubsubhubbub-admin-notice',\nnonce: nonce\n}\n});\n});\n});\n</script>\n<?php\n} );"
+		}
+	]
+}
